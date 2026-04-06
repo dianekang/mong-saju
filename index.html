@@ -1121,8 +1121,18 @@ function goBack() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
 // 개발 모드: 페이지 로드 시 자동으로 값 채워넣기
-window.addEventListener('load', () => {
+ window.addEventListener('load', () => {
     document.getElementById('dog-name').value = "우리애기"; // 강아지 이름
     document.getElementById('dog-age-input').value = "11";    // 나이
     document.getElementById('dog-md-input').value = "0828";  // 생일
@@ -1131,9 +1141,4 @@ window.addEventListener('load', () => {
     
     // 버튼 하나만 누르면 바로 결과로 가게끔!
     console.log("테스트 데이터 세팅 완료! 버튼만 누르세요.");
-});
-
-</script>
-
-</body>
-</html>
+}); 
