@@ -1319,33 +1319,6 @@ function shareResult() {
     }
 }
 
-// [테스트용] 데이터 자동 입력 함수
-function autoFillTest() {
-    const isLocal = location.hostname === "127.0.0.1" || location.hostname === "localhost";
-    
-    // 로컬 환경에서만 실행되도록 안전장치를 걸어두면 좋습니다 (운영 배포 시 실수 방지)
-    // 만약 깃허브 배포본에서도 쓰고 싶다면 if문 없이 진행하세요!
-    
-    document.getElementById('dog-name').value = '행운';
-    document.getElementById('dog-age-input').value = '11';
-    document.getElementById('dog-md-input').value = '0828';
-    document.getElementById('owner-name').value = '다희';
-    document.getElementById('owner-birth').value = '19890828';
-    
-    // 시간 모름 체크
-    const dogTime = document.getElementById('dog-time-unknown');
-    const ownerTime = document.getElementById('owner-time-unknown');
-    if(dogTime) dogTime.checked = true;
-    if(ownerTime) ownerTime.checked = true;
-    
-    toggleTimeInput(dogTime, 'dog-hour-min');
-    toggleTimeInput(ownerTime, 'owner-hour-min');
-    updateComputedDate();
-}
-
-// 페이지 로드 시 즉시 실행
-window.onload = autoFillTest;
-
 function goBack() { location.reload(); }
 </script>
 </body>
