@@ -6,31 +6,34 @@
     <title>멍도사 — 반려견 사주 풀이소</title>
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
-    <style>
-/* ══════════════════════════════════════════
-   Variables
-══════════════════════════════════════════ */
+    <meta property="og:image" content="https://dianekang.github.io/mong-saju/assets/og-image.png">
+    <meta property="og:title" content="🐾 멍도사 - 우리 아이 사주 읽어보개">
+    <meta property="og:description" content="지나가던 동네 개도 깜짝 놀란 영험한 사주 풀이!">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+<style>
+/* ══ Variables ═══════════════════════════════════ */
 :root {
     --blue:      #007AFF;
-    --blue-lt:   #E8F1FF;
+    --blue-lt:   #EAF2FF;
     --bg:        #F2F2F7;
     --card:      #FFFFFF;
     --sep:       #E5E5EA;
     --text:      #1C1C1E;
     --text2:     #8E8E93;
     --text3:     #C7C7CC;
+    --red:       #FF3B30;
+    --green:     #34C759;
+    --orange:    #FF9500;
 
-    /* Ohaeng */
-    --wood:      #34C759; --wood-bg:  #EAF7EE;
-    --fire:      #FF3B30; --fire-bg:  #FFECEB;
-    --earth:     #FF9500; --earth-bg: #FFF3E0;
-    --metal:     #8E8E93; --metal-bg: #F2F2F7;
-    --water:     #007AFF; --water-bg: #EAF1FF;
+    --wood:  #34C759; --wood-bg:  #EAF7EE;
+    --fire:  #FF3B30; --fire-bg:  #FFECEB;
+    --earth: #FF9500; --earth-bg: #FFF3E0;
+    --metal: #8E8E93; --metal-bg: #F2F2F7;
+    --water: #007AFF; --water-bg: #EAF1FF;
 }
 
-/* ══════════════════════════════════════════
-   Reset & Base
-══════════════════════════════════════════ */
+/* ══ Reset ═══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -42,366 +45,211 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* ══════════════════════════════════════════
-   Header
-══════════════════════════════════════════ */
+/* ══ Header ══════════════════════════════════════ */
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    padding: 0 24px;
-    background: rgba(255,255,255,0.88);
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px; padding: 0 24px;
+    background: rgba(255,255,255,.88);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid var(--sep);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
 }
 .header-logo { font-weight: 800; font-size: 1.1rem; }
 .header-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text);
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-size: .95rem; font-weight: 700;
 }
 .btn-login {
-    background: #FEE500;
-    border: none;
-    border-radius: 8px;
-    padding: 7px 14px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #191919;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background 0.15s;
+    background: #FEE500; border: none; border-radius: 8px;
+    padding: 7px 14px; font-size: .8rem; font-weight: 600;
+    color: #191919; cursor: pointer; font-family: inherit;
+    transition: background .15s;
 }
 .btn-login:hover { background: #FADA0A; }
-@media (max-width: 600px) { .header-center { display: none; } }
+@media (max-width:600px) { .header-center { display: none; } }
 
-/* ══════════════════════════════════════════
-   Layout
-══════════════════════════════════════════ */
+/* ══ Layout ══════════════════════════════════════ */
 main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
 
-/* ══════════════════════════════════════════
-   Banner
-══════════════════════════════════════════ */
+/* ══ Banner ══════════════════════════════════════ */
 .banner-container {
     background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%);
-    border-radius: 20px;
-    padding: 32px 40px;
-    margin-bottom: 48px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 20px; padding: 32px 40px;
+    margin-bottom: 48px; position: relative; overflow: hidden;
 }
 .banner-container::after {
-    content: '🔮';
-    position: absolute;
-    right: 32px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 6rem;
-    opacity: 0.2;
-    pointer-events: none;
+    content: '🔮'; position: absolute; right: 32px; top: 50%;
+    transform: translateY(-50%); font-size: 6rem; opacity: .2; pointer-events: none;
 }
 .banner-tag {
-    display: inline-block;
-    background: rgba(255,255,255,0.22);
-    border-radius: 100px;
-    padding: 3px 10px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 0.05em;
-    margin-bottom: 10px;
+    display: inline-block; background: rgba(255,255,255,.22);
+    border-radius: 100px; padding: 3px 10px;
+    font-size: .72rem; font-weight: 700; color: white;
+    letter-spacing: .05em; margin-bottom: 10px;
 }
 .banner-title { font-size: 1.65rem; font-weight: 800; color: white; margin-bottom: 6px; }
-.banner-sub   { font-size: 0.95rem; color: rgba(255,255,255,0.85); }
-@media (max-width: 600px) {
+.banner-sub   { font-size: .95rem; color: rgba(255,255,255,.85); }
+@media (max-width:600px) {
     .banner-container { padding: 24px; }
     .banner-container::after { display: none; }
     .banner-title { font-size: 1.3rem; }
 }
 
-/* ══════════════════════════════════════════
-   Form
-══════════════════════════════════════════ */
+/* ══ Form ════════════════════════════════════════ */
 .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
 }
-@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+@media (max-width:640px) { .form-grid { grid-template-columns: 1fr; } }
 
-.form-card {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-}
-.form-card-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 22px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--bg);
-}
+.form-card { background: var(--card); border-radius: 20px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+.form-card-title { font-size: .95rem; font-weight: 700; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid var(--bg); }
 .form-group { margin-bottom: 22px; }
 .form-group:last-child { margin-bottom: 0; }
 
-.field-label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text2);
-    margin-bottom: 8px;
-}
-.field-label .opt {
-    font-weight: 400;
-    color: var(--text3);
-}
+.field-label { display: block; font-size: .8rem; font-weight: 600; color: var(--text2); margin-bottom: 8px; }
+.field-label .opt { font-weight: 400; color: var(--text3); }
 
 .under-input {
-    width: 100%;
-    border: none;
-    border-bottom: 1.5px solid var(--sep);
-    padding: 8px 0;
-    font-size: 1rem;
-    font-family: inherit;
-    color: var(--text);
-    background: transparent;
-    outline: none;
-    transition: border-color 0.2s;
-    min-width: 0;
+    width: 100%; border: none; border-bottom: 1.5px solid var(--sep);
+    padding: 8px 0; font-size: 1rem; font-family: inherit;
+    color: var(--text); background: transparent; outline: none;
+    transition: border-color .2s; min-width: 0;
 }
 .under-input::placeholder { color: var(--text3); }
 .under-input:focus        { border-bottom-color: var(--blue); }
-.under-input:disabled     { opacity: 0.35; }
+.under-input:disabled     { opacity: .35; }
 
-.input-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+.input-row { display: flex; align-items: center; gap: 8px; }
 .input-row .under-input { flex: 1; }
-.input-row .row-span {
-    font-size: 0.85rem;
-    color: var(--text2);
-    white-space: nowrap;
-    flex-shrink: 0;
-}
+.input-row .row-span { font-size: .85rem; color: var(--text2); white-space: nowrap; flex-shrink: 0; }
 
-/* Fixed-width inputs */
 #dog-age-input { width: 56px; flex: none; text-align: center; }
 #dog-md-input  { width: 88px; flex: none; text-align: center; }
 
-.computed-date {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--blue);
-    margin-top: 6px;
-    min-height: 1.3em;
-}
+.computed-date { font-size: .82rem; font-weight: 600; color: var(--blue); margin-top: 6px; min-height: 1.3em; }
 
-/* Toggle group */
 .toggle-group {
-    display: inline-flex;
-    background: var(--bg);
-    border-radius: 100px;
-    padding: 3px;
-    gap: 2px;
-    flex-shrink: 0;
+    display: inline-flex; background: var(--bg); border-radius: 100px;
+    padding: 3px; gap: 2px; flex-shrink: 0;
 }
 .btn-toggle {
-    border: none;
-    background: none;
-    padding: 5px 14px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    border-radius: 100px;
-    cursor: pointer;
-    color: var(--text2);
-    font-family: inherit;
-    transition: all 0.18s;
+    border: none; background: none; padding: 5px 14px;
+    font-size: .78rem; font-weight: 600; border-radius: 100px;
+    cursor: pointer; color: var(--text2); font-family: inherit; transition: all .18s;
 }
-.btn-toggle.active {
-    background: white;
-    color: var(--text);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+.btn-toggle.active { background: white; color: var(--text); box-shadow: 0 2px 6px rgba(0,0,0,.1); }
 
-/* Checkbox */
 .check-label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    font-size: 0.82rem;
-    color: var(--text2);
-    white-space: nowrap;
-    flex-shrink: 0;
+    display: flex; align-items: center; gap: 6px; cursor: pointer;
+    font-size: .82rem; color: var(--text2); white-space: nowrap; flex-shrink: 0;
 }
 
-/* Submit */
 .btn-submit {
-    width: 100%;
-    padding: 18px;
-    background: var(--blue);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    font-family: inherit;
-    letter-spacing: -0.01em;
-    cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
+    width: 100%; padding: 18px; background: var(--blue); color: white;
+    border: none; border-radius: 16px; font-size: 1.05rem; font-weight: 700;
+    font-family: inherit; letter-spacing: -.01em; cursor: pointer;
+    transition: opacity .15s, transform .1s;
 }
-.btn-submit:hover  { opacity: 0.88; }
-.btn-submit:active { transform: scale(0.99); }
+.btn-submit:hover  { opacity: .88; }
+.btn-submit:active { transform: scale(.99); }
 
-/* ══════════════════════════════════════════
-   Loading
-══════════════════════════════════════════ */
+/* ══ Loading: 픽셀 아트 달리는 강아지 ══════════════ */
 #loading-section {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    padding: 100px 20px;
-    text-align: center;
-}
-.spinner {
-    width: 48px; height: 48px;
-    border: 3px solid var(--sep);
-    border-top-color: var(--blue);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin-bottom: 28px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading-text { font-size: 1.1rem; font-weight: 600; color: var(--text); }
-.loading-sub  { font-size: 0.85rem; color: var(--text2); margin-top: 6px; }
-
-/* ══════════════════════════════════════════
-   Results
-══════════════════════════════════════════ */
-#results-section {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    display: none; flex-direction: column;
+    align-items: center; padding: 80px 20px; text-align: center;
 }
 
-/* 섹션 간 48px 여백 */
-.result-block { margin-bottom: 48px; }
-
-/* ── 만세력 차트 ── */
-.chart-card {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 28px 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+.dog-stage {
+    width: 260px; height: 64px; position: relative;
+    overflow: hidden; margin: 0 auto 20px;
 }
-.chart-card-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
-    margin-bottom: 5px;
+.dog-ground {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--sep); border-radius: 1px;
 }
-.chart-card-sub {
-    font-size: 0.85rem;
-    color: var(--text2);
-    margin-bottom: 24px;
-    line-height: 1.5;
+.dog-mover {
+    position: absolute; bottom: 6px;
+    animation: dogMove 3s linear infinite;
 }
-
-.chart-interpretation {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px dashed var(--sep);
-}
-
-.interpret-item {
-    margin-bottom: 16px;
-}
-
-.interpret-label {
+.dog-flipper {
     display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--blue);
-    background: var(--blue-lt);
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-bottom: 6px;
+    animation: dogFlip 3s linear infinite;
+}
+.dog-bouncer {
+    display: inline-block; font-size: 2.4rem;
+    image-rendering: pixelated;
+    animation: dogBounce .28s ease-in-out infinite alternate;
+}
+.paw-dot {
+    position: absolute; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--text3); bottom: 2px;
+    animation: pawPop 2.2s linear infinite;
+    opacity: 0;
+}
+.paw-dot:nth-child(2) { left: 18%; animation-delay: .55s; }
+.paw-dot:nth-child(3) { left: 40%; animation-delay: 1.1s; }
+.paw-dot:nth-child(4) { left: 62%; animation-delay: 1.65s; }
+.paw-dot:nth-child(5) { left: 84%; animation-delay: 2.2s; }
+
+@keyframes dogMove {
+    0%   { left: -15%; }
+    44%  { left: 115%; }
+    44.1%{ left: 115%; }
+    88%  { left: -15%; }
+    100% { left: -15%; }
+}
+@keyframes dogFlip {
+    0%, 43.9%  { transform: scaleX(1); }
+    44%, 99.9% { transform: scaleX(-1); }
+    100%       { transform: scaleX(1); }
+}
+@keyframes dogBounce {
+    from { transform: translateY(0)    scaleY(1); }
+    to   { transform: translateY(-10px) scaleY(.93); }
+}
+@keyframes pawPop {
+    0%, 15%, 55%, 100% { opacity: 0; transform: scale(.4); }
+    30%, 45%           { opacity: .7; transform: scale(1); }
 }
 
-.interpret-text {
-    font-size: 0.95rem;
-    color: var(--text);
-    line-height: 1.6;
+.loading-text { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+.loading-sub  { font-size: .85rem; color: var(--text2); margin-top: 6px; }
+
+/* ══ Results ═════════════════════════════════════ */
+#results-section { display: none; opacity: 0; transition: opacity .5s ease; }
+.result-block    { margin-bottom: 48px; }
+
+/* ── 만세력 차트 카드 ────────────────────────────── */
+.chart-card {
+    background: var(--card); border-radius: 20px;
+    padding: 28px 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
 }
+.chart-card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 3px; }
+.chart-card-sub   { font-size: .82rem; color: var(--text2); margin-bottom: 20px; }
 
-
-/* 5-column grid: [label] [연주] [월주] [일주] [시주] */
 .saju-grid {
     display: grid;
     grid-template-columns: 36px repeat(4, 1fr);
     gap: 8px;
 }
-.col-header {
-    text-align: center;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--text2);
-    padding-bottom: 4px;
-}
-.row-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: var(--text2);
-    writing-mode: vertical-lr;
+.col-header { text-align: center; font-size: .72rem; font-weight: 600; color: var(--text2); padding-bottom: 4px; }
+.row-label  {
+    display: flex; align-items: center; justify-content: center;
+    font-size: .68rem; font-weight: 600; color: var(--text2); writing-mode: vertical-lr;
 }
 
-/* 각 한자 박스 */
+/* 한자 / 아이콘 / 이름 분리 레이아웃 */
 .char-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 80px;
-    border-radius: 14px;
-    overflow: hidden;
-    padding: 6px 4px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px;
+    min-height: 90px; border-radius: 14px; padding: 10px 4px;
 }
-.char-box .kanji-bg {
-    position: absolute;
-    font-size: 3rem;
-    font-weight: 900;
-    opacity: 0.3;
-    pointer-events: none;
-    user-select: none;
-    line-height: 1;
-}
-.char-box .energy-name {
-    position: relative;
-    z-index: 1;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 1.4;
-}
+.char-icon  { font-size: 1.5rem; line-height: 1; }
+.char-name  { font-size: .68rem; font-weight: 700; text-align: center; line-height: 1.35; }
+.char-kanji { font-size: .68rem; opacity: .45; font-weight: 400; }
+.char-empty { font-size: 1.2rem; opacity: .3; }
 
-/* Ohaeng 배경색 */
 .oh-wood  { background: var(--wood-bg);  color: var(--wood);  }
 .oh-fire  { background: var(--fire-bg);  color: var(--fire);  }
 .oh-earth { background: var(--earth-bg); color: var(--earth); }
@@ -409,176 +257,334 @@ main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
 .oh-water { background: var(--water-bg); color: var(--water); }
 .oh-none  { background: var(--bg);       color: var(--text2); }
 
-/* Ohaeng legend */
 .ohaeng-legend {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+    justify-content: center; margin-top: 16px;
 }
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.75rem;
-    color: var(--text2);
-}
-.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: .75rem; color: var(--text2); }
+.legend-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-/* ── Report cards ── */
-.report-card {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 30px 26px;
-    margin-bottom: 18px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    /* height: auto; overflow: visible (결과 영역 무한 확장) */
-    animation: fadeUp 0.4s ease both;
-    border: 1.5px solid #E5E5EA;
+/* ── Accordion ───────────────────────────────── */
+.accordion-wrap { margin-top: 16px; }
+.accordion-btn {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; background: var(--bg); border: none;
+    border-radius: 12px; font-size: .85rem; font-weight: 600;
+    color: var(--text2); cursor: pointer; font-family: inherit;
+    transition: background .15s;
 }
-.report-card:nth-child(1) { animation-delay: 0.05s; }
-.report-card:nth-child(2) { animation-delay: 0.12s; }
-.report-card:nth-child(3) { animation-delay: 0.20s; }
-.report-card:nth-child(4) { animation-delay: 0.28s; }
+.accordion-btn:hover { background: var(--sep); }
+.accordion-btn.danger { color: var(--red); background: #FFF0EF; }
+.accordion-btn.danger:hover { background: #FFE5E4; }
+.accordion-arrow { transition: transform .2s; display: inline-block; }
+.accordion-body {
+    display: none; padding: 16px; background: var(--bg);
+    border-radius: 0 0 12px 12px; margin-top: -4px;
+    font-size: .88rem; color: var(--text2); line-height: 1.7;
+}
+.accordion-body.open { display: block; }
+
+/* ── Report cards ────────────────────────────── */
+.report-card {
+    background: var(--card); border-radius: 20px;
+    padding: 28px 24px; margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    animation: fadeUp .4s ease both;
+    /* 결과 영역 무한 확장 */
+    height: auto; overflow: visible;
+}
+.report-card:nth-child(1) { animation-delay: .05s; }
+.report-card:nth-child(2) { animation-delay: .12s; }
+.report-card:nth-child(3) { animation-delay: .19s; }
+.report-card:nth-child(4) { animation-delay: .26s; }
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.card-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 3px solid var(--bg);
-    display: inline-block;
+/* 카드 헤더: eyebrow → subtitle 구조 */
+.card-eyebrow {
+    font-size: .72rem; font-weight: 700; color: var(--blue);
+    letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px;
 }
-.card-body {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: #3A3A3C;
-    /* 텍스트 양에 따라 무한 확장 */
-    margin-top: 10px;
-    overflow: visible;
+.card-subtitle {
+    font-size: 1.2rem; font-weight: 800; color: var(--text);
+    line-height: 1.4; margin-bottom: 20px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--bg);
 }
-.card-body p { margin-bottom: 0.85em; }
+.card-body { font-size: 1rem; line-height: 1.85; color: var(--text); height: auto; overflow: visible; }
+.card-body p { margin-bottom: .85em; }
 .card-body p:last-child { margin-bottom: 0; }
 
-/* 궁합 점수 (우리 둘의 찰떡 궁합 카드 안) */
-.compat-score-row {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 14px 0 20px;
-    border-bottom: 1px solid var(--bg);
-    margin-bottom: 20px;
-}
-.compat-score-num {
-    font-size: 3.6rem;
-    font-weight: 800;
-    color: var(--blue);
-    line-height: 1;
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
-}
-.compat-score-right { flex: 1; }
-.compat-score-label {
-    font-size: 0.78rem;
-    color: var(--text2);
-    margin-bottom: 3px;
-}
-.compat-score-comment {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 10px;
-}
-.gauge-track {
-    height: 6px;
-    background: var(--bg);
-    border-radius: 100px;
-    overflow: hidden;
-}
-.gauge-fill {
-    height: 100%;
-    border-radius: 100px;
-    background: linear-gradient(90deg, var(--water-bg) 0%, var(--blue) 100%);
-    width: 0;
-    transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Bullet list */
-.report-bullets {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-}
+.report-bullets { list-style: none; padding: 0; margin: 0; }
 .report-bullets li {
-    padding: 8px 0 8px 20px;
-    position: relative;
-    font-size: 1rem;
-    border-bottom: 1px solid var(--bg);
+    padding: 10px 0 10px 22px; position: relative;
+    font-size: .95rem; border-bottom: 1px solid var(--bg);
+    line-height: 1.6;
 }
 .report-bullets li:last-child { border-bottom: none; }
 .report-bullets li::before {
-    content: '•';
-    position: absolute;
-    left: 4px;
-    color: var(--blue);
-    font-weight: 700;
+    content: '•'; position: absolute; left: 6px;
+    color: var(--blue); font-weight: 700; font-size: 1.1rem;
 }
 
-/* API notice */
+/* ── 궁합 점수 (게이지 없음, 점수 + 태그) ──────── */
+.compat-score-block {
+    display: flex; align-items: center; gap: 20px;
+    padding: 16px 0 22px; border-bottom: 1px solid var(--bg); margin-bottom: 20px;
+}
+.compat-score-circle {
+    width: 88px; height: 88px; border-radius: 50%;
+    background: var(--blue-lt); display: flex;
+    flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.compat-score-num  { font-size: 2.4rem; font-weight: 800; color: var(--blue); line-height: 1; font-variant-numeric: tabular-nums; }
+.compat-score-unit { font-size: .8rem; font-weight: 600; color: var(--blue); margin-top: 1px; }
+.compat-right { flex: 1; }
+.relation-tag {
+    display: inline-block; background: var(--blue); color: white;
+    border-radius: 100px; padding: 5px 16px;
+    font-size: .82rem; font-weight: 700; margin-bottom: 8px;
+}
+.compat-comment { font-size: .88rem; color: var(--text2); line-height: 1.6; }
+
+/* ── 건강 섹션: 행운 카드 + 음식칩 ─────────────── */
+.lucky-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;
+}
+.lucky-card {
+    background: var(--bg); border-radius: 14px;
+    padding: 16px 10px; text-align: center;
+}
+.lucky-icon   { font-size: 1.6rem; margin-bottom: 6px; }
+.lucky-label  { font-size: .68rem; color: var(--text2); font-weight: 600; margin-bottom: 3px; }
+.lucky-value  { font-size: .88rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.lucky-reason { font-size: .64rem; color: var(--text2); line-height: 1.4; }
+
+.health-subtitle { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.food-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.food-chip {
+    background: var(--blue-lt); color: var(--blue); border-radius: 100px;
+    padding: 5px 14px; font-size: .8rem; font-weight: 600;
+}
+
+.organ-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg); border-radius: 100px; padding: 4px 12px;
+    font-size: .78rem; font-weight: 600; color: var(--text2);
+    margin-bottom: 16px;
+}
+
+.health-tip {
+    font-size: .85rem; color: var(--text2); background: var(--bg);
+    border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;
+    line-height: 1.65;
+}
+.health-tip strong { color: var(--text); }
+
+/* 위험 음식 아코디언 안 목록 */
+.danger-list { list-style: none; padding: 0; }
+.danger-list li {
+    padding: 6px 0 6px 18px; position: relative;
+    border-bottom: 1px solid var(--sep); font-size: .85rem;
+}
+.danger-list li:last-child { border-bottom: none; }
+.danger-list li::before { content: '⚠️'; position: absolute; left: 0; font-size: .75rem; }
+.danger-list .danger-reason { font-size: .75rem; color: var(--red); display: block; }
+
+.disclaimer {
+    margin-top: 16px; padding: 12px 14px; background: #FFF3E0;
+    border-radius: 12px; font-size: .8rem; color: #E65100; line-height: 1.6;
+}
+
+/* ── 행복 제안 섹션 ──────────────────────────── */
+.happy-items {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.happy-item {
+    background: var(--bg); border-radius: 14px;
+    padding: 14px; display: flex; gap: 10px; align-items: flex-start;
+}
+.happy-icon        { font-size: 1.4rem; flex-shrink: 0; line-height: 1.2; }
+.happy-label       { font-size: .68rem; color: var(--text2); font-weight: 600; margin-bottom: 2px; }
+.happy-value       { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.happy-reason      { font-size: .68rem; color: var(--text2); line-height: 1.4; }
+
+/* API notice & back btn */
 .api-notice {
-    background: var(--bg);
-    border-radius: 12px;
-    padding: 12px 16px;
-    font-size: 0.78rem;
-    color: var(--text2);
-    text-align: center;
-    margin-bottom: 20px;
+    background: var(--bg); border-radius: 12px; padding: 12px 16px;
+    font-size: .78rem; color: var(--text2); text-align: center; margin-bottom: 20px;
 }
-
-/* Back button */
 .btn-back {
-    width: 100%;
-    padding: 16px;
-    background: transparent;
-    border: 1.5px solid var(--sep);
-    border-radius: 14px;
-    color: var(--text2);
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: border-color 0.18s, color 0.18s;
+    width: 100%; padding: 16px; background: transparent;
+    border: 1.5px solid var(--sep); border-radius: 14px;
+    color: var(--text2); font-size: .95rem; font-weight: 600;
+    font-family: inherit; cursor: pointer; transition: border-color .18s, color .18s;
 }
 .btn-back:hover { border-color: var(--blue); color: var(--blue); }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 28px 20px;
-    font-size: 0.75rem;
-    color: var(--text3);
-    border-top: 1px solid var(--sep);
+footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(--text3); border-top: 1px solid var(--sep); }
+
+@media (max-width:600px) {
+    .saju-grid { gap: 5px; }
+    .char-box  { min-height: 76px; }
+    .char-icon { font-size: 1.25rem; }
+    .lucky-cards { grid-template-columns: repeat(3,1fr); gap: 7px; }
+    .lucky-card  { padding: 12px 6px; }
+    .happy-items { grid-template-columns: 1fr; }
+    .compat-score-circle { width: 76px; height: 76px; }
+    .compat-score-num { font-size: 2rem; }
 }
 
-@media (max-width: 600px) {
-    .saju-grid { gap: 5px; }
-    .char-box  { min-height: 66px; }
-    .char-box .kanji-bg { font-size: 2.3rem; }
-    .char-box .energy-name { font-size: 0.65rem; }
-    .compat-score-num { font-size: 2.8rem; }
+/* 클릭 전 편지 봉투 스타일 */
+.letter-wrapper {
+    margin-top: 40px;
+    cursor: pointer;
 }
-    </style>
+
+.envelope {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 122, 255, 0.15);
+    border-radius: 20px;
+    padding: 32px 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.envelope-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.envelope-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1C1C1E;
+    letter-spacing: -0.02em;
+}
+
+.letter-opened {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid var(--sep);
+    animation: appleFadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.letter-header {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.letter-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--sep);
+}
+
+.letter-content {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1C1C1E;
+    line-height: 1.6;
+    text-align: center;
+    word-break: keep-all;
+}
+
+@keyframes appleFadeUp {
+    from { opacity: 0; transform: translateY(15px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 편지 두근두근(Heartbeat) 애니메이션 */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+}
+
+.heartbeat-icon {
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    font-size: 2.2rem; /* 조금 더 강조 */
+    margin-bottom: 12px;
+}
+
+/* 안내 문구 스타일: 작고 정갈하게 */
+.envelope-hint {
+    font-size: 0.8rem;
+    color: #8E8E93; /* Apple Gray */
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* 공유 버튼 */
+.share-section {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+    padding-bottom: 20px;
+}
+
+.share-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.share-circle {
+    width: 56px;
+    height: 56px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid var(--sep);
+    font-size: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.share-circle:active {
+    transform: scale(0.9);
+    background: var(--bg);
+}
+
+.share-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text2);
+}
+
+</style>
 </head>
 <body>
 
-<!-- ── Header ── -->
 <header>
     <div class="header-logo">🐾 멍도사</div>
     <div class="header-center">멍도사 — 반려견 사주 풀이소</div>
@@ -587,26 +593,23 @@ footer {
 
 <main>
 
-<!-- ── Banner ── -->
+<!-- Banner -->
 <section class="banner-container">
     <span class="banner-tag">OPEN EVENT</span>
     <div class="banner-title">영험한 멍도사 오픈 이벤트! 🐾</div>
     <div class="banner-sub">지금 가입하면 우리 아이 복채가 무료라네.</div>
 </section>
 
-<!-- ── Form ── -->
+<!-- Form -->
 <section id="form-section">
     <div class="form-grid">
 
-        <!-- 강아지 카드 -->
         <div class="form-card">
             <div class="form-card-title">🐶 우리 강아지</div>
-
             <div class="form-group">
                 <label class="field-label">이름</label>
                 <input type="text" id="dog-name" class="under-input" placeholder="강아지 이름" maxlength="10">
             </div>
-
             <div class="form-group">
                 <label class="field-label">성별</label>
                 <div class="toggle-group" id="dog-gender-group">
@@ -614,41 +617,33 @@ footer {
                     <button type="button" class="btn-toggle"        onclick="selectToggle(this)">여아</button>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="field-label">나이 &amp; 생일</label>
                 <div class="input-row">
-                    <input type="number" id="dog-age-input" class="under-input"
-                           placeholder="나이" min="0" max="30" oninput="updateComputedDate()">
+                    <input type="number" id="dog-age-input" class="under-input" placeholder="나이" min="0" max="30" oninput="updateComputedDate()">
                     <span class="row-span">세 /</span>
-                    <input type="text" id="dog-md-input" class="under-input"
-                           placeholder="0505" maxlength="4" oninput="updateComputedDate()">
+                    <input type="text" id="dog-md-input" class="under-input" placeholder="0505" maxlength="4" oninput="updateComputedDate()">
                 </div>
                 <div class="computed-date" id="computed-date"></div>
             </div>
-
             <div class="form-group">
                 <label class="field-label">태어난 시간 <span class="opt">(선택)</span></label>
                 <div class="input-row">
                     <input type="text" id="dog-hour-min" class="under-input" placeholder="00:00">
                     <label class="check-label">
-                        <input type="checkbox" id="dog-time-unknown"
-                               onchange="toggleTimeInput(this, 'dog-hour-min')">
+                        <input type="checkbox" id="dog-time-unknown" onchange="toggleTimeInput(this,'dog-hour-min')">
                         시간 모름
                     </label>
                 </div>
             </div>
         </div>
 
-        <!-- 보호자 카드 -->
         <div class="form-card">
             <div class="form-card-title">👤 보호자 정보</div>
-
             <div class="form-group">
                 <label class="field-label">이름</label>
                 <input type="text" id="owner-name" class="under-input" placeholder="보호자 이름" maxlength="10">
             </div>
-
             <div class="form-group">
                 <label class="field-label">성별</label>
                 <div class="toggle-group" id="owner-gender-group">
@@ -656,45 +651,51 @@ footer {
                     <button type="button" class="btn-toggle"        onclick="selectToggle(this)">여성</button>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="field-label">생년월일</label>
                 <div class="input-row">
-                    <input type="text" id="owner-birth" class="under-input"
-                           placeholder="19890828" maxlength="8">
+                    <input type="text" id="owner-birth" class="under-input" placeholder="19890828" maxlength="8">
                     <div class="toggle-group">
                         <button type="button" class="btn-toggle active" onclick="selectToggle(this)">양력</button>
                         <button type="button" class="btn-toggle"        onclick="selectToggle(this)">음력</button>
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="field-label">태어난 시간 <span class="opt">(선택)</span></label>
                 <div class="input-row">
                     <input type="text" id="owner-hour-min" class="under-input" placeholder="00:00">
                     <label class="check-label">
-                        <input type="checkbox" id="owner-time-unknown"
-                               onchange="toggleTimeInput(this, 'owner-hour-min')">
+                        <input type="checkbox" id="owner-time-unknown" onchange="toggleTimeInput(this,'owner-hour-min')">
                         시간 모름
                     </label>
                 </div>
             </div>
         </div>
 
-    </div><!-- /form-grid -->
-
+    </div>
     <button class="btn-submit" onclick="startReading()">🔮 멍도사에게 사주 읽어달라기</button>
 </section>
 
-<!-- ── Loading ── -->
+<!-- Loading: 픽셀아트 달리는 강아지 -->
 <section id="loading-section">
-    <div class="spinner"></div>
-    <div class="loading-text" id="loading-text">멍도사가 우주의 기운을 읽고 있네...</div>
+    <div class="dog-stage">
+        <div class="dog-mover">
+            <div class="dog-flipper">
+                <div class="dog-bouncer">🐕</div>
+            </div>
+        </div>
+        <div class="paw-dot"></div>
+        <div class="paw-dot"></div>
+        <div class="paw-dot"></div>
+        <div class="paw-dot"></div>
+        <div class="dog-ground"></div>
+    </div>
+    <div class="loading-text" id="loading-text">멍도사가 기운을 읽고 있네...</div>
     <div class="loading-sub">잠시만 기다려 주게나</div>
 </section>
 
-<!-- ── Results ── -->
+<!-- Results -->
 <section id="results-section">
 
     <!-- 1. 만세력 시각화 (최상단) -->
@@ -704,33 +705,32 @@ footer {
             <div class="chart-card-sub">타고난 기운의 흐름</div>
             <div class="saju-grid" id="saju-grid"></div>
             <div class="ohaeng-legend">
-                <div class="legend-item"><div class="legend-dot" style="background:var(--wood)"></div>木 활동</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--fire)"></div>火 열정</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--earth)"></div>土 안정</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--metal)"></div>金 의지</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--water)"></div>水 지혜</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--wood)"></div>🌳 木 활동</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--fire)"></div>🔥 火 열정</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--earth)"></div>⛰️ 土 안정</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--metal)"></div>💎 金 의지</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--water)"></div>💧 水 지혜</div>
             </div>
-            <div class="chart-interpretation">
-        <div class="interpret-item">
-            <span class="interpret-label">하늘의 기운 (천간)</span>
-            <p class="interpret-text">아이의 겉으로 드러나는 성격과 기질을 의미합니다. 주로 행동이나 태도에서 바로 나타나는 모습이죠.</p>
-        </div>
-        <div class="interpret-item">
-            <span class="interpret-label">땅의 기운 (지지)</span>
-            <p class="interpret-text">아이의 내면에 숨겨진 본능과 잠재력을 의미합니다. 환경이 바뀌거나 친해졌을 때 나오는 깊은 속마음이에요.</p>
-        </div>
-        <div class="interpret-item">
-            <span class="interpret-label">멍도사의 팁</span>
-            <p class="interpret-text" id="saju-summary-tip">색깔이 골고루 섞여 있을수록 무난한 성격이며, 한 색깔이 강하면 그 기운이 매우 뚜렷한 아이랍니다!</p>
+            <!-- 상세 설명 아코디언 -->
+            <div class="accordion-wrap">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    상세 설명 펼쳐보기
+                    <span class="accordion-arrow">▼</span>
+                </button>
+                <div class="accordion-body">
+                    <p><strong>🌤 천간</strong> — 겉으로 드러나는 성격과 기질이에요. 행동과 태도에서 바로 나타나는 모습이죠.</p>
+                    <p style="margin-top:10px"><strong>🌏 지지</strong> — 내면에 숨겨진 본능과 잠재력이에요. 친해졌을 때 드러나는 깊은 속마음이랍니다.</p>
+                    <p style="margin-top:10px"><strong>💡 멍도사 팁</strong> — 색깔이 골고루 섞여 있을수록 무난한 성격이며, 한 색깔이 강할수록 그 기운이 뚜렷한 아이예요!</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- API 안내 -->
     <div class="api-notice">
         ※ 현재 테스트 리포트가 표시됩니다 — API 연동 후 실제 분석 결과가 출력됩니다
     </div>
 
-    <!-- 2~5. 리포트 카드 (타고난 성격 → 찰떡 궁합 → 건강 → 행복 제안) -->
+    <!-- 2~5. 리포트 카드 (JS로 렌더링) -->
     <div id="report-cards"></div>
 
     <div style="height:32px"></div>
@@ -742,7 +742,7 @@ footer {
 
 <footer>멍도사 · 반려견 사주 풀이소 · Claude API 연동 준비 완료</footer>
 
-<!-- ── lunar-javascript (CommonJS 브라우저 shim) ── -->
+<!-- lunar-javascript shim -->
 <script>
 window._mod = { exports: {} };
 var module  = window._mod;
@@ -751,9 +751,25 @@ var exports = module.exports;
 <script src="https://unpkg.com/lunar-javascript/lunar.js"></script>
 
 <script>
-/* ══════════════════════════════════════════
-   1. 상수 & 데이터
-══════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   1. 상수 & 섹션별 데이터
+══════════════════════════════════════════════ */
+
+// [추가] 조사 판별 함수: 이름에 따라 은/는, 이/가 등을 자동으로 선택
+function getJosa(name, type) {
+    if (!name) return '';
+    const lastChar = name.charCodeAt(name.length - 1);
+    const hasLast = (lastChar - 0xac00) % 28 > 0; // 받침이 있으면 true
+
+    const josaMap = {
+        '은는': hasLast ? '이는' : '는', // 이름 뒤에 바로 붙을 때 '행운이는', '초코는'
+        '이가': hasLast ? '이가' : '가', // '행운이가', '초코가'
+        '을를': hasLast ? '이를' : '를', // '행운이를', '초코를'
+        '이랑': hasLast ? '이랑' : '랑'  // '행운이랑', '초코랑'
+    };
+    return josaMap[type] || '';
+}
+
 const Solar = window._mod.exports.Solar || window.Solar;
 
 const OHAENG_MAP = {
@@ -763,67 +779,128 @@ const OHAENG_MAP = {
     '壬':'水','癸':'水','亥':'水','子':'水',
     '戊':'土','己':'土','辰':'土','戌':'土','丑':'土','未':'土'
 };
+const OH_CLASS = { '木':'oh-wood','火':'oh-fire','土':'oh-earth','金':'oh-metal','水':'oh-water' };
+const OH_ICON  = { '木':'🌳','火':'🔥','土':'⛰️','金':'💎','水':'💧' };
 
-const OH_CLASS = {
-    '木':'oh-wood','火':'oh-fire','土':'oh-earth','金':'oh-metal','水':'oh-water'
-};
-
-// 직관적 기운 이름 (한자 → 2줄 레이블)
 const ENERGY_NAMES = {
-    /* 天干 */
-    '甲':'봄의\n새싹',   '乙':'유연한\n넝쿨',   '丙':'빛나는\n햇살',   '丁':'따뜻한\n등불',
-    '戊':'든든한\n산',   '己':'포근한\n대지',   '庚':'단단한\n바위',   '辛':'빛나는\n보석',
-    '壬':'큰\n강줄기',   '癸':'촉촉한\n이슬',
-    /* 地支 */
-    '子':'겨울의\n지혜', '丑':'고요한\n땅',     '寅':'새벽의\n용기', '卯':'봄의\n생기',
-    '辰':'신비의\n용',   '巳':'뜨거운\n기운',   '午':'한낮의\n열정', '未':'따스한\n기운',
-    '申':'재빠른\n기운', '酉':'가을의\n결실',   '戌':'충직한\n기운', '亥':'밤의\n지혜'
+    '甲':'봄의\n새싹',  '乙':'유연한\n넝쿨', '丙':'빛나는\n햇살', '丁':'따뜻한\n등불',
+    '戊':'든든한\n산',  '己':'포근한\n대지', '庚':'단단한\n바위', '辛':'빛나는\n보석',
+    '壬':'큰\n강줄기',  '癸':'촉촉한\n이슬',
+    '子':'겨울의\n지혜','丑':'고요한\n땅',   '寅':'새벽의\n용기','卯':'봄의\n생기',
+    '辰':'신비의\n용',  '巳':'뜨거운\n기운', '午':'한낮의\n열정','未':'따스한\n기운',
+    '申':'재빠른\n기운','酉':'가을의\n결실', '戌':'충직한\n기운','亥':'밤의\n지혜'
 };
 
-// 강아지 1인칭 + {HONORIFIC} 동적 치환 더미 리포트
-const DUMMY_REPORT = `【타고난 성격】
-나 {DOG}는 정말 에너지가 넘치는 아이야! 어딜 가든 먼저 달려가고 새로운 냄새도 무조건 맡아봐야 직성이 풀리거든. 다들 나보고 겁이 없다고 하는데 사실 나는 그냥 호기심이 많은 거야. 우리 {HONORIFIC}도 알잖아, 내가 얼마나 새로운 거 좋아하는지!
+/* 성격 데이터 */
+const PERSONALITY_DATA = {
+    '木':{ subtitle:'에너지 넘치는 탐험가!',
+           bullets:['호기심이 많고 새로운 환경에 빠르게 적응해요','독립적이지만 애정 표현도 아주 풍부해요','운동량이 충분해야 진짜 행복한 타입이에요','감정이 솔직해서 기분이 얼굴에 다 드러나요'] },
+    '火':{ subtitle:'사랑스러운 열정 폭탄!',
+           bullets:['밝고 쾌활한 분위기 메이커 기질이 강해요','보호자를 깊이 사랑하는 충성형이에요','자극에 민감하고 흥분도 빠른 편이에요','눈치 빠르고 감정 공감 능력이 최고예요'] },
+    '土':{ subtitle:'든든하고 믿음직한 내 편!',
+           bullets:['차분하고 안정적이어서 갑작스런 변화를 싫어해요','한번 정이 들면 절대 변하지 않는 의리파예요','루틴을 좋아하고 규칙적인 생활에서 행복해요','먹는 것을 사랑하는 소확행 전문가예요'] },
+    '金':{ subtitle:'예민하고 고귀한 귀족 강아지!',
+           bullets:['깔끔하고 정돈된 환경을 강하게 선호해요','보호자의 감정을 세심하게 읽는 공감 능력자예요','한번 마음을 주면 끝까지 충성하는 타입이에요','청각이 예민해서 큰 소리에 스트레스를 받아요'] },
+    '水':{ subtitle:'조용하지만 깊은 내면의 철학자!',
+           bullets:['지혜롭고 관찰력이 뛰어나 상황 파악이 빠릅니다','혼자만의 시간도 즐기는 독립적인 성향이에요','어떤 환경에도 유연하게 잘 적응해요','직관이 뛰어나서 위험을 먼저 감지하는 능력이 있어요'] }
+};
 
-사실 나는 속으로 우리 {HONORIFIC}이 항상 옆에 있어줬으면 해. 혼자 있으면 금방 심심하거든. 내 안에 활발한 기운이 가득해서 탐색하고 뛰어다니고 싶은 마음이 항상 강해. {HONORIFIC}이랑 산책할 때 내가 왜 그렇게 앞서 걷는지 이제 알겠지?
+/* 강아지가 보호자에게 보내는 마지막 편지 (오행별) */
+const DOG_LETTERS = {
+    '木': ["언제나 나랑 함께 달려줘서 고마워.", "누구보다 나를 잘 아는 내 편!", "오늘도 나랑 산책 가줄 거지?"],
+    '火': ["내 마음은 항상 뜨겁게 사랑해!", "나를 보면 웃어주는 그 미소가 제일 좋아.", "언제나 나를 빛나게 해줘서 고마워!"],
+    '土': ["언제나 그 자리에 있어줘서 든든해.", "우리의 평범한 일상이 나에겐 보물이야.", "천천히 오래오래 같이 걷자."],
+    '金': ["나의 마음을 세심하게 읽어줘서 고마워.", "우리의 약속은 내가 꼭 지킬게.", "언제나 나를 품위 있게 만들어줘서 좋아."],
+    '水': ["말하지 않아도 다 아는 우리 사이!", "지혜로운 내 보호자, 사랑해.", "흐르는 물처럼 자연스럽게 우리 오래 함께하자."]
+};
 
-나는 감정이 얼굴에 금방 나타나는 스타일이야. 좋으면 온몸으로 표현하고, 싫으면 딱 돌아서버려. 근데 금방 풀리니까 너무 걱정하지 마. 나한테는 매일 새로운 자극과 충분한 애정이 필요해!
+/* 건강 데이터 (수의사 검증 기준, 독성 음식 제외) */
+const HEALTH_DATA = {
+    '木':{ subtitle:'간·담낭 에너지 케어!', organ:'간장 · 담낭',
+           foods:['닭가슴살','브로콜리','시금치','사과','블루베리'],
+           lucky:[{icon:'🟢',label:'행운의 색',value:'초록색',reason:'木 에너지 강화'},
+                  {icon:'3️⃣',label:'행운의 숫자',value:'3, 8',reason:'오행 木에 해당'},
+                  {icon:'🌅',label:'추천 활동',value:'아침 산책',reason:'木 기운은 아침에 활성화'}],
+           tip:'木 기운은 간을 주관해요. 규칙적인 산책으로 기운을 순환시켜줘요.' },
+    '火':{ subtitle:'심장·소장 에너지 밸런스!', organ:'심장 · 소장',
+           foods:['연어','당근','딸기','수박(씨 제거)','삶은 달걀'],
+           lucky:[{icon:'🔴',label:'행운의 색',value:'빨간색',reason:'火 에너지 강화'},
+                  {icon:'7️⃣',label:'행운의 숫자',value:'2, 7',reason:'오행 火에 해당'},
+                  {icon:'☀️',label:'추천 활동',value:'오후 활발한 산책',reason:'밝은 햇살에 火 기운 상승'}],
+           tip:'火 기운은 심장을 주관해요. 충분한 휴식으로 과열을 막아줘요.' },
+    '土':{ subtitle:'위장·비장 소화 관리!', organ:'비장 · 위장',
+           foods:['소고기','고구마','단호박','두부','현미밥'],
+           lucky:[{icon:'🟡',label:'행운의 색',value:'황토색',reason:'土 에너지 강화'},
+                  {icon:'5️⃣',label:'행운의 숫자',value:'5, 10',reason:'오행 土에 해당'},
+                  {icon:'🐽',label:'추천 활동',value:'노즈워크',reason:'소화 돕고 스트레스 해소'}],
+           tip:'土 기운은 위장을 주관해요. 소화 잘 되는 담백한 음식이 좋아요.' },
+    '金':{ subtitle:'폐·대장 호흡기 케어!', organ:'폐 · 대장',
+           foods:['오리고기','감자','배(껍질 제거)','두부','현미'],
+           lucky:[{icon:'⚪',label:'행운의 색',value:'흰색, 금색',reason:'金 에너지 강화'},
+                  {icon:'4️⃣',label:'행운의 숫자',value:'4, 9',reason:'오행 金에 해당'},
+                  {icon:'🍃',label:'추천 활동',value:'맑은 공기 산책',reason:'金 기운은 호흡과 연결'}],
+           tip:'金 기운은 폐를 주관해요. 깨끗한 공기가 있는 곳에서 산책해요.' },
+    '水':{ subtitle:'신장·방광 수분 균형!', organ:'신장 · 방광',
+           foods:['오리고기','멸치','검은콩','퀴노아','블루베리'],
+           lucky:[{icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'水 에너지 강화'},
+                  {icon:'1️⃣',label:'행운의 숫자',value:'1, 6',reason:'오행 水에 해당'},
+                  {icon:'🌙',label:'추천 활동',value:'저녁 산책',reason:'水 기운은 저녁에 충전'}],
+           tip:'水 기운은 신장을 주관해요. 신선한 물을 충분히 마시게 해줘요!' }
+};
 
-【우리 둘의 찰떡 궁합】
-{HONORIFIC}! 우리 진짜 잘 맞는 거 알아? 오늘 멍도사 할아버지한테 물어봤더니 우리 궁합이 엄청 좋대. 사실 내가 처음 우리 {HONORIFIC}을 봤을 때부터 알았어. '아, 이 사람이랑은 평생 함께해야겠다!' 하고 느꼈거든.
+/* 행복 제안 데이터 */
+const HAPPINESS_DATA = {
+    '木':{ subtitle:'기운 팡팡 활력 충전 계획!',
+           items:[{icon:'🌅',label:'산책',value:'아침 30분+',reason:'木 기운은 아침에 가장 활성화돼요'},
+                  {icon:'🎾',label:'추천 놀이',value:'공 놀이, 터그',reason:'탐구 본능을 채워주는 놀이예요'},
+                  {icon:'🌿',label:'행운의 색',value:'초록색',reason:'리드줄이나 목걸이를 초록으로!'},
+                  {icon:'🏅',label:'추천 훈련',value:'어질리티',reason:'木 에너지 발산에 최고예요'}] },
+    '火':{ subtitle:'불꽃처럼 신나는 생활 계획!',
+           items:[{icon:'☀️',label:'산책',value:'오후 햇살 속 30분',reason:'밝은 빛이 火 기운을 살려줘요'},
+                  {icon:'🏃',label:'추천 놀이',value:'달리기, 수영',reason:'넘치는 에너지를 시원하게 발산!'},
+                  {icon:'❤️',label:'행운의 색',value:'빨간색',reason:'리드줄이나 목걸이를 빨강으로!'},
+                  {icon:'🎭',label:'추천 훈련',value:'반려견 교실',reason:'사회성을 키우는 火 기질 훈련'}] },
+    '土':{ subtitle:'포근하고 느긋한 안정 루틴!',
+           items:[{icon:'🍂',label:'산책',value:'저녁 노을 아래 여유롭게',reason:'土 기운은 여유로운 리듬이 중요해요'},
+                  {icon:'🐽',label:'추천 놀이',value:'노즈워크, 간식 찾기',reason:'후각을 자극해 만족감을 높여줘요'},
+                  {icon:'🟡',label:'행운의 색',value:'황토색, 노란색',reason:'리드줄이나 목걸이를 노란색으로!'},
+                  {icon:'🧘',label:'추천 훈련',value:'기초 복종 훈련',reason:'규칙 속 안정감이 土 아이에게 딱'}] },
+    '金':{ subtitle:'깔끔하고 품위 있는 귀족 루틴!',
+           items:[{icon:'🍃',label:'산책',value:'공기 맑은 이른 아침',reason:'金 기운은 신선한 공기와 잘 맞아요'},
+                  {icon:'🧩',label:'추천 놀이',value:'퍼즐 장난감',reason:'예민한 두뇌를 자극해줘요'},
+                  {icon:'⚪',label:'행운의 색',value:'흰색, 은색',reason:'리드줄이나 목걸이를 흰색으로!'},
+                  {icon:'🎓',label:'추천 훈련',value:'코 훈련(노즈워크)',reason:'금 기운의 섬세함 극대화'}] },
+    '水':{ subtitle:'흐르는 물처럼 자유로운 일과!',
+           items:[{icon:'🌙',label:'산책',value:'저녁 서늘할 때',reason:'水 기운은 저녁 산책에서 충전돼요'},
+                  {icon:'🏊',label:'추천 놀이',value:'수영, 물놀이',reason:'水 기운 최대 활성화 놀이예요'},
+                  {icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'리드줄이나 목걸이를 파란색으로!'},
+                  {icon:'🔭',label:'추천 훈련',value:'관찰·탐정 게임',reason:'水 아이의 직관력을 키워줘요'}] }
+};
 
-{HONORIFIC}의 차분하고 따뜻한 기운이 나의 들뜬 마음을 꼭 잡아줘서 너무 좋아. 전생에도 우리 같이 있었을 것 같아. {HONORIFIC}을 처음 만났을 때 왜 그렇게 익숙했는지 이제 이해가 돼.
+/* 절대 금지 음식 (미국수의사학회·한국수의사협회 기준) */
+const DANGER_FOODS = [
+    { name:'초콜릿 · 카카오',     reason:'테오브로민 중독 → 심장마비 위험' },
+    { name:'포도 · 건포도',       reason:'신부전 유발, 소량도 치명적' },
+    { name:'양파 · 마늘 · 파',    reason:'적혈구 파괴 → 용혈성 빈혈' },
+    { name:'자일리톨(무설탕 껌)', reason:'저혈당 → 간부전 유발' },
+    { name:'마카다미아 너트',      reason:'근육 쇠약·발열·구토' },
+    { name:'아보카도',             reason:'퍼신 성분 → 구토·설사' },
+    { name:'알코올 · 커피',        reason:'중추신경 손상, 소량도 위험' },
+    { name:'자두·복숭아 씨앗',    reason:'청산가리(시안화물) 함유' },
+    { name:'날생선·날달걀 흰자',  reason:'반복 급여 시 비오틴 결핍' },
+    { name:'소금·짜게 조리된 식품',reason:'나트륨 중독 → 경련·혼수' }
+];
 
-내가 슬프거나 불안할 때 {HONORIFIC}이 옆에 있으면 마음이 금방 안정되거든. 이게 전생 인연이 아니면 설명이 안 돼. 우리 앞으로도 오래오래 같이 있자. 나는 {HONORIFIC} 없이는 못 살아!
-
-【나를 위한 건강 & 에너지】
-내 몸에서 제일 신경 써야 할 부분은 소화기와 피부야. 흥분하면 위가 쉽게 탈이 나거든. 밥 먹을 때 너무 빨리 먹으면 안 돼. 우리 {HONORIFIC}, 천천히 먹을 수 있는 밥그릇으로 바꿔줄 수 있어?
-
-먹으면 좋은 음식: 닭고기(단백질 보충), 고구마(안정 에너지), 연어(균형 보완)
-피해야 할 것: 인공 첨가물 많은 간식, 기름진 음식
-
-내 에너지가 넘칠 땐 꼭 발산시켜줘야 해. 안 그러면 집 안을 헤집어놓을 수도 있어. 미안!
-
-【멍도사의 행복 제안】
-{DOG}를 위한 오늘의 행복 가이드야!
-
-산책은 하루 2번, 각 30분 이상이 딱 좋아. 특히 아침 해 뜰 때 나가면 내 기운이 팡팡 살아나거든.
-
-행운의 색상은 초록이야. 리드줄이나 목걸이를 초록색으로 바꿔주면 기분도 UP!
-
-우리 {HONORIFIC}이랑 나, 오늘도 최고의 하루 보내자. 사랑해 {HONORIFIC}! 🐾`;
-
-/* ══════════════════════════════════════════
-   2. 사주 분석 함수
-══════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   2. 사주 분석 (기존 유지)
+══════════════════════════════════════════════ */
 function analyzeSaju(year, month, day, hour) {
-    const h      = (hour !== undefined) ? hour : 12;
-    const solar  = Solar.fromYmdHms(year, month, day, h, 0, 0);
-    const bazi   = solar.getLunar().getEightChar();
+    const h     = (hour !== undefined) ? hour : 12;
+    const solar = Solar.fromYmdHms(year, month, day, h, 0, 0);
+    const bazi  = solar.getLunar().getEightChar();
     const pillars = {
-        year:  bazi.getYear(),
-        month: bazi.getMonth(),
-        day:   bazi.getDay(),
-        hour:  bazi.getTime()
+        year:  bazi.getYear(),  month: bazi.getMonth(),
+        day:   bazi.getDay(),   hour:  bazi.getTime()
     };
     const active = (hour !== undefined)
         ? [pillars.year, pillars.month, pillars.day, pillars.hour]
@@ -832,12 +909,7 @@ function analyzeSaju(year, month, day, hour) {
     active.forEach(p =>
         p.split('').forEach(c => { if (OHAENG_MAP[c]) ohaengCount[OHAENG_MAP[c]]++; })
     );
-    return {
-        mainEnergy: OHAENG_MAP[pillars.day[0]],
-        ohaengCount,
-        pillars,
-        hasHour: (hour !== undefined)
-    };
+    return { mainEnergy: OHAENG_MAP[pillars.day[0]], ohaengCount, pillars, hasHour: (hour !== undefined) };
 }
 
 function checkCompatibility(dogData, ownerData) {
@@ -848,126 +920,79 @@ function checkCompatibility(dogData, ownerData) {
     if (SANG[d] === o || SANG[o] === d) score += 22;
     if (d === o)                         score += 12;
     if (GEUK[d] === o || GEUK[o] === d) score -= 10;
-
-    // 오행 분포 균형 보너스
-    const combo = ['木','火','土','金','水'].reduce((acc, k) => {
-        acc[k] = dogData.ohaengCount[k] + ownerData.ohaengCount[k];
-        return acc;
-    }, {});
-    const vals   = Object.values(combo);
-    const spread = Math.max(...vals) - Math.min(...vals);
+    const combo  = ['木','火','土','金','水'].reduce((a,k) => { a[k] = dogData.ohaengCount[k] + ownerData.ohaengCount[k]; return a; }, {});
+    const spread = Math.max(...Object.values(combo)) - Math.min(...Object.values(combo));
     if (spread <= 2) score += 8;
-
     score = Math.min(98, Math.max(42, score));
-
     const comment = score >= 85 ? '전생부터 이어온 천생연분이라네!' :
                     score >= 70 ? '서로를 채워주는 찰떡궁합이군.' :
-                    score >= 55 ? '노력으로 빛나는 소울메이트라네!' :
-                                  '사랑으로 모든 걸 극복하는 인연이군.';
+                    score >= 55 ? '노력으로 빛나는 소울메이트라네!' : '사랑으로 모든 걸 극복하는 인연이군.';
     return { score, comment };
 }
 
-/* ══════════════════════════════════════════
-   3. UI 로직
-══════════════════════════════════════════ */
-function getOwnerGender() {
-    const active = document.querySelector('#owner-gender-group .btn-toggle.active');
-    return active ? active.textContent.trim() : '남성';
+function getRelationTag(score) {
+    if (score >= 90) return '환상의 복식조 🏅';
+    if (score >= 80) return '전생의 부부 💑';
+    if (score >= 70) return '영혼의 단짝 🌟';
+    if (score >= 60) return '서로의 완성 💪';
+    if (score >= 50) return '함께 성장하는 인연 🌱';
+    return                   '진심으로 맺어진 인연 ❤️';
 }
 
-function startReading() {
-    const dogName   = (document.getElementById('dog-name').value.trim()   || '강아지').slice(0, 10);
-    const ownerName = (document.getElementById('owner-name').value.trim() || '보호자').slice(0, 10);
-    const age       = document.getElementById('dog-age-input').value;
-    const md        = document.getElementById('dog-md-input').value;
-    const dogHourInput   = document.getElementById('dog-hour-min').value;
-    const ownerBirth     = document.getElementById('owner-birth').value;
-    const ownerHourInput = document.getElementById('owner-hour-min').value;
-    const dogUnknown     = document.getElementById('dog-time-unknown').checked;
-    const ownerUnknown   = document.getElementById('owner-time-unknown').checked;
-    const dogGender = document.querySelector('#dog-gender-group .btn-toggle.active').textContent.trim();
-
-    // 유효성 검사
-    if (!age || !md || md.length !== 4) {
-        alert('강아지 나이와 생일 4자리를 정확히 입력해주세요. (예: 0505)');
-        return;
-    }
-    if (!ownerBirth || ownerBirth.length !== 8) {
-        alert('보호자 생년월일 8자리를 정확히 입력해주세요. (예: 19890828)');
-        return;
-    }
-
-    // 날짜 파싱
-    const dogYear  = new Date().getFullYear() - parseInt(age);
-    const dogMonth = parseInt(md.substring(0, 2));
-    const dogDay   = parseInt(md.substring(2, 4));
-    if (dogMonth < 1 || dogMonth > 12 || dogDay < 1 || dogDay > 31) {
-        alert('생일 월일 숫자가 올바르지 않습니다. (예: 0505)');
-        return;
-    }
-
-    const owY = parseInt(ownerBirth.substring(0, 4));
-    const owM = parseInt(ownerBirth.substring(4, 6));
-    const owD = parseInt(ownerBirth.substring(6, 8));
-    if (owY < 1900 || owM < 1 || owM > 12 || owD < 1 || owD > 31) {
-        alert('보호자 생년월일이 올바르지 않습니다. (예: 19890828)');
-        return;
-    }
-
-    const dogHour   = (!dogUnknown   && dogHourInput.includes(':'))   ? parseInt(dogHourInput.split(':')[0])   : undefined;
-    const ownerHour = (!ownerUnknown && ownerHourInput.includes(':')) ? parseInt(ownerHourInput.split(':')[0]) : undefined;
-    const ownerGender = getOwnerGender();
-
-    // 화면 전환: 폼 & 배너 숨기기 → 로딩 표시
-    document.getElementById('form-section').style.display   = 'none';
-    document.querySelector('.banner-container').style.display = 'none';
-    const loadingEl = document.getElementById('loading-section');
-    loadingEl.style.display = 'flex';
-    document.getElementById('loading-text').textContent = `멍도사가 ${dogName}의 기운을 읽고 있네...`;
-
-// 2초 로딩 후 결과 표시
-    setTimeout(() => {
-        try {
-            const dogData   = analyzeSaju(dogYear, dogMonth, dogDay, dogHour);
-            const ownerData = analyzeSaju(owY, owM, owD, ownerHour);
-            const compat    = checkCompatibility(dogData, ownerData);
-
-            loadingEl.style.display = 'none';
-            // 수정된 인자값 전달
-            renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender);
-        } catch (e) {
-            console.error(e);
-            loadingEl.style.display = 'none';
-            alert('분석 중 오류가 발생했습니다: ' + e.message);
-            document.getElementById('form-section').style.display = 'block';
-            document.querySelector('.banner-container').style.display = 'block';
-        }
-    }, 2000);
-} // <--- startReading 함수가 여기서 완전히 닫혀야 합니다.
-
-/* ── 결과 렌더링 함수 (밖으로 독립) ── */
+/* ══════════════════════════════════════════════
+   3. 렌더링
+══════════════════════════════════════════════ */
 function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender) {
-    let honorific = '';
-    if (dogGender === '남아') {
-        honorific = (ownerGender === '여성') ? '누나' : '형';
-    } else {
-        honorific = (ownerGender === '여성') ? '언니' : '오빠';
-    }
+    const honorific = dogGender === '남아'
+        ? (ownerGender === '여성' ? '누나' : '형')
+        : (ownerGender === '여성' ? '언니' : '오빠');
 
+    // 1. 만세력 차트 렌더링
     renderChart(dogData);
-    renderReport(DUMMY_REPORT, dogName, ownerName, honorific, compat.score, compat.comment);
+    
+    // 2. 리포트 카드 컨테이너 초기화
+    const container = document.getElementById('report-cards');
+    container.innerHTML = '';
 
+    // 3. 카드들 순서대로 추가
+    container.appendChild(renderPersonalityCard(dogData, dogName, honorific));
+    container.appendChild(renderCompatCard(compat, dogName, ownerName, honorific));
+    container.appendChild(renderHealthCard(dogData, dogName, honorific));
+    container.appendChild(renderHappinessCard(dogData, dogName, honorific));
+    
+    // 4. 비밀 편지 추가 (두근두근 애니메이션 포함된 버전)
+    container.appendChild(renderSecretLetter(dogName, honorific));
+
+    // 5. [수정] 미니멀 링크 복사 버튼 하나만 추가
+    const shareSection = document.createElement('div');
+    shareSection.className = 'share-section';
+    shareSection.innerHTML = `
+        <div class="share-item" onclick="copyLink()">
+            <div class="share-circle">🔗</div>
+            <span class="share-label">링크 복사</span>
+        </div>
+    `;
+    container.appendChild(shareSection);
+
+    // 6. 결과 섹션 노출 및 애니메이션
     const sec = document.getElementById('results-section');
     sec.style.display = 'block';
     sec.style.opacity = '0';
     requestAnimationFrame(() => {
-        requestAnimationFrame(() => { sec.style.opacity = '1'; });
+        requestAnimationFrame(() => {
+            sec.style.opacity = '1';
+        });
     });
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 7. 점수 카운터 실행
+    setTimeout(() => {
+        const scoreEl = document.getElementById('compat-score-num');
+        if (scoreEl) animateCounter(scoreEl, compat.score);
+    }, 400);
 }
 
-/* ── 만세력 차트 렌더링 ── */
+/* ── 만세력 차트 ────────────────────────────────── */
 function renderChart(dogData) {
     const grid = document.getElementById('saju-grid');
     if (!grid) return;
@@ -976,169 +1001,352 @@ function renderChart(dogData) {
     const cols = ['연주','월주','일주','시주'];
     const vals = [dogData.pillars.year, dogData.pillars.month, dogData.pillars.day, dogData.pillars.hour];
 
-    // 헤더 행
-    grid.innerHTML += '<div class="grid-corner"></div>';
+    grid.innerHTML += '<div></div>';
     cols.forEach(c => grid.innerHTML += `<div class="col-header">${c}</div>`);
 
-    // 천간 행
-    grid.innerHTML += '<div class="row-label">천간</div>';
-    vals.forEach((v, i) => grid.innerHTML += makeCharBox(v[0], !dogData.hasHour && i === 3));
-
-    // 지지 행
-    grid.innerHTML += '<div class="row-label">지지</div>';
-    vals.forEach((v, i) => grid.innerHTML += makeCharBox(v[1], !dogData.hasHour && i === 3));
+    ['천간','지지'].forEach((rowName, rowIdx) => {
+        grid.innerHTML += `<div class="row-label">${rowName}</div>`;
+        vals.forEach((v, i) => {
+            grid.innerHTML += makeCharBox(v[rowIdx], !dogData.hasHour && i === 3);
+        });
+    });
 }
 
 function makeCharBox(char, empty) {
-    if (empty) {
-        return '<div class="char-box oh-none"><span class="energy-name">—</span></div>';
-    }
+    if (empty) return '<div class="char-box oh-none"><span class="char-empty">—</span></div>';
     const oh   = OHAENG_MAP[char] || '';
     const cls  = OH_CLASS[oh]     || 'oh-none';
+    const icon = OH_ICON[oh]      || '';
     const name = (ENERGY_NAMES[char] || char).replace(/\n/g, '<br>');
     return `<div class="char-box ${cls}">
-        <span class="kanji-bg">${char}</span>
-        <span class="energy-name">${name}</span>
+        <span class="char-icon">${icon}</span>
+        <span class="char-name">${name}</span>
+        <span class="char-kanji">${char}</span>
     </div>`;
 }
 
-/* ── 리포트 카드 렌더링 ── */
-function renderReport(tpl, dogName, ownerName, honorific, score, scoreComment) {
-    const text = tpl
-        .replace(/{DOG}/g, dogName)
-        .replace(/{OWNER}/g, ownerName)
-        .replace(/{HONORIFIC}/g, honorific);
+/* ── 1. 타고난 성격 카드 ───────────────────────── */
+function renderPersonalityCard(dogData, dogName, honorific) {
+    const d = PERSONALITY_DATA[dogData.mainEnergy] || PERSONALITY_DATA['木'];
+    const card = document.createElement('div');
 
-    const container = document.getElementById('report-cards');
-    container.innerHTML = '';
+    card.className = 'report-card';
+    card.innerHTML = `
+        <div class="card-eyebrow">타고난 성격</div>
+        <div class="card-subtitle">${dogName}${getJosa(dogName, '은는')} "${d.subtitle}"</div>
+        <ul class="report-bullets">
+            ${d.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+        <p style="margin-top:16px;font-size:.9rem;color:var(--text2);line-height:1.7">
+            ${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${dogName}, ${d.subtitle.replace('!','')} 기질이 충만해. 우리 ${honorific} 이미 다 알고 있었지? 😏
+        </p>`;
+    return card;
+}
 
-    const re = /【([^】]+)】\n([\s\S]*?)(?=【|$)/g;
-    let m;
-    while ((m = re.exec(text)) !== null) {
-        const title   = m[1].trim();
-        const content = m[2].trim();
-        if (!content) continue;
+/* ── 2. 궁합 카드 ──────────────────────────────── */
+function renderCompatCard(compat, dogName, ownerName, honorific) {
+    const tag = getRelationTag(compat.score);
+    const card = document.createElement('div');
+    card.className = 'report-card';
 
-        const card = document.createElement('div');
-        card.className = 'report-card';
+    // 조사 처리 적용
+    const dogWithJosa = `${dogName}${getJosa(dogName, '이랑')}`; // 행운이랑, 초코랑
+    const ownerWithJosa = `${honorific}${getJosa(honorific, '이가')}`; // 누나가, 형아가
 
-        // 궁합 카드: 점수 UI 먼저 삽입
-        let scoreHtml = '';
-        if (title.includes('궁합')) {
-            scoreHtml = `<div class="compat-score-row">
-                <div class="compat-score-num" id="compat-score-num">0점</div>
-                <div class="compat-score-right">
-                    <div class="compat-score-label">멍도사 궁합 점수</div>
-                    <div class="compat-score-comment">${scoreComment}</div>
-                    <div class="gauge-track">
-                        <div class="gauge-fill" id="gauge-fill"></div>
-                    </div>
+    card.innerHTML = `
+        <div class="card-eyebrow">우리 둘의 찰떡 궁합</div>
+        <div class="card-subtitle">나 ${dogWithJosa} ${honorific}, 진짜 찰떡이잖아! </div>
+        <div class="compat-score-block">
+            <div class="compat-score-circle">
+                <span class="compat-score-num" id="compat-score-num">0</span>
+                <span class="compat-score-unit">점</span>
+            </div>
+            <div class="compat-right">
+                <div class="relation-tag">${tag}</div>
+                <div class="compat-comment">${compat.comment}</div>
+            </div>
+        </div>
+        <ul class="report-bullets">
+            <li>나 ${dogName}${getJosa(dogName, '이가')} ${honorific}${getJosa(honorific, '을를')} 처음 본 순간부터 알았어."이 사람이 내 사람이다!" 하고.</li>
+            <li>${honorific}의 따뜻한 기운이 나의 흥분한 마음을 딱 잡아줘. 완벽한 균형이야!</li>
+            <li>내가 슬플 때 ${honorific}이 먼저 알아채는 것, 이게 전생 인연이 아니면 뭐겠어?</li>
+            <li>우리 앞으로도 오래오래 같이 있자. 나는 ${honorific} 없이는 못 살아!</li>
+        </ul>`;
+    return card;
+}
+
+/* ── 3. 건강 & 에너지 카드 ─────────────────────── */
+function renderHealthCard(dogData, dogName, honorific) {
+    const h = HEALTH_DATA[dogData.mainEnergy] || HEALTH_DATA['木'];
+    const card = document.createElement('div');
+    card.className = 'report-card';
+
+    const luckyHtml = h.lucky.map(l => `
+        <div class="lucky-card">
+            <div class="lucky-icon">${l.icon}</div>
+            <div class="lucky-label">${l.label}</div>
+            <div class="lucky-value">${l.value}</div>
+            <div class="lucky-reason">${l.reason}</div>
+        </div>`).join('');
+
+    const foodHtml = h.foods.map(f => `<span class="food-chip">${f}</span>`).join('');
+
+    const dangerHtml = DANGER_FOODS.map(f => `
+        <li>${f.name}
+            <span class="danger-reason">${f.reason}</span>
+        </li>`).join('');
+
+    card.innerHTML = `
+        <div class="card-eyebrow">나를 위한 건강 &amp; 에너지</div>
+        <div class="card-subtitle">${h.subtitle}</div>
+        <div class="organ-badge"> 관련 장기: ${h.organ}</div>
+        <div class="lucky-cards">${luckyHtml}</div>
+        <div class="health-tip">${h.tip}</div>
+        <div class="health-subtitle">✅ 추천 음식</div>
+        <div class="food-chips">${foodHtml}</div>
+        <div class="accordion-wrap">
+            <button class="accordion-btn danger" onclick="toggleAccordion(this)">
+                ⚠️ 절대 먹으면 안 되는 음식
+                <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="accordion-body">
+                <ul class="danger-list">${dangerHtml}</ul>
+            </div>
+        </div>
+        <div class="disclaimer">⚕️ 본 결과는 사주 오행에 기반한 참고 정보입니다. 건강 이상 시 반드시 수의사와 상담하세요.</div>`;
+    return card;
+}
+
+/* ── 4. 행복 제안 카드 ─────────────────────────── */
+function renderHappinessCard(dogData, dogName, honorific) {
+    const h = HAPPINESS_DATA[dogData.mainEnergy] || HAPPINESS_DATA['木'];
+    const dogWithJosa = `${dogName}${getJosa(dogName, '을를')}`;
+    
+    const card = document.createElement('div');
+    card.className = 'report-card';
+
+    const itemsHtml = h.items.map(it => `
+        <div class="happy-item">
+            <div class="happy-icon">${it.icon}</div>
+            <div>
+                <div class="happy-label">${it.label}</div>
+                <div class="happy-value">${it.value}</div>
+                <div class="happy-reason">${it.reason}</div>
+            </div>
+        </div>`).join('');
+
+    card.innerHTML = `
+        <div class="card-eyebrow">멍도사의 행복 제안</div>
+        <div class="card-subtitle">${dogWithJosa} 위한 ${h.subtitle}</div>
+        <div class="happy-items">${itemsHtml}</div>
+    `; 
+    return card;
+}
+
+/* ── 5. 멍도사의 비밀 편지 (마지막 섹션) ──────────────── */
+const DOG_MESSAGES = [
+    "내가 말이 좀 늦지? 그래도 내 마음은 다 전해졌을 거라 믿어. 사랑해!",
+    "우리 다음 생에도 꼭 다시 만나자. 그때도 내가 먼저 꼬리 흔들며 기다릴게.",
+    "나를 불러줄 때 내 세상은 가장 환하게 빛나. 평생 내 곁에 있어줘!",
+    "근데 있잖아... 산책은 좀 더 길게 해줄 수 없어? 내 기운이 아직 남았거든!",
+    "혹시 내가 자는데 쳐다봤어? 꿈에서 맛있는 간식 먹고 있었는데 딱 걸렸네!",
+    "간식 주는 손길이 조금 더 과감해져도 괜찮을 것 같아. 나는 준비됐어!"
+];
+
+function renderSecretLetter(dogName, honorific) {
+    const randomMsg = DOG_MESSAGES[Math.floor(Math.random() * DOG_MESSAGES.length)];
+    const dogWithJosa = `${dogName}${getJosa(dogName, '이가')}`;
+    const honorificWithJosa = `${honorific}${getJosa(honorific, '에게')}`;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'letter-wrapper';
+
+// 닫힌 상태 (미니멀 봉투)
+    wrapper.innerHTML = `
+        <div class="envelope">
+            <span class="heartbeat-icon">✉️</span>
+            <div class="envelope-text">${dogWithJosa} 보낸 메시지가 도착했습니다</div>
+            <div class="envelope-hint"> 여기를 눌러 ${dogName}의 메시지를 확인해보세요!</div>
+        </div>
+    `;
+
+// 클릭 시 열림
+wrapper.onclick = function() {
+        wrapper.innerHTML = `
+            <div class="letter-opened">
+                <div class="letter-header">Message from ${dogName}</div>
+                <div class="letter-content">
+                    "${randomMsg}"
                 </div>
-            </div>`;
-        }
+            </div>
+        `;
+        if (navigator.vibrate) navigator.vibrate(10); // 미세한 햅틱 반응
+    };
 
-        card.innerHTML =
-            `<div class="card-title">${title}</div>` +
-            scoreHtml +
-            `<div class="card-body">${contentToHtml(content)}</div>`;
-        container.appendChild(card);
-    }
-
-    // 점수 애니메이션
-    setTimeout(() => {
-        animateCounter(document.getElementById('compat-score-num'), score, '점');
-        setTimeout(() => {
-            const gf = document.getElementById('gauge-fill');
-            if (gf) gf.style.width = score + '%';
-        }, 120);
-    }, 350);
+    return wrapper;
 }
 
-function contentToHtml(text) {
-    const lines = text.split('\n');
-    let html = '', inList = false;
-    for (const raw of lines) {
-        const line = raw.trim();
-        if (!line) {
-            if (inList) { html += '</ul>'; inList = false; }
-            continue;
-        }
-        if (line.startsWith('- ')) {
-            if (!inList) { html += '<ul class="report-bullets">'; inList = true; }
-            html += `<li>${line.slice(2)}</li>`;
-            continue;
-        }
-        if (inList) { html += '</ul>'; inList = false; }
-        html += `<p>${line}</p>`;
-    }
-    if (inList) html += '</ul>';
-    return html;
+/* ══════════════════════════════════════════════
+   4. UI 유틸
+══════════════════════════════════════════════ */
+function toggleAccordion(btn) {
+    const body  = btn.nextElementSibling;
+    const arrow = btn.querySelector('.accordion-arrow');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
 }
 
-function animateCounter(el, target, suffix) {
+function animateCounter(el, target) {
     if (!el) return;
     let cur = 0;
     const step = Math.max(1, Math.ceil(target / 40));
     const iv = setInterval(() => {
         cur = Math.min(cur + step, target);
-        el.textContent = cur + suffix;
+        el.textContent = cur;
         if (cur >= target) clearInterval(iv);
     }, 28);
 }
 
-/* ══════════════════════════════════════════
-   4. 폼 유틸리티
-══════════════════════════════════════════ */
+function getOwnerGender() {
+    const active = document.querySelector('#owner-gender-group .btn-toggle.active');
+    return active ? active.textContent.trim() : '남성';
+}
+
+function startReading() {
+    const dogName   = (document.getElementById('dog-name').value.trim()   || '강아지').slice(0,10);
+    const ownerName = (document.getElementById('owner-name').value.trim() || '보호자').slice(0,10);
+    const age       = document.getElementById('dog-age-input').value;
+    const md        = document.getElementById('dog-md-input').value;
+    const dogHourInput   = document.getElementById('dog-hour-min').value;
+    const ownerBirth     = document.getElementById('owner-birth').value;
+    const ownerHourInput = document.getElementById('owner-hour-min').value;
+    const dogUnknown     = document.getElementById('dog-time-unknown').checked;
+    const ownerUnknown   = document.getElementById('owner-time-unknown').checked;
+    const dogGender      = document.querySelector('#dog-gender-group .btn-toggle.active').textContent.trim();
+    const ownerGender    = getOwnerGender();
+
+    if (!age || !md || md.length !== 4) {
+        alert('강아지 나이와 생일 4자리를 정확히 입력해주세요. (예: 0505)'); return;
+    }
+    if (!ownerBirth || ownerBirth.length !== 8) {
+        alert('보호자 생년월일 8자리를 정확히 입력해주세요. (예: 19890828)'); return;
+    }
+
+    const dogYear  = new Date().getFullYear() - parseInt(age);
+    const dogMonth = parseInt(md.substring(0,2));
+    const dogDay   = parseInt(md.substring(2,4));
+    if (dogMonth < 1 || dogMonth > 12 || dogDay < 1 || dogDay > 31) {
+        alert('생일 월일 숫자가 올바르지 않습니다. (예: 0505)'); return;
+    }
+
+    const owY = parseInt(ownerBirth.substring(0,4));
+    const owM = parseInt(ownerBirth.substring(4,6));
+    const owD = parseInt(ownerBirth.substring(6,8));
+    if (owY < 1900 || owM < 1 || owM > 12 || owD < 1 || owD > 31) {
+        alert('보호자 생년월일이 올바르지 않습니다. (예: 19890828)'); return;
+    }
+
+    const dogHour   = (!dogUnknown   && dogHourInput.includes(':'))   ? parseInt(dogHourInput.split(':')[0])   : undefined;
+    const ownerHour = (!ownerUnknown && ownerHourInput.includes(':')) ? parseInt(ownerHourInput.split(':')[0]) : undefined;
+
+    document.getElementById('form-section').style.display      = 'none';
+    document.querySelector('.banner-container').style.display  = 'none';
+    const loadingEl = document.getElementById('loading-section');
+    loadingEl.style.display = 'flex';
+    document.getElementById('loading-text').textContent = `멍도사가 ${dogName}의 기운을 읽고 있네...`;
+
+    setTimeout(() => {
+        try {
+            const dogData   = analyzeSaju(dogYear, dogMonth, dogDay, dogHour);
+            const ownerData = analyzeSaju(owY, owM, owD, ownerHour);
+            const compat    = checkCompatibility(dogData, ownerData);
+            loadingEl.style.display = 'none';
+            renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender);
+        } catch (e) {
+            console.error(e);
+            loadingEl.style.display = 'none';
+            alert('분석 중 오류가 발생했습니다: ' + e.message);
+            document.getElementById('form-section').style.display     = 'block';
+            document.querySelector('.banner-container').style.display = 'block';
+        }
+    }, 2200);
+}
+
 function selectToggle(btn) {
-    const group = btn.closest('.toggle-group');
-    group.querySelectorAll('.btn-toggle').forEach(b => b.classList.remove('active'));
+    btn.closest('.toggle-group').querySelectorAll('.btn-toggle')
+       .forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 }
 
-function toggleTimeInput(checkbox, inputId) {
-    const input = document.getElementById(inputId);
-    input.disabled = checkbox.checked;
-    if (checkbox.checked) input.value = '';
+function toggleTimeInput(cb, id) {
+    const input = document.getElementById(id);
+    if (input) { input.disabled = cb.checked; input.style.opacity = cb.checked ? '.35' : '1'; }
 }
 
 function updateComputedDate() {
     const age = document.getElementById('dog-age-input').value;
-    const md = document.getElementById('dog-md-input').value;
-    const display = document.getElementById('computed-date');
-    
+    const md  = document.getElementById('dog-md-input').value;
+    const el  = document.getElementById('computed-date');
     if (age && md && md.length === 4) {
-        const year = new Date().getFullYear() - parseInt(age);
-        display.textContent = `${year}년 ${md.substring(0,2)}월 ${md.substring(2,4)}일생 (추정)`;
+        const y = new Date().getFullYear() - parseInt(age);
+        el.textContent = `🔮 사주 기준: ${y}년 ${md.substring(0,2)}월 ${md.substring(2,4)}일`;
+    } else { el.textContent = ''; }
+}
+
+function shareResult() {
+    const dogName = document.getElementById('dog-name').value || '우리 아이';
+    const shareData = {
+        title: '멍도사 - 반려견 사주 풀이',
+        text: `${dogName}의 사주 결과를 확인해보세요!`,
+        url: window.location.href
+    };
+
+    // 모바일 브라우저 공유 기능 확인
+    if (navigator.share) {
+        navigator.share(shareData)
+            .then(() => console.log('공유 성공!'))
+            .catch((error) => console.log('공유 실패:', error));
     } else {
-        display.textContent = '';
+        // 데스크탑 등 미지원 브라우저일 경우 클립보드 복사로 대체
+        const dummy = document.createElement('input');
+        document.body.appendChild(dummy);
+        dummy.value = window.location.href;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        alert('링크가 복사되었어요! 친구에게 내 반려동물 사주를 공유해보세요.');
     }
 }
 
-function goBack() {
-    document.getElementById('results-section').style.display = 'none';
-    document.getElementById('form-section').style.display = 'block';
-    document.querySelector('.banner-container').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// [테스트용] 데이터 자동 입력 함수
+function autoFillTest() {
+    const isLocal = location.hostname === "127.0.0.1" || location.hostname === "localhost";
+    
+    // 로컬 환경에서만 실행되도록 안전장치를 걸어두면 좋습니다 (운영 배포 시 실수 방지)
+    // 만약 깃허브 배포본에서도 쓰고 싶다면 if문 없이 진행하세요!
+    
+    document.getElementById('dog-name').value = '행운';
+    document.getElementById('dog-age-input').value = '11';
+    document.getElementById('dog-md-input').value = '0828';
+    document.getElementById('owner-name').value = '다희';
+    document.getElementById('owner-birth').value = '19890828';
+    
+    // 시간 모름 체크
+    const dogTime = document.getElementById('dog-time-unknown');
+    const ownerTime = document.getElementById('owner-time-unknown');
+    if(dogTime) dogTime.checked = true;
+    if(ownerTime) ownerTime.checked = true;
+    
+    toggleTimeInput(dogTime, 'dog-hour-min');
+    toggleTimeInput(ownerTime, 'owner-hour-min');
+    updateComputedDate();
 }
 
+// 페이지 로드 시 즉시 실행
+window.onload = autoFillTest;
 
+function goBack() { location.reload(); }
 </script>
-
 </body>
 </html>
-
-
-
-
-
-// 개발 모드: 페이지 로드 시 자동으로 값 채워넣기
- window.addEventListener('load', () => {
-    document.getElementById('dog-name').value = "우리애기"; // 강아지 이름
-    document.getElementById('dog-age-input').value = "11";    // 나이
-    document.getElementById('dog-md-input').value = "0828";  // 생일
-    document.getElementById('owner-name').value = "다희";     // 내 이름
-    document.getElementById('owner-birth').value = "19890828"; // 내 생일
-    
-    // 버튼 하나만 누르면 바로 결과로 가게끔!
-    console.log("테스트 데이터 세팅 완료! 버튼만 누르세요.");
-}); 
