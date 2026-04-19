@@ -154,6 +154,89 @@ main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
 .btn-submit:hover  { opacity: .88; }
 .btn-submit:active { transform: scale(.99); }
 
+/* ══ Species Segmented Control ═══════════════════ */
+.species-bar {
+    display: flex; justify-content: center;
+    margin-bottom: 24px;
+}
+.species-control {
+    display: inline-flex; background: var(--bg);
+    border-radius: 14px; padding: 4px; gap: 4px;
+}
+.species-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 28px; border: none; border-radius: 11px;
+    font-size: .95rem; font-weight: 600; cursor: pointer;
+    font-family: inherit; color: var(--text2); background: transparent;
+    transition: all .2s;
+}
+.species-btn.active {
+    background: white; color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+.species-icon { font-size: 1.2rem; line-height: 1; }
+
+/* ══ Field Inline Error ═══════════════════════════ */
+.field-error {
+    font-size: .76rem; color: var(--red); margin-top: 5px;
+    min-height: 1.1em; font-weight: 500;
+    animation: fadeIn .18s ease;
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+
+.under-input.error { border-bottom-color: var(--red) !important; }
+
+/* ══ Shake Animation ══════════════════════════════ */
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    15%      { transform: translateX(-6px); }
+    30%      { transform: translateX(6px); }
+    45%      { transform: translateX(-5px); }
+    60%      { transform: translateX(5px); }
+    75%      { transform: translateX(-3px); }
+    90%      { transform: translateX(3px); }
+}
+.shake { animation: shake .42s cubic-bezier(.36,.07,.19,.97) both; }
+
+/* ══ Apple-style Toast ════════════════════════════ */
+.toast-wrap {
+    position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+    z-index: 9999; pointer-events: none;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.toast {
+    background: rgba(28,28,30,.88);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    color: white; border-radius: 14px;
+    padding: 12px 22px; font-size: .9rem; font-weight: 500;
+    line-height: 1.5; max-width: 320px; text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    animation: toastIn .25s cubic-bezier(.22,1,.36,1);
+}
+.toast.out { animation: toastOut .2s ease forwards; }
+@keyframes toastIn  { from { opacity:0; transform:translateY(-12px) scale(.96); } to { opacity:1; transform:none; } }
+@keyframes toastOut { to   { opacity:0; transform:translateY(-8px)  scale(.96); } }
+
+/* ══ Senior Pet Banner ════════════════════════════ */
+/*
+ * [Proactive Feature 1 — Senior Mode]
+ * 7세 이상 반려동물은 노령기에 접어들어 보호자의 감성적 니즈가 높아짐.
+ * 나이 데이터 자동 감지 → 결과 최상단에 공감 배너 노출.
+ * 건강 카드 내에도 시니어 케어 팁 자동 삽입.
+ */
+.senior-banner {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+    border: 1px solid #FFB74D; border-radius: 16px;
+    padding: 16px 20px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+}
+.senior-icon { font-size: 2rem; flex-shrink: 0; }
+.senior-title { font-size: .85rem; font-weight: 700; color: #E65100; margin-bottom: 3px; }
+.senior-desc  { font-size: .8rem; color: #BF360C; line-height: 1.55; }
+.senior-banner-icon { font-size: 2rem; flex-shrink: 0; }
+.senior-banner-text { font-size: .88rem; font-weight: 600; color: #E65100; line-height: 1.6; }
+
 /* ══ Loading: 픽셀 아트 달리는 강아지 ══════════════ */
 #loading-section {
     display: none; flex-direction: column;
@@ -328,25 +411,53 @@ main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
     color: var(--blue); font-weight: 700; font-size: 1.1rem;
 }
 
-/* ── 궁합 점수 (게이지 없음, 점수 + 태그) ──────── */
-.compat-score-block {
-    display: flex; align-items: center; gap: 20px;
-    padding: 16px 0 22px; border-bottom: 1px solid var(--bg); margin-bottom: 20px;
+/* ── 궁합 비주얼 (오행 궁합 매트릭스) — Apple minimal ── */
+/* [REPLACE TARGET: 구 compat-score-block 섹션 대체] */
+.compat-visual {
+    display: flex; align-items: stretch;
+    border: 1px solid var(--sep); border-radius: 16px;
+    overflow: hidden; margin-bottom: 20px;
 }
-.compat-score-circle {
-    width: 88px; height: 88px; border-radius: 50%;
-    background: var(--blue-lt); display: flex;
-    flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;
+.compat-energy-col {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 5px; padding: 20px 12px;
 }
-.compat-score-num  { font-size: 2.4rem; font-weight: 800; color: var(--blue); line-height: 1; font-variant-numeric: tabular-nums; }
-.compat-score-unit { font-size: .8rem; font-weight: 600; color: var(--blue); margin-top: 1px; }
-.compat-right { flex: 1; }
-.relation-tag {
-    display: inline-block; background: var(--blue); color: white;
-    border-radius: 100px; padding: 5px 16px;
-    font-size: .82rem; font-weight: 700; margin-bottom: 8px;
+.compat-energy-icon  { font-size: 2rem; line-height: 1; }
+.compat-energy-oh    { font-size: 1.1rem; font-weight: 800; line-height: 1; }
+.compat-energy-label {
+    font-size: .68rem; color: var(--text2);
+    text-align: center; line-height: 1.35; max-width: 80px;
 }
-.compat-comment { font-size: .88rem; color: var(--text2); line-height: 1.6; }
+.compat-score-col {
+    flex: 0 0 90px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+    border-left: 1px solid var(--sep); border-right: 1px solid var(--sep);
+    padding: 20px 8px; background: var(--bg);
+}
+.compat-score-big {
+    font-size: 2.6rem; font-weight: 800; color: var(--text);
+    line-height: 1; font-variant-numeric: tabular-nums;
+}
+.compat-score-unit  { font-size: .75rem; font-weight: 600; color: var(--text2); }
+.compat-score-label { font-size: .6rem; color: var(--text3); margin-top: 3px; letter-spacing: .03em; }
+/* 관계 태그: Apple outline 스타일 (1px border, no fill) */
+.compat-tag-row { margin-bottom: 10px; }
+.compat-tag {
+    display: inline-block; border: 1px solid var(--text);
+    border-radius: 100px; padding: 4px 14px;
+    font-size: .8rem; font-weight: 700; color: var(--text); letter-spacing: -.01em;
+}
+.compat-desc {
+    font-size: .92rem; color: var(--text2); line-height: 1.75;
+    padding-bottom: 16px; border-bottom: 1px solid var(--bg); margin-bottom: 16px;
+}
+/* compat 모바일 */
+@media (max-width:480px) {
+    .compat-score-col { flex: 0 0 76px; }
+    .compat-score-big { font-size: 2.2rem; }
+    .compat-energy-icon { font-size: 1.6rem; }
+}
 
 /* ── 건강 섹션: 행운 카드 + 음식칩 ─────────────── */
 .lucky-cards {
@@ -432,8 +543,7 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
     .lucky-cards { grid-template-columns: repeat(3,1fr); gap: 7px; }
     .lucky-card  { padding: 12px 6px; }
     .happy-items { grid-template-columns: 1fr; }
-    .compat-score-circle { width: 76px; height: 76px; }
-    .compat-score-num { font-size: 2rem; }
+    /* compat-visual 반응형은 .compat-visual @media 블록에서 처리 */
 }
 
 /* 클릭 전 편지 봉투 스타일 */
@@ -602,14 +712,35 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
 
 <!-- Form -->
 <section id="form-section">
+
+    <!-- 종 선택 Segmented Control -->
+    <div class="species-bar">
+        <div class="species-control" id="species-control">
+            <button type="button" class="species-btn active" data-species="dog"
+                    onclick="selectSpecies(this)">
+                <span class="species-icon">🐶</span> 강아지
+            </button>
+            <button type="button" class="species-btn" data-species="cat"
+                    onclick="selectSpecies(this)">
+                <span class="species-icon">🐱</span> 고양이
+            </button>
+        </div>
+    </div>
+
     <div class="form-grid">
 
+        <!-- 반려동물 카드 -->
         <div class="form-card">
-            <div class="form-card-title">🐶 우리 강아지</div>
+            <div class="form-card-title" id="pet-card-title">🐶 우리 강아지</div>
+
             <div class="form-group">
                 <label class="field-label">이름</label>
-                <input type="text" id="dog-name" class="under-input" placeholder="강아지 이름" maxlength="10">
+                <input type="text" id="dog-name" class="under-input"
+                       placeholder="아이 이름" maxlength="10"
+                       oninput="validateName(this,'dog-name-err')">
+                <div class="field-error" id="dog-name-err"></div>
             </div>
+
             <div class="form-group">
                 <label class="field-label">성별</label>
                 <div class="toggle-group" id="dog-gender-group">
@@ -617,33 +748,49 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
                     <button type="button" class="btn-toggle"        onclick="selectToggle(this)">여아</button>
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="field-label">나이 &amp; 생일</label>
+                <label class="field-label">나이 &amp; 생일 <span class="opt">(또는 우리집에 온 날)</span></label>
                 <div class="input-row">
-                    <input type="number" id="dog-age-input" class="under-input" placeholder="나이" min="0" max="30" oninput="updateComputedDate()">
+                    <input type="number" id="dog-age-input" class="under-input"
+                           placeholder="나이" min="0" max="99"
+                           oninput="validateAge(this); updateComputedDate()">
                     <span class="row-span">세 /</span>
-                    <input type="text" id="dog-md-input" class="under-input" placeholder="0505" maxlength="4" oninput="updateComputedDate()">
+                    <input type="text" id="dog-md-input" class="under-input"
+                           placeholder="0505" maxlength="4"
+                           oninput="maskMD(this); updateComputedDate()">
                 </div>
                 <div class="computed-date" id="computed-date"></div>
+                <div class="field-error" id="dog-age-err"></div>
             </div>
+
             <div class="form-group">
                 <label class="field-label">태어난 시간 <span class="opt">(선택)</span></label>
                 <div class="input-row">
-                    <input type="text" id="dog-hour-min" class="under-input" placeholder="00:00">
+                    <input type="text" id="dog-hour-min" class="under-input"
+                           placeholder="00:00" maxlength="5"
+                           oninput="maskTime(this)">
                     <label class="check-label">
-                        <input type="checkbox" id="dog-time-unknown" onchange="toggleTimeInput(this,'dog-hour-min')">
+                        <input type="checkbox" id="dog-time-unknown"
+                               onchange="toggleTimeInput(this,'dog-hour-min')">
                         시간 모름
                     </label>
                 </div>
             </div>
         </div>
 
+        <!-- 반려인 카드 -->
         <div class="form-card">
-            <div class="form-card-title">👤 보호자 정보</div>
+            <div class="form-card-title">👤 반려인 정보</div>
+
             <div class="form-group">
                 <label class="field-label">이름</label>
-                <input type="text" id="owner-name" class="under-input" placeholder="보호자 이름" maxlength="10">
+                <input type="text" id="owner-name" class="under-input"
+                       placeholder="반려인 이름" maxlength="10"
+                       oninput="validateName(this,'owner-name-err')">
+                <div class="field-error" id="owner-name-err"></div>
             </div>
+
             <div class="form-group">
                 <label class="field-label">성별</label>
                 <div class="toggle-group" id="owner-gender-group">
@@ -651,38 +798,52 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
                     <button type="button" class="btn-toggle"        onclick="selectToggle(this)">여성</button>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="field-label">생년월일</label>
                 <div class="input-row">
-                    <input type="text" id="owner-birth" class="under-input" placeholder="19890828" maxlength="8">
+                    <input type="text" id="owner-birth" class="under-input"
+                           placeholder="YYYY / MM / DD" maxlength="10"
+                           oninput="maskOwnerBirth(this)">
                     <div class="toggle-group">
                         <button type="button" class="btn-toggle active" onclick="selectToggle(this)">양력</button>
                         <button type="button" class="btn-toggle"        onclick="selectToggle(this)">음력</button>
                     </div>
                 </div>
+                <div class="field-error" id="owner-birth-err"></div>
             </div>
+
             <div class="form-group">
                 <label class="field-label">태어난 시간 <span class="opt">(선택)</span></label>
                 <div class="input-row">
-                    <input type="text" id="owner-hour-min" class="under-input" placeholder="00:00">
+                    <input type="text" id="owner-hour-min" class="under-input"
+                           placeholder="00:00" maxlength="5"
+                           oninput="maskTime(this)">
                     <label class="check-label">
-                        <input type="checkbox" id="owner-time-unknown" onchange="toggleTimeInput(this,'owner-hour-min')">
+                        <input type="checkbox" id="owner-time-unknown"
+                               onchange="toggleTimeInput(this,'owner-hour-min')">
                         시간 모름
                     </label>
                 </div>
             </div>
         </div>
 
-    </div>
-    <button class="btn-submit" onclick="startReading()">🔮 멍도사에게 사주 읽어달라기</button>
+    </div><!-- /form-grid -->
+
+    <button class="btn-submit" id="btn-submit" onclick="startReading()">
+        🔮 멍도사에게 사주 읽어달라기
+    </button>
 </section>
+
+<!-- Toast 컨테이너 (고정 위치) -->
+<div class="toast-wrap" id="toast-wrap"></div>
 
 <!-- Loading: 픽셀아트 달리는 강아지 -->
 <section id="loading-section">
     <div class="dog-stage">
         <div class="dog-mover">
             <div class="dog-flipper">
-                <div class="dog-bouncer">🐕</div>
+                <div class="dog-bouncer" id="loading-emoji">🐕</div>
             </div>
         </div>
         <div class="paw-dot"></div>
@@ -771,6 +932,48 @@ function getJosa(name, type) {
 }
 
 const Solar = window._mod.exports.Solar || window.Solar;
+
+/* ══════════════════════════════════════════════
+   [Proactive Feature 1 — Senior Pet Mode]
+   반려동물 7세 이상은 노령기 진입. 보호자의 감정적 니즈가 높아지는
+   시점을 자동 감지해 결과지에 공감 배너 및 건강 케어 팁을 노출.
+   나이 데이터는 startReading에서 g_dogAge에 저장, 렌더 시 활용.
+
+   [Proactive Feature 2 — Species Persona Mapping]
+   강아지(멍)/고양이(냥) 종 선택에 따라 로딩 이모지·버튼 텍스트·
+   결과지 말투가 완전히 분기. PET_SPECIES 객체에서 중앙 관리해
+   추후 토끼·햄스터 등 종 확장 시 여기만 추가하면 됨.
+══════════════════════════════════════════════ */
+
+/** 모듈 레벨 상태 (전역 오염 최소화 — IIFE 내 단일 객체로 관리) */
+const APP = { species: 'dog', dogAge: 0 };
+
+/** 종 분기 페르소나 매핑 */
+const PET_SPECIES = Object.freeze({
+    dog: {
+        cardTitle:    '🐶 우리 강아지',
+        loadEmoji:    '🐕',
+        suffix:       '개',          // 말투 (~개)
+        chartTitle:   '멍-세력 차트',
+        submitText:   '🔮 멍도사에게 사주 읽어달라기',
+        genderLabels: ['남아', '여아'],
+        loadingMsg:   (name) => `멍도사가 ${name}의 기운을 읽고 있네...`,
+        seniorMsg:    (name) => `${name}는 이제 노련한 선배 냄새가 나는군. 이 나이에 쌓인 지혜와 사랑을 특별히 살펴봤네.`,
+    },
+    cat: {
+        cardTitle:    '🐱 우리 고양이',
+        loadEmoji:    '🐈',
+        suffix:       '냥',          // 말투 (~냥)
+        chartTitle:   '냥-세력 차트',
+        submitText:   '🔮 냥도사에게 사주 읽어달라기',
+        genderLabels: ['남아', '여아'],
+        loadingMsg:   (name) => `냥도사가 ${name}의 기운을 읽고 있네...`,
+        seniorMsg:    (name) => `${name}는 이제 여유로운 고령의 지혜자가 됐군. 오랜 세월 쌓인 기운을 특별히 헤아려봤네.`,
+    },
+});
+
+/** 현재 선택된 종 페르소나 반환 */
+const getPetPersona = () => PET_SPECIES[APP.species];
 
 const OHAENG_MAP = {
     '甲':'木','乙':'木','寅':'木','卯':'木',
@@ -892,6 +1095,87 @@ const DANGER_FOODS = [
 ];
 
 /* ══════════════════════════════════════════════
+   COMPAT_MATRIX  —  5×5 오행 궁합 해시맵
+   구조: COMPAT_MATRIX[ownerEnergy][dogEnergy]
+   → { score: number, tag: string, desc: string }
+   조회 복잡도: O(1)
+══════════════════════════════════════════════ */
+const COMPAT_MATRIX = Object.freeze({
+    '木': {
+        '木': { score: 75, tag: '같은 숲의 나무들 🌲',
+                desc: '같은 木 기운을 타고난 두 영혼이에요. 서로의 마음을 깊이 이해하고 같은 방향을 함께 바라보는, 말하지 않아도 통하는 편안한 관계예요.' },
+        '火': { score: 90, tag: '완벽한 조화 🔥',
+                desc: '보호자님의 木 기운이 아이의 불꽃 같은 열정에 생기를 불어넣어요. 당신이 곁에 있어 아이가 더 빛나게 타오를 수 있답니다!' },
+        '土': { score: 62, tag: '성장의 파트너 🌱',
+                desc: '보호자님의 에너지가 아이에게 명확한 방향과 성장의 자극을 줘요. 부딪히는 순간이 있어도, 그 속에서 아이는 더 단단하게 성장해요.' },
+        '金': { score: 53, tag: '설레는 긴장감 ✨',
+                desc: '아이의 단단한 金 기운이 보호자님의 목기운에 신선한 자극을 줘요. 서로의 다름이 만들어내는 역동적 매력, 함께할수록 더 빛나는 관계예요.' },
+        '水': { score: 85, tag: '에너지 충전소 💙',
+                desc: '아이의 水 기운이 보호자님의 木 기운을 풍요롭게 적셔줘요. 아이가 곁에 있으면 보호자님의 세상이 더 넓고 깊어지는 느낌이에요!' }
+    },
+    '火': {
+        '木': { score: 84, tag: '활력의 선물 🌿',
+                desc: '아이의 木 기운이 보호자님의 뜨거운 열정에 싱그러운 활력을 불어넣어요. 아이와 함께라면 매일매일이 새롭고 설레는 이유예요!' },
+        '火': { score: 73, tag: '두 불꽃의 만남 🔥',
+                desc: '두 火 기운이 만났어요! 함께 있으면 세상 그 무엇도 두렵지 않을 것 같은 뜨거운 에너지의 찰떡 커플이에요.' },
+        '土': { score: 89, tag: '천생연분 🌸',
+                desc: '보호자님의 火 기운이 아이에게 따뜻한 안정감과 든든함을 선물해요. 세상에서 가장 완벽한 보금자리를 함께 만드는 관계예요.' },
+        '金': { score: 60, tag: '단련의 파트너 ⚒️',
+                desc: '보호자님의 뜨거운 기운이 아이를 더욱 단단하고 빛나게 단련시켜요. 부딪히는 과정 속에서 최고의 서로를 만들어가는 관계예요!' },
+        '水': { score: 55, tag: '역동적 매력 🌊',
+                desc: '아이의 水 기운이 보호자님에게 시원한 균형을 선사해요. 서로의 다름이 만들어내는 예상치 못한 아름다운 시너지예요.' }
+    },
+    '土': {
+        '木': { score: 54, tag: '신선한 에너지 🌱',
+                desc: '아이의 木 기운이 보호자님의 안정된 일상에 생명력 넘치는 신선한 바람을 불어넣어요. 아이 덕분에 보호자님의 삶에 봄이 찾아오는 느낌이에요!' },
+        '火': { score: 86, tag: '행복 충전 100% 💛',
+                desc: '아이의 火 기운이 보호자님에게 따뜻한 온기와 생기를 더해줘요. 아이가 있어 집 안이 늘 환하게 밝아지는, 서로에게 완벽한 존재예요.' },
+        '土': { score: 71, tag: '변함없는 신뢰 🤝',
+                desc: '대지의 기운을 함께 나눈 두 영혼이에요. 변함없는 신뢰와 안정감이 두 분의 일상을 언제나 든든하게 지켜줄 거예요.' },
+        '金': { score: 88, tag: '최고의 조합 💎',
+                desc: '보호자님의 포근한 土 기운이 아이의 예리한 金 기운을 더욱 빛나게 키워줘요. 훌륭한 스승과 빛나는 제자 같은 완벽한 관계예요!' },
+        '水': { score: 61, tag: '균형의 수호자 ⚖️',
+                desc: '보호자님의 안정된 기운이 아이의 자유로운 에너지에 합리적인 경계를 그어줘요. 균형의 미학이 빛나는 성숙하고 아름다운 관계예요.' }
+    },
+    '金': {
+        '木': { score: 59, tag: '정제된 빛남 ✨',
+                desc: '보호자님의 결단력 있는 金 기운이 아이의 무한한 가능성을 아름답게 다듬어줘요. 아이가 더욱 빛날 수 있도록 방향을 제시하는 관계예요!' },
+        '火': { score: 52, tag: '짜릿한 에너지 ⚡',
+                desc: '아이의 열정적인 火 기운이 보호자님에게 날카로운 영감과 새로운 활력을 불어넣어요. 매 순간이 짜릿하고 역동적인 특별한 관계예요!' },
+        '土': { score: 83, tag: '든든한 지원자 🌟',
+                desc: '아이의 포근한 土 기운이 보호자님의 예리한 감각을 부드럽게 감싸줘요. 아이가 있어 더 여유롭고 풍요로워지는 하루예요.' },
+        '金': { score: 72, tag: '보석 같은 인연 💍',
+                desc: '보석 같은 두 존재의 만남이에요! 서로의 예민한 감각을 완벽히 이해하고, 함께일 때 더욱 빛나는 특별하고 아름다운 관계예요.' },
+        '水': { score: 91, tag: '완벽한 조화 🌊',
+                desc: '보호자님의 단단한 金 기운이 아이의 지혜로운 水 기운을 더욱 풍요롭게 해줘요. 서로가 서로를 완성시키는 아름다운 한 쌍이에요!' }
+    },
+    '水': {
+        '木': { score: 88, tag: '성장의 원천 🌿',
+                desc: '보호자님의 깊은 水 기운이 아이의 성장을 위한 완벽한 토양이 되어줘요. 아이가 무럭무럭 자랄 수 있는 건 보호자님의 깊은 사랑 덕분이에요!' },
+        '火': { score: 62, tag: '쿨링 파트너 🔥',
+                desc: '보호자님의 차분한 기운이 아이의 과열을 막아주는 완벽한 균형추예요. 보호자님이 있어 아이가 항상 안전하고 건강하게 빛날 수 있어요.' },
+        '土': { score: 53, tag: '새로운 바람 🍃',
+                desc: '아이의 따뜻한 土 기운이 보호자님의 깊은 내면에 포근한 안정감을 더해줘요. 아이 덕분에 보호자님의 삶이 더 따뜻하게 채워지는 느낌이에요!' },
+        '金': { score: 85, tag: '지혜의 샘 💧',
+                desc: '아이의 단단한 金 기운이 보호자님의 유연한 지혜를 더욱 깊고 풍요롭게 만들어줘요. 함께 성장하며 서로를 완성시키는 아름다운 관계예요.' },
+        '水': { score: 74, tag: '깊은 교감 🌊',
+                desc: '두 물결이 하나로 합쳐지듯, 깊은 교감과 이해로 맺어진 관계예요. 말하지 않아도 서로를 알아주는 고요하고 아름다운 인연이에요.' }
+    }
+});
+
+/**
+ * 오행 궁합 계산 — 순수 함수 (Pure Function), O(1) 해시맵 조회
+ * @param {string} ownerEnergy  보호자 일간 오행 ('木'|'火'|'土'|'金'|'水')
+ * @param {string} dogEnergy    반려견 일간 오행
+ * @returns {{ score: number, tag: string, desc: string }}
+ */
+/* [REPLACE TARGET: 구 checkCompatibility + getRelationTag 대체] */
+function calculateHarmony(ownerEnergy, dogEnergy) {
+    return COMPAT_MATRIX[ownerEnergy]?.[dogEnergy]
+        ?? COMPAT_MATRIX['木']['木']; // 미지 오행 fallback
+}
+
+/* ══════════════════════════════════════════════
    2. 사주 분석 (기존 유지)
 ══════════════════════════════════════════════ */
 function analyzeSaju(year, month, day, hour) {
@@ -912,32 +1196,7 @@ function analyzeSaju(year, month, day, hour) {
     return { mainEnergy: OHAENG_MAP[pillars.day[0]], ohaengCount, pillars, hasHour: (hour !== undefined) };
 }
 
-function checkCompatibility(dogData, ownerData) {
-    const SANG = { '木':'火','火':'土','土':'金','金':'水','水':'木' };
-    const GEUK = { '木':'土','火':'金','土':'水','金':'木','水':'火' };
-    let score = 55;
-    const d = dogData.mainEnergy, o = ownerData.mainEnergy;
-    if (SANG[d] === o || SANG[o] === d) score += 22;
-    if (d === o)                         score += 12;
-    if (GEUK[d] === o || GEUK[o] === d) score -= 10;
-    const combo  = ['木','火','土','金','水'].reduce((a,k) => { a[k] = dogData.ohaengCount[k] + ownerData.ohaengCount[k]; return a; }, {});
-    const spread = Math.max(...Object.values(combo)) - Math.min(...Object.values(combo));
-    if (spread <= 2) score += 8;
-    score = Math.min(98, Math.max(42, score));
-    const comment = score >= 85 ? '전생부터 이어온 천생연분이라네!' :
-                    score >= 70 ? '서로를 채워주는 찰떡궁합이군.' :
-                    score >= 55 ? '노력으로 빛나는 소울메이트라네!' : '사랑으로 모든 걸 극복하는 인연이군.';
-    return { score, comment };
-}
-
-function getRelationTag(score) {
-    if (score >= 90) return '환상의 복식조 🏅';
-    if (score >= 80) return '전생의 부부 💑';
-    if (score >= 70) return '영혼의 단짝 🌟';
-    if (score >= 60) return '서로의 완성 💪';
-    if (score >= 50) return '함께 성장하는 인연 🌱';
-    return                   '진심으로 맺어진 인연 ❤️';
-}
+/* checkCompatibility · getRelationTag → calculateHarmony + COMPAT_MATRIX 로 대체됨 */
 
 /* ══════════════════════════════════════════════
    3. 렌더링
@@ -947,23 +1206,40 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
         ? (ownerGender === '여성' ? '누나' : '형')
         : (ownerGender === '여성' ? '언니' : '오빠');
 
-    // 1. 만세력 차트 렌더링
+    const persona = getPetPersona();
+
+    // 1. 만세력 차트 제목 동적 업데이트 (멍-세력 차트 / 냥-세력 차트)
+    const chartTitleEl = document.querySelector('.chart-card-title');
+    if (chartTitleEl) chartTitleEl.textContent = `✨ ${persona.chartTitle}`;
+
+    // 2. 만세력 차트 렌더링
     renderChart(dogData);
-    
-    // 2. 리포트 카드 컨테이너 초기화
+
+    // 3. 리포트 카드 컨테이너 초기화
     const container = document.getElementById('report-cards');
     container.innerHTML = '';
 
-    // 3. 카드들 순서대로 추가
+    // 4. 노령 배너 (7세 이상 → 상단 감성 배너 삽입)
+    if (APP.dogAge >= 7) {
+        const seniorBanner = document.createElement('div');
+        seniorBanner.className = 'senior-banner';
+        seniorBanner.innerHTML = `
+            <div class="senior-banner-icon">🐾</div>
+            <div class="senior-banner-text">${persona.seniorMsg(dogName)}</div>
+        `;
+        container.appendChild(seniorBanner);
+    }
+
+    // 5. 카드들 순서대로 추가
     container.appendChild(renderPersonalityCard(dogData, dogName, honorific));
-    container.appendChild(renderCompatCard(compat, dogName, ownerName, honorific));
+    container.appendChild(renderCompatCard(compat, dogData, ownerData, dogName, ownerName, honorific));
     container.appendChild(renderHealthCard(dogData, dogName, honorific));
     container.appendChild(renderHappinessCard(dogData, dogName, honorific));
-    
-    // 4. 비밀 편지 추가 (두근두근 애니메이션 포함된 버전)
+
+    // 6. 비밀 편지 추가 (두근두근 애니메이션 포함된 버전)
     container.appendChild(renderSecretLetter(dogName, honorific));
 
-    // 5. [수정] 미니멀 링크 복사 버튼 하나만 추가
+    // 7. [수정] 미니멀 링크 복사 버튼 하나만 추가
     const shareSection = document.createElement('div');
     shareSection.className = 'share-section';
     shareSection.innerHTML = `
@@ -974,7 +1250,7 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
     `;
     container.appendChild(shareSection);
 
-    // 6. 결과 섹션 노출 및 애니메이션
+    // 8. 결과 섹션 노출 및 애니메이션
     const sec = document.getElementById('results-section');
     sec.style.display = 'block';
     sec.style.opacity = '0';
@@ -985,7 +1261,7 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // 7. 점수 카운터 실행
+    // 9. 점수 카운터 실행
     setTimeout(() => {
         const scoreEl = document.getElementById('compat-score-num');
         if (scoreEl) animateCounter(scoreEl, compat.score);
@@ -1043,33 +1319,66 @@ function renderPersonalityCard(dogData, dogName, honorific) {
     return card;
 }
 
-/* ── 2. 궁합 카드 ──────────────────────────────── */
-function renderCompatCard(compat, dogName, ownerName, honorific) {
-    const tag = getRelationTag(compat.score);
+/* ── 2. 궁합 카드 (오행 궁합 매트릭스 기반) ──────── */
+/* [REPLACE TARGET: 기존 renderCompatCard 완전 교체]
+ * @param {object} harmony   calculateHarmony() 반환값 { score, tag, desc }
+ * @param {object} dogData   analyzeSaju() 반환값 (mainEnergy 포함)
+ * @param {object} ownerData analyzeSaju() 반환값 (mainEnergy 포함)
+ * @param {string} dogName   반려견 이름
+ * @param {string} ownerName 보호자 이름
+ * @param {string} honorific 호칭 (언니/오빠/누나/형)
+ * @returns {HTMLElement}
+ */
+function renderCompatCard(harmony, dogData, ownerData, dogName, ownerName, honorific) {
+    // 오행별 컬러 CSS 변수 매핑
+    const OH_VAR = { '木':'var(--wood)','火':'var(--fire)','土':'var(--earth)','金':'var(--metal)','水':'var(--water)' };
+
+    const ownerE = ownerData.mainEnergy;
+    const dogE   = dogData.mainEnergy;
+
     const card = document.createElement('div');
     card.className = 'report-card';
-
-    // 조사 처리 적용
-    const dogWithJosa = `${dogName}${getJosa(dogName, '이랑')}`; // 행운이랑, 초코랑
-    const ownerWithJosa = `${honorific}${getJosa(honorific, '이가')}`; // 누나가, 형아가
-
     card.innerHTML = `
         <div class="card-eyebrow">우리 둘의 찰떡 궁합</div>
-        <div class="card-subtitle">나 ${dogWithJosa} ${honorific}, 진짜 찰떡이잖아! </div>
-        <div class="compat-score-block">
-            <div class="compat-score-circle">
-                <span class="compat-score-num" id="compat-score-num">0</span>
-                <span class="compat-score-unit">점</span>
+        <div class="card-subtitle">
+            ${ownerName}님은 <strong style="color:${OH_VAR[ownerE]}">${ownerE} 기운</strong>,
+            ${dogName}${getJosa(dogName, '은는')} <strong style="color:${OH_VAR[dogE]}">${dogE} 기운</strong>을 타고났어요
+        </div>
+
+        <!-- Apple 3-column 비주얼: 보호자 ↔ 점수 ↔ 반려견 -->
+        <div class="compat-visual">
+            <div class="compat-energy-col">
+                <div class="compat-energy-icon">${OH_ICON[ownerE]}</div>
+                <div class="compat-energy-oh" style="color:${OH_VAR[ownerE]}">${ownerE}</div>
+                <div class="compat-energy-label">${ownerName}님</div>
             </div>
-            <div class="compat-right">
-                <div class="relation-tag">${tag}</div>
-                <div class="compat-comment">${compat.comment}</div>
+            <div class="compat-score-col">
+                <div class="compat-score-big"
+                     id="compat-score-num"
+                     data-score="${harmony.score}">0</div>
+                <div class="compat-score-unit">점</div>
+                <div class="compat-score-label">궁합 점수</div>
+            </div>
+            <div class="compat-energy-col">
+                <div class="compat-energy-icon">${OH_ICON[dogE]}</div>
+                <div class="compat-energy-oh" style="color:${OH_VAR[dogE]}">${dogE}</div>
+                <div class="compat-energy-label">${dogName}</div>
             </div>
         </div>
+
+        <!-- 관계 태그 (Apple outline chip) -->
+        <div class="compat-tag-row">
+            <span class="compat-tag">${harmony.tag}</span>
+        </div>
+
+        <!-- 세련된 관계 설명 -->
+        <p class="compat-desc">${harmony.desc}</p>
+
+        <!-- 1인칭 감성 불렛 -->
         <ul class="report-bullets">
-            <li>나 ${dogName}${getJosa(dogName, '이가')} ${honorific}${getJosa(honorific, '을를')} 처음 본 순간부터 알았어."이 사람이 내 사람이다!" 하고.</li>
-            <li>${honorific}의 따뜻한 기운이 나의 흥분한 마음을 딱 잡아줘. 완벽한 균형이야!</li>
-            <li>내가 슬플 때 ${honorific}이 먼저 알아채는 것, 이게 전생 인연이 아니면 뭐겠어?</li>
+            <li>나 ${dogName}${getJosa(dogName, '이가')} ${honorific}${getJosa(honorific, '을를')} 처음 본 순간부터 알았어. "이 사람이 내 사람이다!" 하고.</li>
+            <li>${honorific}의 기운이 나를 딱 잡아주는 느낌이야. 우리 진짜 잘 맞는 거 아니야?</li>
+            <li>내가 슬플 때 ${honorific}이 먼저 알아채는 것, 전생 인연이 아니면 설명이 안 돼!</li>
             <li>우리 앞으로도 오래오래 같이 있자. 나는 ${honorific} 없이는 못 살아!</li>
         </ul>`;
     return card;
@@ -1136,7 +1445,7 @@ function renderHappinessCard(dogData, dogName, honorific) {
         </div>`).join('');
 
     card.innerHTML = `
-        <div class="card-eyebrow">멍도사의 행복 제안</div>
+        <div class="card-eyebrow">${getPetPersona().suffix === '개' ? '멍' : '냥'}도사의 행복 제안</div>
         <div class="card-subtitle">${dogWithJosa} 위한 ${h.subtitle}</div>
         <div class="happy-items">${itemsHtml}</div>
     `; 
@@ -1189,6 +1498,192 @@ wrapper.onclick = function() {
 /* ══════════════════════════════════════════════
    4. UI 유틸
 ══════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   5. 입력 헬퍼 & 에러 핸들링
+══════════════════════════════════════════════ */
+
+/** 종 Segmented Control 선택 */
+function selectSpecies(btn) {
+    document.querySelectorAll('.species-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    APP.species = btn.dataset.species;
+    const p = getPetPersona();
+    // UI 반영
+    document.getElementById('pet-card-title').textContent = p.cardTitle;
+    document.getElementById('btn-submit').textContent     = p.submitText;
+    document.getElementById('loading-emoji').textContent  = p.loadEmoji;
+    // 성별 레이블 업데이트
+    const gBtns = document.querySelectorAll('#dog-gender-group .btn-toggle');
+    gBtns.forEach((b, i) => { b.textContent = p.genderLabels[i]; });
+}
+
+/**
+ * Apple Toast 알림 (시스템 alert 대체)
+ * @param {string} msg  메시지 (줄바꿈 \n 지원)
+ * @param {number} dur  노출 시간(ms), 기본 2800
+ */
+function showToast(msg, dur = 2800) {
+    const wrap  = document.getElementById('toast-wrap');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = msg;
+    wrap.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.add('out');
+        toast.addEventListener('animationend', () => toast.remove(), { once: true });
+    }, dur);
+}
+
+/** 인풋 Shake 애니메이션 + 포커스 */
+function shakeField(el) {
+    el.classList.remove('shake');
+    void el.offsetWidth; // reflow
+    el.classList.add('shake');
+    el.focus();
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.addEventListener('animationend', () => el.classList.remove('shake'), { once: true });
+}
+
+/** 인라인 에러 표시 / 해제 */
+function setFieldError(errId, msg) {
+    const el = document.getElementById(errId);
+    if (el) el.textContent = msg;
+}
+function clearFieldError(errId) {
+    const el = document.getElementById(errId);
+    if (el) el.textContent = '';
+}
+
+/**
+ * 이름 실시간 검증: 숫자 입력 차단, 한글/영문/공백만 허용
+ * oninput 핸들러에서 호출
+ */
+function validateName(input, errId) {
+    const raw = input.value;
+    // 숫자 즉시 제거
+    const cleaned = raw.replace(/[0-9]/g, '');
+    if (cleaned !== raw) {
+        input.value = cleaned;
+        setFieldError(errId, '이름에는 숫자를 입력할 수 없어요.');
+        input.classList.add('error');
+    } else if (raw.trim().length === 0 && raw.length > 0) {
+        setFieldError(errId, '공백만으로는 이름을 입력할 수 없어요.');
+        input.classList.add('error');
+    } else {
+        clearFieldError(errId);
+        input.classList.remove('error');
+    }
+}
+
+/** 나이 실시간 검증: 0~99 제한 */
+function validateAge(input) {
+    const v = parseInt(input.value);
+    if (isNaN(v)) { clearFieldError('dog-age-err'); return; }
+    if (v > 99) {
+        input.value = 99;
+        setFieldError('dog-age-err', '나이는 최대 99살까지 입력 가능해요.');
+        input.classList.add('error');
+    } else if (v < 0) {
+        input.value = 0;
+        clearFieldError('dog-age-err');
+    } else {
+        clearFieldError('dog-age-err');
+        input.classList.remove('error');
+    }
+}
+
+/**
+ * 생일 4자리 스마트 마스킹
+ * "88" → month=8, day=8 → "0808"
+ * "1225" → keep
+ * 백스페이스 시 포맷 문자 방해 없음 (숫자만 유지)
+ */
+function maskMD(input) {
+    // 1. 숫자만 최대 4자리 추출
+    const digits = input.value.replace(/\D/g, '').slice(0, 4);
+    
+    let formatted = digits;
+    if (digits.length > 2) {
+        formatted = digits.slice(0, 2) + ' / ' + digits.slice(2, 4);
+    }
+    input.value = formatted;
+}
+
+/**
+ * 시간 자동 마스킹: 4자리 입력 → HH:MM 변환
+ * "2230" → "22:30", 백스페이스 정교 처리
+ */
+function maskTime(input) {
+    const prev   = input.dataset.prev || '';
+    const raw    = input.value;
+    const digits = raw.replace(/\D/g, '').slice(0, 4);
+
+    if (raw.length < prev.length) {
+        // 백스페이스: 콜론 바로 뒤를 지우면 콜론도 함께 제거
+        if (prev.endsWith(':') && raw === prev.slice(0,-1)) {
+            input.value = digits.slice(0, -1);
+        } else {
+            input.value = digits;
+        }
+    } else {
+        if (digits.length >= 3) {
+            input.value = digits.slice(0,2) + ':' + digits.slice(2,4);
+        } else {
+            input.value = digits;
+        }
+    }
+    input.dataset.prev = input.value;
+}
+
+/**
+ * 반려인 생년월일 자동 마스킹: YYYY/MM/DD
+ * 숫자 8자리 입력 → 포맷 자동 삽입, 백스페이스 정교 처리
+ * 내부적으로는 data-raw 속성에 순수 숫자 8자리만 저장
+ */
+function maskOwnerBirth(input) {
+    // 1. 숫자만 최대 8자리 추출
+    let d = input.value.replace(/\D/g, '').slice(0, 8);
+    input.dataset.raw = d;
+
+    // 2. 슬래시 포맷팅 문자열 생성
+    let f = "";
+    if (d.length <= 4) {
+        f = d;
+    } else if (d.length <= 6) {
+        f = d.slice(0, 4) + ' / ' + d.slice(4);
+    } else {
+        f = d.slice(0, 4) + ' / ' + d.slice(4, 6) + ' / ' + d.slice(6);
+    }
+
+    input.value = f;
+
+    // 4. 실시간 유효성 체크
+    if (d.length >= 7) {
+        const y = parseInt(d.slice(0, 4));
+        let m, day;
+        
+        if (d.length === 8) {
+            m = parseInt(d.slice(4, 6));
+            day = parseInt(d.slice(6, 8));
+        } else {
+            // 7자리일 때 유연한 파싱
+            m = parseInt(d.slice(4, 5));
+            day = parseInt(d.slice(5, 7));
+        }
+
+        if (y < 1900 || m < 1 || m > 12 || day < 1 || day > 31) {
+            setFieldError('owner-birth-err', '유효하지 않은 날짜예요. (예: 1989 / 08 / 28)');
+            input.classList.add('error');
+        } else {
+            clearFieldError('owner-birth-err');
+            input.classList.remove('error');
+        }
+    } else {
+        clearFieldError('owner-birth-err');
+        input.classList.remove('error');
+    }
+} 
+
 function toggleAccordion(btn) {
     const body  = btn.nextElementSibling;
     const arrow = btn.querySelector('.accordion-arrow');
@@ -1214,59 +1709,165 @@ function getOwnerGender() {
 }
 
 function startReading() {
-    const dogName   = (document.getElementById('dog-name').value.trim()   || '강아지').slice(0,10);
-    const ownerName = (document.getElementById('owner-name').value.trim() || '보호자').slice(0,10);
-    const age       = document.getElementById('dog-age-input').value;
-    const md        = document.getElementById('dog-md-input').value;
-    const dogHourInput   = document.getElementById('dog-hour-min').value;
-    const ownerBirth     = document.getElementById('owner-birth').value;
-    const ownerHourInput = document.getElementById('owner-hour-min').value;
+    /* ── 1. 모든 에러 초기화 ── */
+    ['dog-name-err','dog-age-err','owner-name-err','owner-birth-err']
+        .forEach(id => clearFieldError(id));
+    ['dog-name','dog-age-input','dog-md-input','owner-name','owner-birth']
+        .forEach(id => document.getElementById(id)?.classList.remove('error'));
+
+    /* ── 2. 값 수집 (모두 .trim() 처리) ── */
+    const persona    = getPetPersona();
+    const dogNameRaw = document.getElementById('dog-name').value.trim();
+    const ownerNameRaw = document.getElementById('owner-name').value.trim();
+    const dogName    = (dogNameRaw  || '아이').slice(0,10);
+    const ownerName  = (ownerNameRaw || '반려인').slice(0,10);
+    const ageRaw     = document.getElementById('dog-age-input').value.trim();
+    const mdRaw      = document.getElementById('dog-md-input').value.replace(/\D/g,''); // 순수 숫자
+    const dogHourInput   = document.getElementById('dog-hour-min').value.trim();
+    const ownerBirthRaw  = (document.getElementById('owner-birth').dataset.raw || '')
+                           || document.getElementById('owner-birth').value.replace(/\D/g,'');
+    const ownerHourInput = document.getElementById('owner-hour-min').value.trim();
     const dogUnknown     = document.getElementById('dog-time-unknown').checked;
     const ownerUnknown   = document.getElementById('owner-time-unknown').checked;
     const dogGender      = document.querySelector('#dog-gender-group .btn-toggle.active').textContent.trim();
     const ownerGender    = getOwnerGender();
 
-    if (!age || !md || md.length !== 4) {
-        alert('강아지 나이와 생일 4자리를 정확히 입력해주세요. (예: 0505)'); return;
-    }
-    if (!ownerBirth || ownerBirth.length !== 8) {
-        alert('보호자 생년월일 8자리를 정확히 입력해주세요. (예: 19890828)'); return;
-    }
+    /* ── 3. 유효성 검사 — 실패 시 Toast + Shake + 리턴 ── */
+    let hasError = false;
 
-    const dogYear  = new Date().getFullYear() - parseInt(age);
-    const dogMonth = parseInt(md.substring(0,2));
-    const dogDay   = parseInt(md.substring(2,4));
-    if (dogMonth < 1 || dogMonth > 12 || dogDay < 1 || dogDay > 31) {
-        alert('생일 월일 숫자가 올바르지 않습니다. (예: 0505)'); return;
-    }
-
-    const owY = parseInt(ownerBirth.substring(0,4));
-    const owM = parseInt(ownerBirth.substring(4,6));
-    const owD = parseInt(ownerBirth.substring(6,8));
-    if (owY < 1900 || owM < 1 || owM > 12 || owD < 1 || owD > 31) {
-        alert('보호자 생년월일이 올바르지 않습니다. (예: 19890828)'); return;
+    // 이름: 숫자 포함 불가, 필수
+    if (!dogNameRaw) {
+        setFieldError('dog-name-err', '아이 이름을 입력해주세요.');
+        shakeField(document.getElementById('dog-name'));
+        hasError = true;
+    } else if (/[0-9]/.test(dogNameRaw)) {
+        setFieldError('dog-name-err', '이름에는 숫자를 입력할 수 없어요.');
+        shakeField(document.getElementById('dog-name'));
+        hasError = true;
     }
 
-    const dogHour   = (!dogUnknown   && dogHourInput.includes(':'))   ? parseInt(dogHourInput.split(':')[0])   : undefined;
-    const ownerHour = (!ownerUnknown && ownerHourInput.includes(':')) ? parseInt(ownerHourInput.split(':')[0]) : undefined;
+    // 나이: 필수, 0~99
+    const ageNum = parseInt(ageRaw);
+    if (!ageRaw || isNaN(ageNum)) {
+        setFieldError('dog-age-err', '나이를 입력해주세요.');
+        shakeField(document.getElementById('dog-age-input'));
+        hasError = true;
+    } else if (ageNum > 99 || ageNum < 0) {
+        setFieldError('dog-age-err', '나이는 0~99살 사이로 입력해주세요.');
+        shakeField(document.getElementById('dog-age-input'));
+        hasError = true;
+    }
 
-    document.getElementById('form-section').style.display      = 'none';
-    document.querySelector('.banner-container').style.display  = 'none';
+    // 생일 4자리 (MMDD 또는 MD 스마트 파싱)
+    let dogMonth = 0, dogDay = 0;
+    if (!mdRaw || mdRaw.length < 2) {
+        setFieldError('dog-age-err', '생일을 4자리로 입력해주세요. (예: 0505)');
+        shakeField(document.getElementById('dog-md-input'));
+        hasError = true;
+    } else {
+        // 스마트 파싱: 2자리=M/D, 3자리=M/DD, 4자리=MM/DD
+        if      (mdRaw.length === 4) { dogMonth = parseInt(mdRaw.slice(0,2)); dogDay = parseInt(mdRaw.slice(2,4)); }
+        else if (mdRaw.length === 3) { dogMonth = parseInt(mdRaw.slice(0,1)); dogDay = parseInt(mdRaw.slice(1,3)); }
+        else                         { dogMonth = parseInt(mdRaw.slice(0,1)); dogDay = parseInt(mdRaw.slice(1,2)); }
+        if (dogMonth < 1 || dogMonth > 12 || dogDay < 1 || dogDay > 31) {
+            setFieldError('dog-age-err', '월/일이 올바르지 않아요. (예: 0505)');
+            shakeField(document.getElementById('dog-md-input'));
+            hasError = true;
+        }
+    }
+
+    // 반려인 이름
+    if (!ownerNameRaw) {
+        setFieldError('owner-name-err', '반려인 이름을 입력해주세요.');
+        shakeField(document.getElementById('owner-name'));
+        hasError = true;
+    } else if (/[0-9]/.test(ownerNameRaw)) {
+        setFieldError('owner-name-err', '이름에는 숫자를 입력할 수 없어요.');
+        shakeField(document.getElementById('owner-name'));
+        hasError = true;
+    }
+
+// 반려인 생년월일 유효성 검사 및 변수 할당
+    let owY, owM, owD;
+
+    if (!ownerBirthRaw || (ownerBirthRaw.length < 7 || ownerBirthRaw.length > 8)) {
+        setFieldError('owner-birth-err', '생년월일을 8자리로 입력해주세요. (예: 19890828)');
+        shakeField(document.getElementById('owner-birth'));
+        hasError = true;
+    } else {
+        if (ownerBirthRaw.length === 8) {
+            owY = parseInt(ownerBirthRaw.slice(0, 4));
+            owM = parseInt(ownerBirthRaw.slice(4, 6));
+            owD = parseInt(ownerBirthRaw.slice(6, 8));
+        } else {
+            // 7자리일 때 스마트 파싱
+            owY = parseInt(ownerBirthRaw.slice(0, 4));
+            const monthDay = ownerBirthRaw.slice(4); 
+            let m1 = parseInt(monthDay.slice(0, 1));
+            let d1 = parseInt(monthDay.slice(1));
+            
+            if (m1 >= 1 && m1 <= 12) {
+                owM = m1; owD = d1;
+            } else {
+                owM = parseInt(monthDay.slice(0, 2));
+                owD = parseInt(monthDay.slice(2));
+            }
+        }
+
+    const currentYear = new Date().getFullYear();
+        if (!owY || owY < 1900 || owY > currentYear || owM < 1 || owM > 12 || owD < 1 || owD > 31) {
+            setFieldError('owner-birth-err', '유효하지 않은 날짜예요. (예: 1989 / 08 / 02)');
+            shakeField(document.getElementById('owner-birth'));
+            hasError = true;
+        }
+    }
+
+    if (hasError) {
+        showToast('입력값을 다시 확인해주세요 🐾');
+        return;
+    }
+
+    /* ── 4. 파싱 ── */
+    const dogYear = new Date().getFullYear() - ageNum;
+
+    // 시간: HH:MM 포맷 파싱
+    const parseHour = (val, unknown) =>
+        (!unknown && val.includes(':')) ? parseInt(val.split(':')[0]) : undefined;
+    const dogHour   = parseHour(dogHourInput, dogUnknown);
+    const ownerHour = parseHour(ownerHourInput, ownerUnknown);
+
+    /* ── 5. 시니어 감지 저장 (Proactive Feature 1) ── */
+    APP.dogAge = ageNum;
+
+    /* ── 6. 화면 전환 ── */
+    document.getElementById('form-section').style.display     = 'none';
+    document.querySelector('.banner-container').style.display = 'none';
     const loadingEl = document.getElementById('loading-section');
     loadingEl.style.display = 'flex';
-    document.getElementById('loading-text').textContent = `멍도사가 ${dogName}의 기운을 읽고 있네...`;
+    document.getElementById('loading-emoji').textContent  = persona.loadEmoji;
+    document.getElementById('loading-text').textContent   = persona.loadingMsg(dogName);
 
+    /* ── 7. 사주 계산 ── */
     setTimeout(() => {
         try {
             const dogData   = analyzeSaju(dogYear, dogMonth, dogDay, dogHour);
             const ownerData = analyzeSaju(owY, owM, owD, ownerHour);
-            const compat    = checkCompatibility(dogData, ownerData);
+
+            // O(1) 오행 궁합 매트릭스 조회
+            const baseHarmony = calculateHarmony(ownerData.mainEnergy, dogData.mainEnergy);
+            // 오행 분포 균형 보너스
+            const combo  = ['木','火','土','金','水'].reduce((a, k) => {
+                a[k] = dogData.ohaengCount[k] + ownerData.ohaengCount[k]; return a;
+            }, {});
+            const spread = Math.max(...Object.values(combo)) - Math.min(...Object.values(combo));
+            const compat = { ...baseHarmony, score: Math.min(98, baseHarmony.score + (spread <= 2 ? 5 : 0)) };
+
             loadingEl.style.display = 'none';
             renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender);
-        } catch (e) {
-            console.error(e);
+        } catch (err) {
+            console.error(err);
             loadingEl.style.display = 'none';
-            alert('분석 중 오류가 발생했습니다: ' + e.message);
+            showToast('분석 중 오류가 발생했어요. 다시 시도해주세요.');
             document.getElementById('form-section').style.display     = 'block';
             document.querySelector('.banner-container').style.display = 'block';
         }
@@ -1315,7 +1916,7 @@ function shareResult() {
         dummy.select();
         document.execCommand('copy');
         document.body.removeChild(dummy);
-        alert('링크가 복사되었어요! 친구에게 내 반려동물 사주를 공유해보세요.');
+        showToast('🔗 링크가 복사됐어! 친구에게 사주 공유해줘 😊');
     }
 }
 
