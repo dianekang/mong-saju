@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>멍도사 — 반려견 사주 풀이소</title>
+    <title>펫도사 — 반려동물 사주 풀이소</title>
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
     <meta property="og:image" content="https://dianekang.github.io/mong-saju/assets/og-image.png">
-    <meta property="og:title" content="🐾 멍도사 - 우리 아이 사주 읽어보개">
-    <meta property="og:description" content="지나가던 동네 개도 깜짝 놀란 영험한 사주 풀이!">
+    <meta property="og:title" content="펫도사 — 우리 아이 사주 풀이">
+    <meta property="og:description" content="영험한 펫도사가 우리 아이의 운명을 읽어드립니다.">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 <style>
@@ -60,59 +60,94 @@ header {
     position: absolute; left: 50%; transform: translateX(-50%);
     font-size: .95rem; font-weight: 700;
 }
-.btn-login {
-    background: #FEE500; border: none; border-radius: 8px;
-    padding: 7px 14px; font-size: .8rem; font-weight: 600;
-    color: #191919; cursor: pointer; font-family: inherit;
-    transition: background .15s;
-}
-.btn-login:hover { background: #FADA0A; }
 @media (max-width:600px) { .header-center { display: none; } }
 
 /* ══ Layout ══════════════════════════════════════ */
-main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
+main { 
+    max-width: 800px; 
+    margin: 0 auto;
+    padding: 8px 20px 80px; 
+    
+    /* [수정] 첫 번째 값(상단 여백)을 28px에서 8px로 대폭 축소! */
+    padding: 8px 20px 80px; 
+}
 
-/* ══ Banner ══════════════════════════════════════ */
+/* ══ Banner ══════════════════════ */
 .banner-container {
-    background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%);
-    border-radius: 20px; padding: 32px 40px;
-    margin-bottom: 48px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #6B46FE 0%, #8E6BFF 100%);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin: 6px 0 16px;       /* 좌우 마진 제거 — form-card와 폭 일치 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 4px 12px rgba(107, 70, 254, 0.2);
 }
-.banner-container::after {
-    content: '🔮'; position: absolute; right: 32px; top: 50%;
-    transform: translateY(-50%); font-size: 6rem; opacity: .2; pointer-events: none;
+
+.banner-title {
+    font-size: 0.72rem !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-bottom: 2px !important;
+    letter-spacing: .01em;
 }
-.banner-tag {
-    display: inline-block; background: rgba(255,255,255,.22);
-    border-radius: 100px; padding: 3px 10px;
-    font-size: .72rem; font-weight: 700; color: white;
-    letter-spacing: .05em; margin-bottom: 10px;
-}
-.banner-title { font-size: 1.65rem; font-weight: 800; color: white; margin-bottom: 6px; }
-.banner-sub   { font-size: .95rem; color: rgba(255,255,255,.85); }
-@media (max-width:600px) {
-    .banner-container { padding: 24px; }
-    .banner-container::after { display: none; }
-    .banner-title { font-size: 1.3rem; }
+
+.banner-desc {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    white-space: normal;          /* 좁은 화면에서 줄바꿈 허용 */
+    line-height: 1.4;
+    word-break: keep-all;
 }
 
 /* ══ Form ════════════════════════════════════════ */
 .form-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
 }
-@media (max-width:640px) { .form-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
 
-.form-card { background: var(--card); border-radius: 20px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
-.form-card-title { font-size: .95rem; font-weight: 700; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid var(--bg); }
-.form-group { margin-bottom: 22px; }
+.form-card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 18px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+.form-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--sep);
+    color: var(--text);
+}
+
+.form-group {
+    margin-bottom: 12px;
+    position: relative;
+}
 .form-group:last-child { margin-bottom: 0; }
 
-.field-label { display: block; font-size: .8rem; font-weight: 600; color: var(--text2); margin-bottom: 8px; }
-.field-label .opt { font-weight: 400; color: var(--text3); }
+.field-label {
+    display: block;
+    font-size: .76rem;
+    font-weight: 600;
+    color: var(--text2);
+    margin-bottom: 5px;
+}
+
+.field-label .opt {
+    font-weight: 400;
+    color: var(--text3);
+}
 
 .under-input {
     width: 100%; border: none; border-bottom: 1.5px solid var(--sep);
-    padding: 8px 0; font-size: 1rem; font-family: inherit;
+    padding: 7px 0; font-size: .97rem; font-family: inherit;
     color: var(--text); background: transparent; outline: none;
     transition: border-color .2s; min-width: 0;
 }
@@ -120,67 +155,91 @@ main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
 .under-input:focus        { border-bottom-color: var(--blue); }
 .under-input:disabled     { opacity: .35; }
 
-.input-row { display: flex; align-items: center; gap: 8px; }
-.input-row .under-input { flex: 1; }
-.input-row .row-span { font-size: .85rem; color: var(--text2); white-space: nowrap; flex-shrink: 0; }
+/* 에러 시 레이아웃 점프 방지: min-height로 공간 선점 */
+.field-error {
+    font-size: .72rem;
+    color: var(--red, #FF3B30);
+    min-height: 1em;          /* 에러 없을 때도 공간 유지 */
+    margin-top: 3px;
+    line-height: 1;
+}
 
-#dog-age-input { width: 56px; flex: none; text-align: center; }
-#dog-md-input  { width: 88px; flex: none; text-align: center; }
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;        /* 기본은 한 줄 */
+}
+.input-row .under-input { flex: 1; min-width: 0; }
+.input-row .row-span {
+    font-size: .82rem; color: var(--text2);
+    white-space: nowrap; flex-shrink: 0;
+}
 
-.computed-date { font-size: .82rem; font-weight: 600; color: var(--blue); margin-top: 6px; min-height: 1.3em; }
+#dog-age-input { width: 52px; flex: none; text-align: center; }
+#dog-md-input  { width: 80px; flex: none; text-align: center; }
 
+.computed-date {
+    font-size: .79rem; font-weight: 600;
+    color: var(--blue); margin-top: 4px; min-height: 1.2em;
+}
+
+/* 성별 toggle: 좁은 화면에서 찌그러짐 방지 */
 .toggle-group {
     display: inline-flex; background: var(--bg); border-radius: 100px;
     padding: 3px; gap: 2px; flex-shrink: 0;
+    max-width: 100%; overflow: visible;
 }
 .btn-toggle {
-    border: none; background: none; padding: 5px 14px;
-    font-size: .78rem; font-weight: 600; border-radius: 100px;
-    cursor: pointer; color: var(--text2); font-family: inherit; transition: all .18s;
+    border: none; background: none; padding: 5px 12px;
+    font-size: .76rem; font-weight: 600; border-radius: 100px;
+    cursor: pointer; color: var(--text2); font-family: inherit;
+    transition: all .18s; white-space: nowrap; flex-shrink: 0;
 }
-.btn-toggle.active { background: white; color: var(--text); box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+.btn-toggle.active {
+    background: white; color: var(--text);
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
 
 .check-label {
     display: flex; align-items: center; gap: 6px; cursor: pointer;
-    font-size: .82rem; color: var(--text2); white-space: nowrap; flex-shrink: 0;
+    font-size: .8rem; color: var(--text2); white-space: nowrap; flex-shrink: 0;
 }
 
 .btn-submit {
-    width: 100%; padding: 18px; background: var(--blue); color: white;
-    border: none; border-radius: 16px; font-size: 1.05rem; font-weight: 700;
+    width: 100%; padding: 16px; background: var(--blue); color: white;
+    border: none; border-radius: 16px; font-size: 1rem; font-weight: 700;
     font-family: inherit; letter-spacing: -.01em; cursor: pointer;
     transition: opacity .15s, transform .1s;
 }
 .btn-submit:hover  { opacity: .88; }
 .btn-submit:active { transform: scale(.99); }
 
-/* ══ Species Segmented Control ═══════════════════ */
-.species-bar {
-    display: flex; justify-content: center;
-    margin-bottom: 24px;
+
+/* ══ Species Toggle (폼 카드 내 인라인) ══════════ */
+/* species-bar 탭은 폐지 — toggle-group 스타일 재사용 */
+
+/* ══ 로딩 이모지 Alternation ══════════════════════ */
+@keyframes emojiA {
+    0%, 45%  { opacity: 1; }
+    50%, 100% { opacity: 0; }
 }
-.species-control {
-    display: inline-flex; background: var(--bg);
-    border-radius: 14px; padding: 4px; gap: 4px;
+@keyframes emojiB {
+    0%, 45%  { opacity: 0; }
+    50%, 100% { opacity: 1; }
 }
-.species-btn {
-    display: flex; align-items: center; gap: 7px;
-    padding: 10px 28px; border: none; border-radius: 11px;
-    font-size: .95rem; font-weight: 600; cursor: pointer;
-    font-family: inherit; color: var(--text2); background: transparent;
-    transition: all .2s;
-}
-.species-btn.active {
-    background: white; color: var(--text);
-    box-shadow: 0 2px 8px rgba(0,0,0,.1);
-}
-.species-icon { font-size: 1.2rem; line-height: 1; }
+.loading-emoji-a { display: inline-block; animation: emojiA 1.6s steps(1) infinite; }
+.loading-emoji-b { display: inline-block; animation: emojiB 1.6s steps(1) infinite;
+                   position: absolute; left: 0; }
 
 /* ══ Field Inline Error ═══════════════════════════ */
 .field-error {
-    font-size: .76rem; color: var(--red); margin-top: 5px;
-    min-height: 1.1em; font-weight: 500;
-    animation: fadeIn .18s ease;
+    font-size: 0.75rem;
+    color: #ff4d4f;       /* 에러 레드 */
+    margin-top: 4px;      /* 인풋 라인과 에러 메시지 사이 간격 축소 */
+    min-height: 1.2em;    /* 메시지가 없을 때도 공간을 아주 살짝만 유지 (덜컥거림 방지) */
+    line-height: 1.2;
+    transition: all 0.2s;
 }
 @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
 
@@ -217,25 +276,6 @@ main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
 .toast.out { animation: toastOut .2s ease forwards; }
 @keyframes toastIn  { from { opacity:0; transform:translateY(-12px) scale(.96); } to { opacity:1; transform:none; } }
 @keyframes toastOut { to   { opacity:0; transform:translateY(-8px)  scale(.96); } }
-
-/* ══ Senior Pet Banner ════════════════════════════ */
-/*
- * [Proactive Feature 1 — Senior Mode]
- * 7세 이상 반려동물은 노령기에 접어들어 보호자의 감성적 니즈가 높아짐.
- * 나이 데이터 자동 감지 → 결과 최상단에 공감 배너 노출.
- * 건강 카드 내에도 시니어 케어 팁 자동 삽입.
- */
-.senior-banner {
-    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
-    border: 1px solid #FFB74D; border-radius: 16px;
-    padding: 16px 20px; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 14px;
-}
-.senior-icon { font-size: 2rem; flex-shrink: 0; }
-.senior-title { font-size: .85rem; font-weight: 700; color: #E65100; margin-bottom: 3px; }
-.senior-desc  { font-size: .8rem; color: #BF360C; line-height: 1.55; }
-.senior-banner-icon { font-size: 2rem; flex-shrink: 0; }
-.senior-banner-text { font-size: .88rem; font-weight: 600; color: #E65100; line-height: 1.6; }
 
 /* ══ Loading: 픽셀 아트 달리는 강아지 ══════════════ */
 #loading-section {
@@ -534,7 +574,44 @@ main { max-width: 800px; margin: 0 auto; padding: 28px 20px 80px; }
 }
 .btn-back:hover { border-color: var(--blue); color: var(--blue); }
 
-footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(--text3); border-top: 1px solid var(--sep); }
+footer {
+    padding: 28px 20px 36px;
+    font-size: .73rem; color: var(--text3);
+    border-top: 1px solid var(--sep);
+    text-align: center; line-height: 1.8;
+}
+footer .footer-disclaimer {
+    margin-top: 8px; font-size: .68rem;
+    color: var(--text3); line-height: 1.7;
+}
+
+/* 복채 공유 프로모 섹션 (메시지 박스와 간격 확보) */
+.share-promo {
+    background: linear-gradient(135deg, #F0EBFF 0%, #E8F0FF 100%);
+    border: 1px solid rgba(107,70,254,.15);
+    border-radius: 16px; padding: 16px 16px;
+    text-align: center; margin-top: 20px; margin-bottom: 6px;
+}
+.share-promo-title {
+    font-size: .7rem; font-weight: 700; color: #6B46FE;
+    letter-spacing: .04em; text-transform: uppercase; margin-bottom: 4px;
+}
+.share-promo-msg {
+    font-size: .88rem; font-weight: 800; color: var(--text);
+    line-height: 1.4; margin-bottom: 10px; word-break: keep-all;
+}
+.share-promo-sub {
+    font-size: .72rem; color: var(--text2); margin-bottom: 12px; line-height: 1.55;
+}
+.btn-share-main {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #6B46FE; color: white; border: none;
+    border-radius: 10px; padding: 10px 20px;
+    font-size: .82rem; font-weight: 700; font-family: inherit;
+    cursor: pointer; transition: opacity .15s, transform .1s;
+}
+.btn-share-main:hover  { opacity: .88; }
+.btn-share-main:active { transform: scale(.98); }
 
 @media (max-width:600px) {
     .saju-grid { gap: 5px; }
@@ -696,43 +773,29 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
 <body>
 
 <header>
-    <div class="header-logo">🐾 멍도사</div>
-    <div class="header-center">멍도사 — 반려견 사주 풀이소</div>
-    <button class="btn-login">로그인</button>
+    <div class="header-logo">펫도사</div>
+    <div class="header-center">펫도사 — 반려동물 사주 풀이소</div>
 </header>
 
 <main>
 
 <!-- Banner -->
 <section class="banner-container">
-    <span class="banner-tag">OPEN EVENT</span>
-    <div class="banner-title">영험한 멍도사 오픈 이벤트! 🐾</div>
-    <div class="banner-sub">지금 가입하면 우리 아이 복채가 무료라네.</div>
+    <div class="banner-title">영험한 펫도사 오픈 기념</div>
+    <div class="banner-desc">우리 아이의 마음속, 펫도사가 그 운명의 지도를 읽어드릴게요.</div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.65);">오픈 기념 복채 이벤트 — 결과 공유 시 복채 면제</div>
 </section>
 
 <!-- Form -->
 <section id="form-section">
 
-    <!-- 종 선택 Segmented Control -->
-    <div class="species-bar">
-        <div class="species-control" id="species-control">
-            <button type="button" class="species-btn active" data-species="dog"
-                    onclick="selectSpecies(this)">
-                <span class="species-icon">🐶</span> 강아지
-            </button>
-            <button type="button" class="species-btn" data-species="cat"
-                    onclick="selectSpecies(this)">
-                <span class="species-icon">🐱</span> 고양이
-            </button>
-        </div>
-    </div>
-
     <div class="form-grid">
 
         <!-- 반려동물 카드 -->
         <div class="form-card">
-            <div class="form-card-title" id="pet-card-title">🐶 우리 강아지</div>
+            <div class="form-card-title">반려동물 정보</div>
 
+            <!-- 1. 이름 -->
             <div class="form-group">
                 <label class="field-label">이름</label>
                 <input type="text" id="dog-name" class="under-input"
@@ -741,6 +804,18 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
                 <div class="field-error" id="dog-name-err"></div>
             </div>
 
+            <!-- 2. 동물 종류 선택 -->
+            <div class="form-group">
+                <label class="field-label">동물 종류</label>
+                <div class="toggle-group" id="species-toggle-group">
+                    <button type="button" class="btn-toggle active" data-species="dog"
+                            onclick="selectSpecies(this)">강아지</button>
+                    <button type="button" class="btn-toggle" data-species="cat"
+                            onclick="selectSpecies(this)">고양이</button>
+                </div>
+            </div>
+
+            <!-- 3. 성별 -->
             <div class="form-group">
                 <label class="field-label">성별</label>
                 <div class="toggle-group" id="dog-gender-group">
@@ -749,30 +824,33 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
                 </div>
             </div>
 
+            <!-- 4. 나이 & 생일 -->
             <div class="form-group">
                 <label class="field-label">나이 &amp; 생일 <span class="opt">(또는 우리집에 온 날)</span></label>
                 <div class="input-row">
-                    <input type="number" id="dog-age-input" class="under-input"
-                           placeholder="나이" min="0" max="99"
-                           oninput="validateAge(this); updateComputedDate()">
+                    <input type="text" id="dog-age-input" class="under-input"
+                           inputmode="numeric" pattern="[0-9]*" placeholder="나이"
+                           oninput="updateComputedDate()">
                     <span class="row-span">세 /</span>
                     <input type="text" id="dog-md-input" class="under-input"
-                           placeholder="0505" maxlength="4"
-                           oninput="maskMD(this); updateComputedDate()">
+                           inputmode="numeric" pattern="[0-9]*" placeholder="MMDD" maxlength="4"
+                           oninput="updateComputedDate()">
                 </div>
-                <div class="computed-date" id="computed-date"></div>
+                <div id="computed-date" class="computed-date"></div>
                 <div class="field-error" id="dog-age-err"></div>
             </div>
 
+            <!-- 5. 태어난 시간 -->
             <div class="form-group">
                 <label class="field-label">태어난 시간 <span class="opt">(선택)</span></label>
                 <div class="input-row">
-                    <input type="text" id="dog-hour-min" class="under-input"
+                    <input type="text" id="dog-hour-input" class="under-input"
+                           inputmode="numeric" pattern="[0-9]*"
                            placeholder="00:00" maxlength="5"
                            oninput="maskTime(this)">
                     <label class="check-label">
                         <input type="checkbox" id="dog-time-unknown"
-                               onchange="toggleTimeInput(this,'dog-hour-min')">
+                               onchange="toggleTimeInput(this,'dog-hour-input')">
                         시간 모름
                     </label>
                 </div>
@@ -781,7 +859,7 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
 
         <!-- 반려인 카드 -->
         <div class="form-card">
-            <div class="form-card-title">👤 반려인 정보</div>
+            <div class="form-card-title">반려인 정보</div>
 
             <div class="form-group">
                 <label class="field-label">이름</label>
@@ -831,19 +909,22 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
     </div><!-- /form-grid -->
 
     <button class="btn-submit" id="btn-submit" onclick="startReading()">
-        🔮 멍도사에게 사주 읽어달라기
+        펫도사에게 사주 읽어달라기
     </button>
 </section>
 
 <!-- Toast 컨테이너 (고정 위치) -->
 <div class="toast-wrap" id="toast-wrap"></div>
 
-<!-- Loading: 픽셀아트 달리는 강아지 -->
+<!-- Loading -->
 <section id="loading-section">
     <div class="dog-stage">
         <div class="dog-mover">
             <div class="dog-flipper">
-                <div class="dog-bouncer" id="loading-emoji">🐕</div>
+                <div class="dog-bouncer" style="position:relative;">
+                    <span class="loading-emoji-a" id="loading-emoji-dog">🐕</span>
+                    <span class="loading-emoji-b" id="loading-emoji-cat">🐈</span>
+                </div>
             </div>
         </div>
         <div class="paw-dot"></div>
@@ -852,7 +933,7 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
         <div class="paw-dot"></div>
         <div class="dog-ground"></div>
     </div>
-    <div class="loading-text" id="loading-text">멍도사가 기운을 읽고 있네...</div>
+    <div class="loading-text" id="loading-text">펫도사가 기운을 읽고 있네...</div>
     <div class="loading-sub">잠시만 기다려 주게나</div>
 </section>
 
@@ -881,7 +962,7 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
                 <div class="accordion-body">
                     <p><strong>🌤 천간</strong> — 겉으로 드러나는 성격과 기질이에요. 행동과 태도에서 바로 나타나는 모습이죠.</p>
                     <p style="margin-top:10px"><strong>🌏 지지</strong> — 내면에 숨겨진 본능과 잠재력이에요. 친해졌을 때 드러나는 깊은 속마음이랍니다.</p>
-                    <p style="margin-top:10px"><strong>💡 멍도사 팁</strong> — 색깔이 골고루 섞여 있을수록 무난한 성격이며, 한 색깔이 강할수록 그 기운이 뚜렷한 아이예요!</p>
+                    <p style="margin-top:10px"><strong>펫도사 해설</strong> — 색깔이 골고루 섞여 있을수록 무난한 성격이며, 한 색깔이 강할수록 그 기운이 뚜렷한 아이예요!</p>
                 </div>
             </div>
         </div>
@@ -901,7 +982,15 @@ footer { text-align: center; padding: 28px 20px; font-size: .75rem; color: var(-
 
 </main>
 
-<footer>멍도사 · 반려견 사주 풀이소 · Claude API 연동 준비 완료</footer>
+<footer>
+    펫도사 · 반려동물 사주 풀이소
+    <div class="footer-disclaimer">
+        본 서비스는 사주 오행 이론에 기반한 참고용 콘텐츠입니다.<br>
+        실제 건강·행동 문제는 반드시 수의사 또는 전문가와 상담하시기 바랍니다.<br>
+        사주 해석 결과는 과학적 근거가 아닌 전통 오행 이론을 기반으로 하며,<br>
+        개인 또는 반려동물의 미래를 보증하지 않습니다.
+    </div>
+</footer>
 
 <!-- lunar-javascript shim -->
 <script>
@@ -953,21 +1042,21 @@ const PET_SPECIES = Object.freeze({
     dog: {
         cardTitle:    '🐶 우리 강아지',
         loadEmoji:    '🐕',
-        suffix:       '개',          // 말투 (~개)
+        suffix:       '개',
         chartTitle:   '멍-세력 차트',
-        submitText:   '🔮 멍도사에게 사주 읽어달라기',
+        submitText:   '펫도사에게 사주 읽어달라기',
         genderLabels: ['남아', '여아'],
-        loadingMsg:   (name) => `멍도사가 ${name}의 기운을 읽고 있네...`,
+        loadingMsg:   (name) => `펫도사가 ${name}의 기운을 읽고 있네...`,
         seniorMsg:    (name) => `${name}는 이제 노련한 선배 냄새가 나는군. 이 나이에 쌓인 지혜와 사랑을 특별히 살펴봤네.`,
     },
     cat: {
         cardTitle:    '🐱 우리 고양이',
         loadEmoji:    '🐈',
-        suffix:       '냥',          // 말투 (~냥)
+        suffix:       '냥',
         chartTitle:   '냥-세력 차트',
-        submitText:   '🔮 냥도사에게 사주 읽어달라기',
+        submitText:   '펫도사에게 사주 읽어달라기',
         genderLabels: ['남아', '여아'],
-        loadingMsg:   (name) => `냥도사가 ${name}의 기운을 읽고 있네...`,
+        loadingMsg:   (name) => `펫도사가 ${name}의 기운을 읽고 있네...`,
         seniorMsg:    (name) => `${name}는 이제 여유로운 고령의 지혜자가 됐군. 오랜 세월 쌓인 기운을 특별히 헤아려봤네.`,
     },
 });
@@ -1049,6 +1138,97 @@ const HEALTH_DATA = {
                   {icon:'1️⃣',label:'행운의 숫자',value:'1, 6',reason:'오행 水에 해당'},
                   {icon:'🌙',label:'추천 활동',value:'저녁 산책',reason:'水 기운은 저녁에 충전'}],
            tip:'水 기운은 신장을 주관해요. 신선한 물을 충분히 마시게 해줘요!' }
+};
+
+/* ── 고양이 전용 건강 데이터 (실제 수의학 기반) ──────── */
+const CAT_HEALTH_DATA = {
+    '木':{ subtitle:'간·담낭 에너지 케어', organ:'간 · 담낭',
+           foods:['닭가슴살(삶은 것)','연어(소량)','참치(소량, 과다 금지)','두부','고구마'],
+           lucky:[{icon:'🟢',label:'행운의 색',value:'초록색',reason:'木 기운 강화'},
+                  {icon:'3️⃣',label:'행운의 숫자',value:'3, 8',reason:'오행 木에 해당'},
+                  {icon:'🌅',label:'추천 활동',value:'아침 햇살 일광욕',reason:'木 기운은 아침에 활성화'}],
+           tip:'木 기운은 간을 주관한다냥. 신선한 물을 충분히 마시게 해주는 것이 중요하다냥!' },
+    '火':{ subtitle:'심장·순환계 에너지 밸런스', organ:'심장 · 소장',
+           foods:['연어','닭 안심','달걀노른자(삶은 것)','고등어(소량)','새우(소량)'],
+           lucky:[{icon:'🔴',label:'행운의 색',value:'빨간색',reason:'火 기운 강화'},
+                  {icon:'7️⃣',label:'행운의 숫자',value:'2, 7',reason:'오행 火에 해당'},
+                  {icon:'☀️',label:'추천 활동',value:'햇빛이 드는 창가 휴식',reason:'밝은 햇살에 火 기운 상승'}],
+           tip:'火 기운은 심장을 주관한다냥. 충분한 수면과 스트레스 관리가 핵심이다냥!' },
+    '土':{ subtitle:'위장·비장 소화 관리', organ:'비장 · 위장',
+           foods:['소고기(삶은 것)','닭 가슴살','당근(소량)','호박','현미 사료'],
+           lucky:[{icon:'🟡',label:'행운의 색',value:'황토색',reason:'土 기운 강화'},
+                  {icon:'5️⃣',label:'행운의 숫자',value:'5, 10',reason:'오행 土에 해당'},
+                  {icon:'😴',label:'추천 활동',value:'규칙적인 식사 시간',reason:'소화 돕고 안정감 강화'}],
+           tip:'土 기운은 위장을 주관한다냥. 소화 잘 되는 담백한 식이를 유지하는 것이 최선이다냥!' },
+    '金':{ subtitle:'폐·기관지 호흡기 케어', organ:'폐 · 기관지',
+           foods:['오리고기','닭 안심','감자(삶은 것)','현미','연어오일(소량)'],
+           lucky:[{icon:'⚪',label:'행운의 색',value:'흰색, 은색',reason:'金 기운 강화'},
+                  {icon:'4️⃣',label:'행운의 숫자',value:'4, 9',reason:'오행 金에 해당'},
+                  {icon:'🪟',label:'추천 활동',value:'환기 잘 되는 공간',reason:'金 기운은 호흡과 연결'}],
+           tip:'金 기운은 폐를 주관한다냥. 청결한 환경과 규칙적인 빗질로 털 건강을 지키는 것이 중요하다냥!' },
+    '水':{ subtitle:'신장·방광 수분 균형', organ:'신장 · 방광',
+           foods:['오리고기','북어(무염)','검은콩','연어','습식 사료(수분 보충)'],
+           lucky:[{icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'水 기운 강화'},
+                  {icon:'1️⃣',label:'행운의 숫자',value:'1, 6',reason:'오행 水에 해당'},
+                  {icon:'🌙',label:'추천 활동',value:'저녁 조용한 놀이',reason:'水 기운은 저녁에 충전'}],
+           tip:'水 기운은 신장을 주관한다냥. 습식 사료로 수분을 충분히 보충해 주는 것이 핵심이다냥!' }
+};
+
+/* 고양이 절대 금지 음식 (수의학 기준) */
+const CAT_DANGER_FOODS = [
+    { name:'양파 · 마늘 · 파',    reason:'적혈구 파괴 → 용혈성 빈혈, 소량도 위험' },
+    { name:'포도 · 건포도',        reason:'신부전 유발 — 소량도 치명적' },
+    { name:'초콜릿 · 카카오',      reason:'테오브로민 중독 → 심부전 위험' },
+    { name:'자일리톨(무설탕류)',   reason:'저혈당·간부전 유발' },
+    { name:'날생선(지속 급여)',    reason:'티아민 분해 효소 → 비타민 B1 결핍' },
+    { name:'참치(과다 급여)',      reason:'수은 축적, 황색지방증 유발' },
+    { name:'우유 · 유제품',        reason:'성묘는 유당불내증 — 소화장애·설사' },
+    { name:'날달걀 흰자',          reason:'아비딘 성분 → 비오틴 결핍' },
+    { name:'알코올 · 커피 · 차',  reason:'중추신경 손상, 소량도 위험' },
+    { name:'아보카도',              reason:'퍼신 성분 → 구토·설사·심근 손상' }
+];
+
+/* ── 고양이 전용 성격 데이터 (~냥 어미 적용) ──────────── */
+const CAT_PERSONALITY_DATA = {
+    '木':{ subtitle:'호기심 많은 탐험가냥!',
+           bullets:['새로운 곳이라면 두려움 없이 먼저 달려가는 타입이다냥','독립적이지만 은근히 스킨십도 좋아하는 고양이다냥','충분한 놀이가 있어야 진짜로 행복한 냥이다냥','감정이 솔직해서 싫으면 바로 티가 나는 스타일이다냥'] },
+    '火':{ subtitle:'열정 가득한 장난꾸러기냥!',
+           bullets:['밝고 사교적인 분위기 메이커형 고양이다냥','보호자를 깊이 좋아해서 항상 따라다니는 타입이다냥','자극에 예민하고 흥분도 빠른 편이다냥','눈치가 빠르고 감정 공감 능력이 탁월하다냥'] },
+    '土':{ subtitle:'든든하고 의리 있는 집냥이냥!',
+           bullets:['차분하고 루틴을 좋아해서 갑작스런 변화를 싫어한다냥','한번 정이 들면 끝까지 곁에 있어 주는 의리파냥이다냥','규칙적인 생활과 안정된 환경에서 가장 행복하다냥','간식과 낮잠을 사랑하는 소확행 전문가다냥'] },
+    '金':{ subtitle:'고귀하고 예민한 귀족 고양이냥!',
+           bullets:['청결하고 정돈된 환경을 극도로 선호한다냥','보호자의 기분을 섬세하게 캐치하는 공감 능력자냥이다냥','한번 신뢰하면 끝까지 충성하는 타입이다냥','청각이 예민해서 큰 소리에 스트레스를 받는다냥'] },
+    '水':{ subtitle:'신비롭고 깊은 철학 고양이냥!',
+           bullets:['조용히 관찰하다가 완벽한 타이밍에 행동하는 타입이다냥','혼자만의 시간도 충분히 즐기는 독립적인 성향이다냥','어떤 환경에도 유연하게 잘 적응한다냥','위험 감지 능력이 탁월한 직관의 소유자냥이다냥'] }
+};
+
+/* ── 고양이 전용 행복 제안 (~냥 어미 적용) ──────────── */
+const CAT_HAPPINESS_DATA = {
+    '木':{ subtitle:'기운 팡팡 탐험 계획냥!',
+           items:[{icon:'🌅',label:'추천 시간',value:'아침 일광욕',reason:'木 기운은 아침에 가장 활성화된다냥'},
+                  {icon:'🎣',label:'추천 놀이',value:'낚싯대 장난감',reason:'탐구 본능을 채워주는 최고의 놀이다냥'},
+                  {icon:'🌿',label:'행운의 색',value:'초록색',reason:'목줄이나 하네스를 초록으로 하면 좋다냥'},
+                  {icon:'🏅',label:'추천 활동',value:'캣휠 or 클리커 훈련',reason:'木 에너지 발산에 제격이다냥'}] },
+    '火':{ subtitle:'불꽃처럼 신나는 일과냥!',
+           items:[{icon:'☀️',label:'추천 시간',value:'낮 햇살 창가 놀이',reason:'밝은 빛이 火 기운을 살려준다냥'},
+                  {icon:'🪃',label:'추천 놀이',value:'터널 & 공 놀이',reason:'넘치는 에너지를 시원하게 발산할 수 있다냥'},
+                  {icon:'❤️',label:'행운의 색',value:'빨간색',reason:'빨간 장난감이 이 아이에게 잘 맞는다냥'},
+                  {icon:'🤸',label:'추천 활동',value:'캣타워 등반 놀이',reason:'사회성과 체력을 동시에 키울 수 있다냥'}] },
+    '土':{ subtitle:'포근하고 느긋한 안정 루틴냥!',
+           items:[{icon:'🍂',label:'추천 시간',value:'저녁 조용한 시간',reason:'土 기운은 여유로운 리듬이 중요하다냥'},
+                  {icon:'🎁',label:'추천 놀이',value:'간식 퍼즐 피더',reason:'후각을 자극해 만족감을 높여준다냥'},
+                  {icon:'🟡',label:'행운의 색',value:'황토색, 노란색',reason:'포근한 색의 쿠션이나 침대를 선물해주면 좋다냥'},
+                  {icon:'🧘',label:'추천 활동',value:'규칙적인 그루밍 타임',reason:'규칙 속 안정감이 土 냥이에게 딱 맞는다냥'}] },
+    '金':{ subtitle:'깔끔하고 품위 있는 귀족 루틴냥!',
+           items:[{icon:'🍃',label:'추천 시간',value:'아침 그루밍 & 빗질',reason:'金 기운은 청결함과 잘 맞는다냥'},
+                  {icon:'🧩',label:'추천 놀이',value:'퍼즐 장난감',reason:'예민한 두뇌를 자극해준다냥'},
+                  {icon:'⚪',label:'행운의 색',value:'흰색, 은색',reason:'흰색 침구가 이 아이의 기운을 살린다냥'},
+                  {icon:'🎓',label:'추천 활동',value:'클리커 트릭 훈련',reason:'金 기운의 섬세함을 극대화할 수 있다냥'}] },
+    '水':{ subtitle:'흐르는 물처럼 자유로운 일과냥!',
+           items:[{icon:'🌙',label:'추천 시간',value:'저녁 사냥 놀이',reason:'水 기운은 저녁에 충전된다냥'},
+                  {icon:'🚿',label:'추천 놀이',value:'물 음수대 or 분수형 급수기',reason:'水 기운 최대 활성화를 도와준다냥'},
+                  {icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'파란 담요나 장난감이 잘 맞는다냥'},
+                  {icon:'🔭',label:'추천 활동',value:'창문 버드 워칭',reason:'水 냥이의 관찰력과 직관력을 키워준다냥'}] }
 };
 
 /* 행복 제안 데이터 */
@@ -1219,36 +1399,30 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
     const container = document.getElementById('report-cards');
     container.innerHTML = '';
 
-    // 4. 노령 배너 (7세 이상 → 상단 감성 배너 삽입)
-    if (APP.dogAge >= 7) {
-        const seniorBanner = document.createElement('div');
-        seniorBanner.className = 'senior-banner';
-        seniorBanner.innerHTML = `
-            <div class="senior-banner-icon">🐾</div>
-            <div class="senior-banner-text">${persona.seniorMsg(dogName)}</div>
-        `;
-        container.appendChild(seniorBanner);
-    }
-
-    // 5. 카드들 순서대로 추가
+    // 4. 카드들 순서대로 추가
     container.appendChild(renderPersonalityCard(dogData, dogName, honorific));
     container.appendChild(renderCompatCard(compat, dogData, ownerData, dogName, ownerName, honorific));
     container.appendChild(renderHealthCard(dogData, dogName, honorific));
     container.appendChild(renderHappinessCard(dogData, dogName, honorific));
 
-    // 6. 비밀 편지 추가 (두근두근 애니메이션 포함된 버전)
-    container.appendChild(renderSecretLetter(dogName, honorific));
+    // 5. 반려동물 메시지 편지
+    container.appendChild(renderSecretLetter(dogName, ownerName, honorific));
 
-    // 7. [수정] 미니멀 링크 복사 버튼 하나만 추가
-    const shareSection = document.createElement('div');
-    shareSection.className = 'share-section';
-    shareSection.innerHTML = `
-        <div class="share-item" onclick="copyLink()">
-            <div class="share-circle">🔗</div>
-            <span class="share-label">링크 복사</span>
+    // 7. 복채 공유 프로모 섹션
+    const sharePromo = document.createElement('div');
+    sharePromo.className = 'share-promo';
+    sharePromo.innerHTML = `
+        <div class="share-promo-title">오픈 기념 복채 이벤트</div>
+        <div class="share-promo-msg">복채는 서비스 공유로 받겠습니다</div>
+        <div class="share-promo-sub">
+            우리 아이 사주 결과를 지인에게 공유해주세요.<br>
+            펫도사의 영험한 기운이 함께 전달됩니다.
         </div>
+        <button class="btn-share-main" onclick="shareResult()">
+            지인에게 공유하기
+        </button>
     `;
-    container.appendChild(shareSection);
+    container.appendChild(sharePromo);
 
     // 8. 결과 섹션 노출 및 애니메이션
     const sec = document.getElementById('results-section');
@@ -1303,9 +1477,14 @@ function makeCharBox(char, empty) {
 
 /* ── 1. 타고난 성격 카드 ───────────────────────── */
 function renderPersonalityCard(dogData, dogName, honorific) {
-    const d = PERSONALITY_DATA[dogData.mainEnergy] || PERSONALITY_DATA['木'];
-    const card = document.createElement('div');
+    const isCat = APP.species === 'cat';
+    const src = isCat ? CAT_PERSONALITY_DATA : PERSONALITY_DATA;
+    const d = src[dogData.mainEnergy] || src['木'];
+    const tailLine = isCat
+        ? `${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${dogName}, ${d.subtitle.replace(/냥!$/,'냥')} 기질이 충만하다냥. 우리 ${honorific} 이미 다 알고 있었지 않다냥? 😼`
+        : `${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${dogName}, ${d.subtitle.replace('!','')} 기질이 충만해. 우리 ${honorific} 이미 다 알고 있었지? 😏`;
 
+    const card = document.createElement('div');
     card.className = 'report-card';
     card.innerHTML = `
         <div class="card-eyebrow">타고난 성격</div>
@@ -1314,7 +1493,7 @@ function renderPersonalityCard(dogData, dogName, honorific) {
             ${d.bullets.map(b => `<li>${b}</li>`).join('')}
         </ul>
         <p style="margin-top:16px;font-size:.9rem;color:var(--text2);line-height:1.7">
-            ${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${dogName}, ${d.subtitle.replace('!','')} 기질이 충만해. 우리 ${honorific} 이미 다 알고 있었지? 😏
+            ${tailLine}
         </p>`;
     return card;
 }
@@ -1375,18 +1554,30 @@ function renderCompatCard(harmony, dogData, ownerData, dogName, ownerName, honor
         <p class="compat-desc">${harmony.desc}</p>
 
         <!-- 1인칭 감성 불렛 -->
-        <ul class="report-bullets">
-            <li>나 ${dogName}${getJosa(dogName, '이가')} ${honorific}${getJosa(honorific, '을를')} 처음 본 순간부터 알았어. "이 사람이 내 사람이다!" 하고.</li>
-            <li>${honorific}의 기운이 나를 딱 잡아주는 느낌이야. 우리 진짜 잘 맞는 거 아니야?</li>
-            <li>내가 슬플 때 ${honorific}이 먼저 알아채는 것, 전생 인연이 아니면 설명이 안 돼!</li>
-            <li>우리 앞으로도 오래오래 같이 있자. 나는 ${honorific} 없이는 못 살아!</li>
-        </ul>`;
+        ${APP.species === 'cat'
+            ? `<ul class="report-bullets">
+                <li>나 ${dogName}${getJosa(dogName, '이가')} ${honorific}${getJosa(honorific, '을를')} 처음 봤을 때부터 알았다냥. "이 사람이 내 집사다!" 하고.</li>
+                <li>${honorific}의 기운이 나를 딱 감싸주는 느낌이다냥. 우리 진짜 잘 맞는 거 아니냥?</li>
+                <li>내가 슬플 때 ${honorific}이 먼저 알아채는 것, 전생 인연이 아니면 설명이 안 된다냥!</li>
+                <li>우리 앞으로도 오래오래 같이 있자냥. 나는 ${honorific} 없이는 못 산다냥!</li>
+               </ul>`
+            : `<ul class="report-bullets">
+                <li>나 ${dogName}${getJosa(dogName, '이가')} ${honorific}${getJosa(honorific, '을를')} 처음 본 순간부터 알았어. "이 사람이 내 사람이다!" 하고.</li>
+                <li>${honorific}의 기운이 나를 딱 잡아주는 느낌이야. 우리 진짜 잘 맞는 거 아니야?</li>
+                <li>내가 슬플 때 ${honorific}이 먼저 알아채는 것, 전생 인연이 아니면 설명이 안 돼!</li>
+                <li>우리 앞으로도 오래오래 같이 있자. 나는 ${honorific} 없이는 못 살아!</li>
+               </ul>`
+        }`;
     return card;
 }
 
 /* ── 3. 건강 & 에너지 카드 ─────────────────────── */
 function renderHealthCard(dogData, dogName, honorific) {
-    const h = HEALTH_DATA[dogData.mainEnergy] || HEALTH_DATA['木'];
+    const isCat = APP.species === 'cat';
+    const healthSrc  = isCat ? CAT_HEALTH_DATA  : HEALTH_DATA;
+    const dangerSrc  = isCat ? CAT_DANGER_FOODS : DANGER_FOODS;
+    const h = healthSrc[dogData.mainEnergy] || healthSrc['木'];
+
     const card = document.createElement('div');
     card.className = 'report-card';
 
@@ -1398,39 +1589,40 @@ function renderHealthCard(dogData, dogName, honorific) {
             <div class="lucky-reason">${l.reason}</div>
         </div>`).join('');
 
-    const foodHtml = h.foods.map(f => `<span class="food-chip">${f}</span>`).join('');
-
-    const dangerHtml = DANGER_FOODS.map(f => `
+    const foodHtml   = h.foods.map(f => `<span class="food-chip">${f}</span>`).join('');
+    const dangerHtml = dangerSrc.map(f => `
         <li>${f.name}
             <span class="danger-reason">${f.reason}</span>
         </li>`).join('');
 
     card.innerHTML = `
-        <div class="card-eyebrow">나를 위한 건강 &amp; 에너지</div>
+        <div class="card-eyebrow">건강 &amp; 에너지</div>
         <div class="card-subtitle">${h.subtitle}</div>
-        <div class="organ-badge"> 관련 장기: ${h.organ}</div>
+        <div class="organ-badge">관련 장기: ${h.organ}</div>
         <div class="lucky-cards">${luckyHtml}</div>
         <div class="health-tip">${h.tip}</div>
-        <div class="health-subtitle">✅ 추천 음식</div>
+        <div class="health-subtitle">추천 음식</div>
         <div class="food-chips">${foodHtml}</div>
         <div class="accordion-wrap">
             <button class="accordion-btn danger" onclick="toggleAccordion(this)">
-                ⚠️ 절대 먹으면 안 되는 음식
+                절대 먹으면 안 되는 음식
                 <span class="accordion-arrow">▼</span>
             </button>
             <div class="accordion-body">
                 <ul class="danger-list">${dangerHtml}</ul>
             </div>
         </div>
-        <div class="disclaimer">⚕️ 본 결과는 사주 오행에 기반한 참고 정보입니다. 건강 이상 시 반드시 수의사와 상담하세요.</div>`;
+        <div class="disclaimer">본 결과는 사주 오행에 기반한 참고 정보입니다. 건강 이상 시 반드시 수의사와 상담하세요.</div>`;
     return card;
 }
 
 /* ── 4. 행복 제안 카드 ─────────────────────────── */
 function renderHappinessCard(dogData, dogName, honorific) {
-    const h = HAPPINESS_DATA[dogData.mainEnergy] || HAPPINESS_DATA['木'];
+    const isCat = APP.species === 'cat';
+    const happySrc = isCat ? CAT_HAPPINESS_DATA : HAPPINESS_DATA;
+    const h = happySrc[dogData.mainEnergy] || happySrc['木'];
     const dogWithJosa = `${dogName}${getJosa(dogName, '을를')}`;
-    
+
     const card = document.createElement('div');
     card.className = 'report-card';
 
@@ -1445,14 +1637,14 @@ function renderHappinessCard(dogData, dogName, honorific) {
         </div>`).join('');
 
     card.innerHTML = `
-        <div class="card-eyebrow">${getPetPersona().suffix === '개' ? '멍' : '냥'}도사의 행복 제안</div>
+        <div class="card-eyebrow">펫도사의 행복 제안</div>
         <div class="card-subtitle">${dogWithJosa} 위한 ${h.subtitle}</div>
         <div class="happy-items">${itemsHtml}</div>
     `; 
     return card;
 }
 
-/* ── 5. 멍도사의 비밀 편지 (마지막 섹션) ──────────────── */
+/* ── 5. 펫도사의 비밀 편지 (마지막 섹션) ──────────────── */
 const DOG_MESSAGES = [
     "내가 말이 좀 늦지? 그래도 내 마음은 다 전해졌을 거라 믿어. 사랑해!",
     "우리 다음 생에도 꼭 다시 만나자. 그때도 내가 먼저 꼬리 흔들며 기다릴게.",
@@ -1462,34 +1654,37 @@ const DOG_MESSAGES = [
     "간식 주는 손길이 조금 더 과감해져도 괜찮을 것 같아. 나는 준비됐어!"
 ];
 
-function renderSecretLetter(dogName, honorific) {
-    const randomMsg = DOG_MESSAGES[Math.floor(Math.random() * DOG_MESSAGES.length)];
+function renderSecretLetter(dogName, ownerName, honorific) {
+    const isCat = APP.species === 'cat';
+    const msgs = DOG_MESSAGES;
+    const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
     const dogWithJosa = `${dogName}${getJosa(dogName, '이가')}`;
-    const honorificWithJosa = `${honorific}${getJosa(honorific, '에게')}`;
+    const openTitle = isCat
+        ? `${dogWithJosa} ${ownerName}님에게 할 말이 있나 봐!`
+        : `${dogWithJosa} ${ownerName}님에게 할 말이 있나 봐!`;
 
     const wrapper = document.createElement('div');
     wrapper.className = 'letter-wrapper';
 
-// 닫힌 상태 (미니멀 봉투)
     wrapper.innerHTML = `
         <div class="envelope">
             <span class="heartbeat-icon">✉️</span>
-            <div class="envelope-text">${dogWithJosa} 보낸 메시지가 도착했습니다</div>
-            <div class="envelope-hint"> 여기를 눌러 ${dogName}의 메시지를 확인해보세요!</div>
+            <div class="envelope-text">${openTitle}</div>
+            <div class="envelope-hint">눌러서 ${dogName}의 메시지를 확인해보세요</div>
         </div>
     `;
 
-// 클릭 시 열림
-wrapper.onclick = function() {
+    wrapper.onclick = function() {
+        const catMsg = isCat
+            ? randomMsg.replace(/해\./g,'한다냥.').replace(/있어\./g,'있다냥.').replace(/줄게\./g,'줄게다냥.').replace(/!\"/g,'!다냥"').replace(/야\./g,'야다냥.')
+            : randomMsg;
         wrapper.innerHTML = `
             <div class="letter-opened">
-                <div class="letter-header">Message from ${dogName}</div>
-                <div class="letter-content">
-                    "${randomMsg}"
-                </div>
+                <div class="letter-header">From. ${dogName}</div>
+                <div class="letter-content">"${catMsg}"</div>
             </div>
         `;
-        if (navigator.vibrate) navigator.vibrate(10); // 미세한 햅틱 반응
+        if (navigator.vibrate) navigator.vibrate(10);
     };
 
     return wrapper;
@@ -1502,17 +1697,16 @@ wrapper.onclick = function() {
    5. 입력 헬퍼 & 에러 핸들링
 ══════════════════════════════════════════════ */
 
-/** 종 Segmented Control 선택 */
+/** 종 인라인 토글 선택 */
 function selectSpecies(btn) {
-    document.querySelectorAll('.species-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#species-toggle-group .btn-toggle')
+            .forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     APP.species = btn.dataset.species;
     const p = getPetPersona();
-    // UI 반영
-    document.getElementById('pet-card-title').textContent = p.cardTitle;
-    document.getElementById('btn-submit').textContent     = p.submitText;
-    document.getElementById('loading-emoji').textContent  = p.loadEmoji;
-    // 성별 레이블 업데이트
+    // 제출 버튼 텍스트 업데이트
+    document.getElementById('btn-submit').textContent = p.submitText;
+    // 성별 레이블 업데이트 (강아지: 남아/여아, 고양이: 수컷/암컷)
     const gBtns = document.querySelectorAll('#dog-gender-group .btn-toggle');
     gBtns.forEach((b, i) => { b.textContent = p.genderLabels[i]; });
 }
@@ -1641,38 +1835,36 @@ function maskTime(input) {
  * 내부적으로는 data-raw 속성에 순수 숫자 8자리만 저장
  */
 function maskOwnerBirth(input) {
-    // 1. 숫자만 최대 8자리 추출
     let d = input.value.replace(/\D/g, '').slice(0, 8);
     input.dataset.raw = d;
 
-    // 2. 슬래시 포맷팅 문자열 생성
+    // [핵심]MaxLength를 14로 넉넉하게 설정 (YYYY / MM / DD 대응)
+    input.setAttribute('maxlength', '14');
+
     let f = "";
     if (d.length <= 4) {
         f = d;
     } else if (d.length <= 6) {
         f = d.slice(0, 4) + ' / ' + d.slice(4);
     } else {
-        f = d.slice(0, 4) + ' / ' + d.slice(4, 6) + ' / ' + d.slice(6);
+        // d.slice(6, 8)로 명시하여 마지막 8번째 숫자까지 보장
+        f = d.slice(0, 4) + ' / ' + d.slice(4, 6) + ' / ' + d.slice(6, 8);
     }
-
     input.value = f;
 
-    // 4. 실시간 유효성 체크
-    if (d.length >= 7) {
-        const y = parseInt(d.slice(0, 4));
-        let m, day;
-        
-        if (d.length === 8) {
-            m = parseInt(d.slice(4, 6));
-            day = parseInt(d.slice(6, 8));
-        } else {
-            // 7자리일 때 유연한 파싱
-            m = parseInt(d.slice(4, 5));
-            day = parseInt(d.slice(5, 7));
-        }
-
-        if (y < 1900 || m < 1 || m > 12 || day < 1 || day > 31) {
-            setFieldError('owner-birth-err', '유효하지 않은 날짜예요. (예: 1989 / 08 / 28)');
+    // 8자리 완성 시 new Date()로 실존 날짜 + 미래 날짜 검증
+    if (d.length === 8) {
+        const y   = parseInt(d.slice(0, 4));
+        const m   = parseInt(d.slice(4, 6));
+        const day = parseInt(d.slice(6, 8));
+        const probe = new Date(y, m - 1, day);
+        const isReal = probe.getFullYear() === y && probe.getMonth() + 1 === m && probe.getDate() === day;
+        const isFuture = probe > new Date();
+        if (!isReal) {
+            setFieldError('owner-birth-err', '존재하지 않는 날짜예요. 다시 확인해 주세요.');
+            input.classList.add('error');
+        } else if (isFuture) {
+            setFieldError('owner-birth-err', '미래 날짜는 입력할 수 없어요.');
             input.classList.add('error');
         } else {
             clearFieldError('owner-birth-err');
@@ -1682,7 +1874,8 @@ function maskOwnerBirth(input) {
         clearFieldError('owner-birth-err');
         input.classList.remove('error');
     }
-} 
+}
+
 
 function toggleAccordion(btn) {
     const body  = btn.nextElementSibling;
@@ -1723,7 +1916,7 @@ function startReading() {
     const ownerName  = (ownerNameRaw || '반려인').slice(0,10);
     const ageRaw     = document.getElementById('dog-age-input').value.trim();
     const mdRaw      = document.getElementById('dog-md-input').value.replace(/\D/g,''); // 순수 숫자
-    const dogHourInput   = document.getElementById('dog-hour-min').value.trim();
+    const dogHourInput   = document.getElementById('dog-hour-input').value.trim();
     const ownerBirthRaw  = (document.getElementById('owner-birth').dataset.raw || '')
                            || document.getElementById('owner-birth').value.replace(/\D/g,'');
     const ownerHourInput = document.getElementById('owner-hour-min').value.trim();
@@ -1769,8 +1962,9 @@ function startReading() {
         if      (mdRaw.length === 4) { dogMonth = parseInt(mdRaw.slice(0,2)); dogDay = parseInt(mdRaw.slice(2,4)); }
         else if (mdRaw.length === 3) { dogMonth = parseInt(mdRaw.slice(0,1)); dogDay = parseInt(mdRaw.slice(1,3)); }
         else                         { dogMonth = parseInt(mdRaw.slice(0,1)); dogDay = parseInt(mdRaw.slice(1,2)); }
-        if (dogMonth < 1 || dogMonth > 12 || dogDay < 1 || dogDay > 31) {
-            setFieldError('dog-age-err', '월/일이 올바르지 않아요. (예: 0505)');
+        const probe = new Date(2024, dogMonth - 1, dogDay);
+        if (probe.getMonth() + 1 !== dogMonth || probe.getDate() !== dogDay) {
+            setFieldError('dog-age-err', '올바른 날짜(MMDD)를 입력해 주세요.');
             shakeField(document.getElementById('dog-md-input'));
             hasError = true;
         }
@@ -1814,9 +2008,15 @@ function startReading() {
             }
         }
 
-    const currentYear = new Date().getFullYear();
-        if (!owY || owY < 1900 || owY > currentYear || owM < 1 || owM > 12 || owD < 1 || owD > 31) {
-            setFieldError('owner-birth-err', '유효하지 않은 날짜예요. (예: 1989 / 08 / 02)');
+    const ownerProbe = new Date(owY, owM - 1, owD);
+        const ownerDateReal = ownerProbe.getFullYear() === owY
+            && ownerProbe.getMonth() + 1 === owM && ownerProbe.getDate() === owD;
+        if (!ownerDateReal || owY < 1900) {
+            setFieldError('owner-birth-err', '존재하지 않는 날짜예요. (예: 1989 / 08 / 02)');
+            shakeField(document.getElementById('owner-birth'));
+            hasError = true;
+        } else if (ownerProbe > new Date()) {
+            setFieldError('owner-birth-err', '미래 날짜는 입력할 수 없어요.');
             shakeField(document.getElementById('owner-birth'));
             hasError = true;
         }
@@ -1836,16 +2036,16 @@ function startReading() {
     const dogHour   = parseHour(dogHourInput, dogUnknown);
     const ownerHour = parseHour(ownerHourInput, ownerUnknown);
 
-    /* ── 5. 시니어 감지 저장 (Proactive Feature 1) ── */
-    APP.dogAge = ageNum;
+    /* ── 5. 상태 저장 ── */
+    APP.dogAge    = ageNum;
+    APP.ownerName = ownerName;
 
     /* ── 6. 화면 전환 ── */
     document.getElementById('form-section').style.display     = 'none';
     document.querySelector('.banner-container').style.display = 'none';
     const loadingEl = document.getElementById('loading-section');
     loadingEl.style.display = 'flex';
-    document.getElementById('loading-emoji').textContent  = persona.loadEmoji;
-    document.getElementById('loading-text').textContent   = persona.loadingMsg(dogName);
+    document.getElementById('loading-text').textContent = persona.loadingMsg(dogName);
 
     /* ── 7. 사주 계산 ── */
     setTimeout(() => {
@@ -1885,21 +2085,49 @@ function toggleTimeInput(cb, id) {
     if (input) { input.disabled = cb.checked; input.style.opacity = cb.checked ? '.35' : '1'; }
 }
 
+
+/** 반려동물 생일 입력 — 숫자 유지 + new Date() 실존 날짜 검증 */
 function updateComputedDate() {
-    const age = document.getElementById('dog-age-input').value;
-    const md  = document.getElementById('dog-md-input').value;
-    const el  = document.getElementById('computed-date');
-    if (age && md && md.length === 4) {
+    const ageInput = document.getElementById('dog-age-input');
+    const mdInput  = document.getElementById('dog-md-input');
+    const resultEl = document.getElementById('computed-date');
+    const errorEl  = document.getElementById('dog-age-err');
+    if (!resultEl || !errorEl) return;
+
+    // 숫자만 유지 (backspace 친화적)
+    const md  = mdInput.value.replace(/\D/g, '').slice(0, 4);
+    mdInput.value = md;
+    const age = ageInput.value.trim();
+
+    if (!age || !md) { resultEl.textContent = ''; errorEl.textContent = ''; return; }
+
+    if (md.length < 4) {
+        resultEl.textContent = '';
+        setFieldError('dog-age-err', '월일 4자리를 입력해 주세요. (예: 0505)');
+        return;
+    }
+
+    const m = parseInt(md.slice(0, 2));
+    const d = parseInt(md.slice(2, 4));
+    // new Date()로 실존 날짜 검증 (3333, 1399 같은 허구 차단)
+    const probe = new Date(2024, m - 1, d); // 윤년 대응: 2024년 기준
+    const isReal = probe.getMonth() + 1 === m && probe.getDate() === d;
+
+    if (!isReal) {
+        resultEl.textContent = '';
+        setFieldError('dog-age-err', '올바른 날짜(MMDD)를 입력해 주세요.');
+    } else {
+        clearFieldError('dog-age-err');
         const y = new Date().getFullYear() - parseInt(age);
-        el.textContent = `🔮 사주 기준: ${y}년 ${md.substring(0,2)}월 ${md.substring(2,4)}일`;
-    } else { el.textContent = ''; }
+        resultEl.textContent = `사주 기준: ${y}년 ${String(m).padStart(2,'0')}월 ${String(d).padStart(2,'0')}일`;
+    }
 }
 
 function shareResult() {
-    const dogName = document.getElementById('dog-name').value || '우리 아이';
+    const dogName = document.getElementById('dog-name').value.trim() || '우리 아이';
     const shareData = {
-        title: '멍도사 - 반려견 사주 풀이',
-        text: `${dogName}의 사주 결과를 확인해보세요!`,
+        title: '펫도사 — 반려동물 사주 풀이',
+        text: `${dogName}의 사주를 펫도사가 읽어줬어요. 우리 아이 운명도 확인해보세요!`,
         url: window.location.href
     };
 
