@@ -45,22 +45,73 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* ══ Header ══════════════════════════════════════ */
+/* ══ Header ══ */
 header {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px; padding: 0 24px;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; /* 로고는 왼쪽, 버튼은 오른쪽 끝으로 */    height: 64px; 
+    height: 64px;
+    padding: 0 24px;
     background: rgba(255,255,255,.88);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid var(--sep);
     position: sticky; top: 0; z-index: 100;
 }
-.header-logo { font-weight: 800; font-size: 1.1rem; }
-.header-center {
-    position: absolute; left: 50%; transform: translateX(-50%);
-    font-size: .95rem; font-weight: 700;
+
+.header-logo { 
+    font-weight: 800; 
+    font-size: 1.1rem; 
+    display: flex;
+    align-items: baseline; /* 텍스트 하단 라인 맞춤 */
+    gap: 6px; 
 }
-@media (max-width:600px) { .header-center { display: none; } }
+
+.logo-sub { 
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: #636366; /* var(--text2)보다 조금 더 진한 Apple Gray 톤 */
+    letter-spacing: -0.01em;
+    margin-left: 2px; /* 텍스트 사이 간격 미세 조정 */
+}
+
+/* 중앙 정렬 요소가 남아있다면 제거/숨김 처리 */
+.header-center { display: none; }
+
+/* ══ 의견보내기 버튼 (연한 테두리 버전) ══ */
+.btn-feedback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1C1C1E;              /* 텍스트는 가독성 좋은 검정 */
+    background-color: #F2F2F7;   /* 배경 연한 회색 */
+    border: 1px solid var(--sep); /* 테두리를 연한 회색으로 변경 */
+    border-radius: 10px;         /* 조금 더 둥글게 해서 세련되게 */
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-feedback:hover {
+    background-color: #E5E5EA;
+    border-color: #C7C7CC;       /* 호버 시 테두리 살짝 진하게 */
+}
+
+.btn-feedback:active {
+    transform: translateY(0);
+}
+
+/* 모바일 대응: 로고가 길어지면 버튼을 살짝 조절 */
+@media (max-width: 480px) {
+    .btn-feedback {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+}
+
 
 /* ══ Layout ══════════════════════════════════════ */
 main { 
@@ -69,36 +120,81 @@ main {
     padding: 8px 20px 80px; 
     
     /* [수정] 첫 번째 값(상단 여백)을 28px에서 8px로 대폭 축소! */
-    padding: 8px 20px 80px; 
+    padding: 8px 20px 50px; 
 }
 
 /* ══ Banner ══════════════════════ */
 .banner-container {
-    background: linear-gradient(135deg, #6B46FE 0%, #8E6BFF 100%);
-    border-radius: 16px;
-    padding: 14px 18px;
-    margin: 6px 0 16px;       /* 좌우 마진 제거 — form-card와 폭 일치 */
+    position: relative;
+    overflow: hidden; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f3eb !important;
+    border-radius: 30px;
+    padding: 30px;
+    min-height: 140px;
+    position: relative;
+    overflow: hidden;
+    margin: 16px 0 24px !important;
+}
+
+.banner-text-group {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    box-shadow: 0 4px 12px rgba(107, 70, 254, 0.2);
+    gap: 6px;
+    z-index: 2;
 }
 
-.banner-title {
-    font-size: 0.72rem !important;
-    font-weight: 400 !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-    margin-bottom: 2px !important;
-    letter-spacing: .01em;
+/* 상단 검정 배지 */
+.banner-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #1c1c1e;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    width: fit-content;
+    margin-bottom: 4px;
 }
 
-.banner-desc {
-    font-size: 1.05rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    white-space: normal;          /* 좁은 화면에서 줄바꿈 허용 */
+.banner-main {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1c1c1e;
     line-height: 1.4;
-    word-break: keep-all;
+    margin: 4px 0;
+}
+.highlight-blue {
+    color: #1c1c1e;
+}
+
+.banner-footer {
+    font-size: 0.85rem;
+    color: #636366;
+    margin: 0;
+}
+
+/* 엑박 안 뜨게 만드는 핵심 스타일 */
+.banner-dog-img {
+position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    right: 15px;    /* 오른쪽 끝에서 15px 띄우기 */
+    width: 130px;   /* 이미지 크기 조정 */
+    height: auto;
+    z-index: 1;
+    display: block;
+    object-fit: contain; /* 비율 유지 */
+}
+
+@media (max-width: 480px) {
+    .banner-dog-img {
+        width: 100px; /* 모바일에선 더 작게 */
+        right: 30px;
+    }
 }
 
 /* ══ Form ════════════════════════════════════════ */
@@ -118,12 +214,15 @@ main {
 }
 
 .form-card-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 800;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--sep);
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: none;
     color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .form-group {
@@ -341,12 +440,15 @@ main {
 
 /* ══ Results ═════════════════════════════════════ */
 #results-section { display: none; opacity: 0; transition: opacity .5s ease; }
-.result-block    { margin-bottom: 48px; }
+.result-block    { margin-bottom: 20px; }
 
 /* ── 만세력 차트 카드 ────────────────────────────── */
 .chart-card {
-    background: var(--card); border-radius: 20px;
-    padding: 28px 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    background: var(--card);
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    /* 필요하다면 여기서도 여백을 조절할 수 있습니다 */
 }
 .chart-card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 3px; }
 .chart-card-sub   { font-size: .82rem; color: var(--text2); margin-bottom: 20px; }
@@ -413,7 +515,6 @@ main {
     padding: 28px 24px; margin-bottom: 16px;
     box-shadow: 0 2px 12px rgba(0,0,0,.06);
     animation: fadeUp .4s ease both;
-    /* 결과 영역 무한 확장 */
     height: auto; overflow: visible;
 }
 .report-card:nth-child(1) { animation-delay: .05s; }
@@ -562,10 +663,7 @@ main {
 .happy-reason      { font-size: .68rem; color: var(--text2); line-height: 1.4; }
 
 /* API notice & back btn */
-.api-notice {
-    background: var(--bg); border-radius: 12px; padding: 12px 16px;
-    font-size: .78rem; color: var(--text2); text-align: center; margin-bottom: 20px;
-}
+
 .btn-back {
     width: 100%; padding: 16px; background: transparent;
     border: 1.5px solid var(--sep); border-radius: 14px;
@@ -773,17 +871,27 @@ footer .footer-disclaimer {
 <body>
 
 <header>
-    <div class="header-logo">펫도사</div>
-    <div class="header-center">펫도사 — 반려동물 사주 풀이소</div>
+    <div class="header-logo">
+        펫도사 <span class="logo-sub">반려동물 사주 풀이소</span>
+    </div>
+    
+    <a href="https://forms.gle/BJWLHBy65wvSYent6" target="_blank" class="btn-feedback">
+        의견보내기
+    </a>
 </header>
 
 <main>
 
 <!-- Banner -->
 <section class="banner-container">
-    <div class="banner-title">영험한 펫도사 오픈 기념</div>
-    <div class="banner-desc">우리 아이의 마음속, 펫도사가 그 운명의 지도를 읽어드릴게요.</div>
-    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.65);">오픈 기념 복채 이벤트 — 결과 공유 시 복채 면제</div>
+    <div class="banner-text-group">
+        <h2 class="banner-main">
+            영험한 펫도사와<br>
+            <span class="highlight-blue">내 아이의 속마음 읽기</span>
+        </h2>
+        <p class="banner-footer">결과 공유 시 복채 면제!</p>
+    </div>
+    <img src="banner-dog.png" class="banner-dog-img" alt="펫도사 강아지">
 </section>
 
 <!-- Form -->
@@ -962,14 +1070,10 @@ footer .footer-disclaimer {
                 <div class="accordion-body">
                     <p><strong>🌤 천간</strong> — 겉으로 드러나는 성격과 기질이에요. 행동과 태도에서 바로 나타나는 모습이죠.</p>
                     <p style="margin-top:10px"><strong>🌏 지지</strong> — 내면에 숨겨진 본능과 잠재력이에요. 친해졌을 때 드러나는 깊은 속마음이랍니다.</p>
-                    <p style="margin-top:10px"><strong>펫도사 해설</strong> — 색깔이 골고루 섞여 있을수록 무난한 성격이며, 한 색깔이 강할수록 그 기운이 뚜렷한 아이예요!</p>
+                    <p style="margin-top:10px"><strong>✨ 펫도사 해설</strong> — 색깔이 골고루 섞여 있을수록 무난한 성격이며, 한 색깔이 강할수록 그 기운이 뚜렷한 아이예요!</p>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="api-notice">
-        ※ 현재 테스트 리포트가 표시됩니다 — API 연동 후 실제 분석 결과가 출력됩니다
     </div>
 
     <!-- 2~5. 리포트 카드 (JS로 렌더링) -->
@@ -1109,31 +1213,31 @@ const DOG_LETTERS = {
 /* 건강 데이터 (수의사 검증 기준, 독성 음식 제외) */
 const HEALTH_DATA = {
     '木':{ subtitle:'간·담낭 에너지 케어!', organ:'간장 · 담낭',
-           foods:['닭가슴살','브로콜리','시금치','사과','블루베리'],
+           foods:['닭가슴살', '브로콜리', '양배추', '사과', '블루베리'],
            lucky:[{icon:'🟢',label:'행운의 색',value:'초록색',reason:'木 에너지 강화'},
                   {icon:'3️⃣',label:'행운의 숫자',value:'3, 8',reason:'오행 木에 해당'},
                   {icon:'🌅',label:'추천 활동',value:'아침 산책',reason:'木 기운은 아침에 활성화'}],
            tip:'木 기운은 간을 주관해요. 규칙적인 산책으로 기운을 순환시켜줘요.' },
     '火':{ subtitle:'심장·소장 에너지 밸런스!', organ:'심장 · 소장',
-           foods:['연어','당근','딸기','수박(씨 제거)','삶은 달걀'],
+           foods:['연어', '당근', '딸기', '수박(씨 제거)', '삶은 달걀노른자'],
            lucky:[{icon:'🔴',label:'행운의 색',value:'빨간색',reason:'火 에너지 강화'},
                   {icon:'7️⃣',label:'행운의 숫자',value:'2, 7',reason:'오행 火에 해당'},
                   {icon:'☀️',label:'추천 활동',value:'오후 활발한 산책',reason:'밝은 햇살에 火 기운 상승'}],
            tip:'火 기운은 심장을 주관해요. 충분한 휴식으로 과열을 막아줘요.' },
     '土':{ subtitle:'위장·비장 소화 관리!', organ:'비장 · 위장',
-           foods:['소고기','고구마','단호박','두부','현미밥'],
+           foods:['소고기(무첨가)', '고구마', '단호박', '익힌 황태', '오이'],
            lucky:[{icon:'🟡',label:'행운의 색',value:'황토색',reason:'土 에너지 강화'},
                   {icon:'5️⃣',label:'행운의 숫자',value:'5, 10',reason:'오행 土에 해당'},
                   {icon:'🐽',label:'추천 활동',value:'노즈워크',reason:'소화 돕고 스트레스 해소'}],
            tip:'土 기운은 위장을 주관해요. 소화 잘 되는 담백한 음식이 좋아요.' },
     '金':{ subtitle:'폐·대장 호흡기 케어!', organ:'폐 · 대장',
-           foods:['오리고기','감자','배(껍질 제거)','두부','현미'],
+           foods:['오리고기', '감자', '배(껍질 제거)', '바나나', '멜론'],
            lucky:[{icon:'⚪',label:'행운의 색',value:'흰색, 금색',reason:'金 에너지 강화'},
                   {icon:'4️⃣',label:'행운의 숫자',value:'4, 9',reason:'오행 金에 해당'},
                   {icon:'🍃',label:'추천 활동',value:'맑은 공기 산책',reason:'金 기운은 호흡과 연결'}],
            tip:'金 기운은 폐를 주관해요. 깨끗한 공기가 있는 곳에서 산책해요.' },
     '水':{ subtitle:'신장·방광 수분 균형!', organ:'신장 · 방광',
-           foods:['오리고기','멸치','검은콩','퀴노아','블루베리'],
+           foods:['북어(염분제거)', '멸치(무염)', '검은콩(익힌것)', '연어', '크랜베리'],
            lucky:[{icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'水 에너지 강화'},
                   {icon:'1️⃣',label:'행운의 숫자',value:'1, 6',reason:'오행 水에 해당'},
                   {icon:'🌙',label:'추천 활동',value:'저녁 산책',reason:'水 기운은 저녁에 충전'}],
@@ -1143,31 +1247,31 @@ const HEALTH_DATA = {
 /* ── 고양이 전용 건강 데이터 (실제 수의학 기반) ──────── */
 const CAT_HEALTH_DATA = {
     '木':{ subtitle:'간·담낭 에너지 케어', organ:'간 · 담낭',
-           foods:['닭가슴살(삶은 것)','연어(소량)','참치(소량, 과다 금지)','두부','고구마'],
+           foods:['삶은 닭가슴살', '연어', '무염 북어', '고양이 전용 습식캔'],
            lucky:[{icon:'🟢',label:'행운의 색',value:'초록색',reason:'木 기운 강화'},
                   {icon:'3️⃣',label:'행운의 숫자',value:'3, 8',reason:'오행 木에 해당'},
                   {icon:'🌅',label:'추천 활동',value:'아침 햇살 일광욕',reason:'木 기운은 아침에 활성화'}],
            tip:'木 기운은 간을 주관한다냥. 신선한 물을 충분히 마시게 해주는 것이 중요하다냥!' },
     '火':{ subtitle:'심장·순환계 에너지 밸런스', organ:'심장 · 소장',
-           foods:['연어','닭 안심','달걀노른자(삶은 것)','고등어(소량)','새우(소량)'],
+           foods:['익힌 연어', '삶은 닭 안심', '삶은 달걀노른자', '무염 멸치'],
            lucky:[{icon:'🔴',label:'행운의 색',value:'빨간색',reason:'火 기운 강화'},
                   {icon:'7️⃣',label:'행운의 숫자',value:'2, 7',reason:'오행 火에 해당'},
                   {icon:'☀️',label:'추천 활동',value:'햇빛이 드는 창가 휴식',reason:'밝은 햇살에 火 기운 상승'}],
            tip:'火 기운은 심장을 주관한다냥. 충분한 수면과 스트레스 관리가 핵심이다냥!' },
     '土':{ subtitle:'위장·비장 소화 관리', organ:'비장 · 위장',
-           foods:['소고기(삶은 것)','닭 가슴살','당근(소량)','호박','현미 사료'],
+           foods:['삶은 소고기', '삶은 닭 가슴살', '익힌 대구살', '찐 단호박'],
            lucky:[{icon:'🟡',label:'행운의 색',value:'황토색',reason:'土 기운 강화'},
                   {icon:'5️⃣',label:'행운의 숫자',value:'5, 10',reason:'오행 土에 해당'},
                   {icon:'😴',label:'추천 활동',value:'규칙적인 식사 시간',reason:'소화 돕고 안정감 강화'}],
            tip:'土 기운은 위장을 주관한다냥. 소화 잘 되는 담백한 식이를 유지하는 것이 최선이다냥!' },
     '金':{ subtitle:'폐·기관지 호흡기 케어', organ:'폐 · 기관지',
-           foods:['오리고기','닭 안심','감자(삶은 것)','현미','연어오일(소량)'],
+           foods:['익힌 오리고기', '삶은 닭 안심', '연어오일 트릿', '무염 황태'],
            lucky:[{icon:'⚪',label:'행운의 색',value:'흰색, 은색',reason:'金 기운 강화'},
                   {icon:'4️⃣',label:'행운의 숫자',value:'4, 9',reason:'오행 金에 해당'},
                   {icon:'🪟',label:'추천 활동',value:'환기 잘 되는 공간',reason:'金 기운은 호흡과 연결'}],
            tip:'金 기운은 폐를 주관한다냥. 청결한 환경과 규칙적인 빗질로 털 건강을 지키는 것이 중요하다냥!' },
     '水':{ subtitle:'신장·방광 수분 균형', organ:'신장 · 방광',
-           foods:['오리고기','북어(무염)','검은콩','연어','습식 사료(수분 보충)'],
+           foods:['익힌 오리고기', '무염 북어', '익힌 연어', '수분 함량 높은 습식캔'],
            lucky:[{icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'水 기운 강화'},
                   {icon:'1️⃣',label:'행운의 숫자',value:'1, 6',reason:'오행 水에 해당'},
                   {icon:'🌙',label:'추천 활동',value:'저녁 조용한 놀이',reason:'水 기운은 저녁에 충전'}],
@@ -1390,7 +1494,10 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
 
     // 1. 만세력 차트 제목 동적 업데이트 (멍-세력 차트 / 냥-세력 차트)
     const chartTitleEl = document.querySelector('.chart-card-title');
-    if (chartTitleEl) chartTitleEl.textContent = `✨ ${persona.chartTitle}`;
+        if (chartTitleEl) {
+        // ✨ {반려동물이름}의 멍세력/냥세력 차트
+        chartTitleEl.textContent = `✨ ${dogName}의 ${persona.chartTitle}`;
+        }
 
     // 2. 만세력 차트 렌더링
     renderChart(dogData);
@@ -1480,16 +1587,24 @@ function renderPersonalityCard(dogData, dogName, honorific) {
     const isCat = APP.species === 'cat';
     const src = isCat ? CAT_PERSONALITY_DATA : PERSONALITY_DATA;
     const d = src[dogData.mainEnergy] || src['木'];
+    
+    // 1. 이름에서 기존에 붙어있을지 모르는 조사(이가/이/가/은/는)를 싹 제거
+    const cleanName = dogName.replace(/(이가|이|가|은|는)$/, "");
+
+    // 2. 받침 유무에 따라 '은' 또는 '는'을 결정
+    const lastChar = cleanName.charCodeAt(cleanName.length - 1);
+    const hasLast = (lastChar - 0xac00) % 28 > 0;
+    const josa = hasLast ? '은' : '는';
+
     const tailLine = isCat
-        ? `${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${dogName}, ${d.subtitle.replace(/냥!$/,'냥')} 기질이 충만하다냥. 우리 ${honorific} 이미 다 알고 있었지 않다냥? 😼`
-        : `${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${dogName}, ${d.subtitle.replace('!','')} 기질이 충만해. 우리 ${honorific} 이미 다 알고 있었지? 😏`;
+        ? `${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${cleanName}, ${d.subtitle.replace(/냥!$/,'냥')} 기질이 충만하다냥. 우리 ${honorific} 이미 다 알고 있었지 않다냥? 😼`
+        : `${OH_ICON[dogData.mainEnergy]} <strong>${dogData.mainEnergy} 기운</strong>이 가장 강한 나 ${cleanName}, ${d.subtitle.replace('!','')} 기질이 충만해. 우리 ${honorific} 이미 다 알고 있었지? 😏`;
 
     const card = document.createElement('div');
     card.className = 'report-card';
     card.innerHTML = `
         <div class="card-eyebrow">타고난 성격</div>
-        <div class="card-subtitle">${dogName}${getJosa(dogName, '은는')} "${d.subtitle}"</div>
-        <ul class="report-bullets">
+        <div class="card-subtitle">${cleanName}${josa} "${d.subtitle}"</div> <ul class="report-bullets">
             ${d.bullets.map(b => `<li>${b}</li>`).join('')}
         </ul>
         <p style="margin-top:16px;font-size:.9rem;color:var(--text2);line-height:1.7">
@@ -1612,7 +1727,7 @@ function renderHealthCard(dogData, dogName, honorific) {
                 <ul class="danger-list">${dangerHtml}</ul>
             </div>
         </div>
-        <div class="disclaimer">본 결과는 사주 오행에 기반한 참고 정보입니다. 건강 이상 시 반드시 수의사와 상담하세요.</div>`;
+        <div class="disclaimer"> ⚠️본 결과는 사주 오행에 기반한 참고 정보입니다. 건강 이상 시 반드시 수의사와 상담하세요.</div>`;
     return card;
 }
 
@@ -1658,10 +1773,9 @@ function renderSecretLetter(dogName, ownerName, honorific) {
     const isCat = APP.species === 'cat';
     const msgs = DOG_MESSAGES;
     const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
-    const dogWithJosa = `${dogName}${getJosa(dogName, '이가')}`;
-    const openTitle = isCat
-        ? `${dogWithJosa} ${ownerName}님에게 할 말이 있나 봐!`
-        : `${dogWithJosa} ${ownerName}님에게 할 말이 있나 봐!`;
+    
+    // `${dogWithJosa}` 대신 직접 이름을 넣어 중복을 피합니다.
+    const openTitle = `${dogName}이(가) ${ownerName}님에게 할 말이 있나 봐!`;
 
     const wrapper = document.createElement('div');
     wrapper.className = 'letter-wrapper';
@@ -1673,6 +1787,7 @@ function renderSecretLetter(dogName, ownerName, honorific) {
             <div class="envelope-hint">눌러서 ${dogName}의 메시지를 확인해보세요</div>
         </div>
     `;
+    // ... 이하 생략 ...
 
     wrapper.onclick = function() {
         const catMsg = isCat
