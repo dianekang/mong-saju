@@ -2343,33 +2343,6 @@ function goBack() {
     location.reload(); 
 }
 
-/* ══════════════════════════════════════════════
-   [개발자 모드] 결과 화면 강제 고정 (수정용)
-══════════════════════════════════════════════ */
-window.addEventListener('DOMContentLoaded', () => {
-    // 1. 테스트용 가짜 데이터 생성
-    const mockData = {
-        dogData: analyzeSaju(2020, 5, 5, 12),
-        ownerData: analyzeSaju(1989, 8, 28, 14),
-        compat: { score: 95, tag: "보석 같은 인연 💍", desc: "테스트용 궁합 설명입니다." },
-        dogName: "강다희아이",
-        ownerName: "다희PM",
-        ownerGender: "여성",
-        dogGender: "남아"
-    };
-
-    // 2. 강제로 결과 화면 렌더링
-    APP.species = 'dog'; // 'cat'으로 바꾸면 고양이 결과 확인 가능
-    renderResults(mockData.dogData, mockData.ownerData, mockData.compat, mockData.dogName, mockData.ownerName, mockData.ownerGender, mockData.dogGender);
-
-    // 3. 메인 입력창과 배너 숨기기
-    document.getElementById('form-section').style.display = 'none';
-    if (document.querySelector('.banner-container')) {
-        document.querySelector('.banner-container').style.display = 'none';
-    }
-});
-
-
 </script>
 </body>
 </html>
