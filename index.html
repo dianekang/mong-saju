@@ -63,8 +63,14 @@ header {
     font-weight: 800; 
     font-size: 1.1rem; 
     display: flex;
-    align-items: baseline; /* 텍스트 하단 라인 맞춤 */
+    align-items: baseline;
     gap: 6px; 
+    cursor: pointer;      /* 마우스를 올리면 손가락 모양으로 변경 */
+    user-select: none;    /* 광클할 때 텍스트가 블록 지정되는 것 방지 */
+}
+
+.header-logo:active {
+    opacity: 0.7;
 }
 
 .logo-sub { 
@@ -683,43 +689,68 @@ footer .footer-disclaimer {
     color: var(--text3); line-height: 1.7;
 }
 
-/* 복채 공유 프로모 섹션 (메시지 박스와 간격 확보) */
-.share-promo {
-    background: linear-gradient(135deg, #F0EBFF 0%, #E8F0FF 100%);
-    border: 1px solid rgba(107,70,254,.15);
-    border-radius: 16px; padding: 16px 16px;
-    text-align: center; margin-top: 20px; margin-bottom: 6px;
+/* 반반 레이아웃 컨테이너 */
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 0 4px;
 }
-.share-promo-title {
-    font-size: .7rem; font-weight: 700; color: #6B46FE;
-    letter-spacing: .04em; text-transform: uppercase; margin-bottom: 4px;
-}
-.share-promo-msg {
-    font-size: .88rem; font-weight: 800; color: var(--text);
-    line-height: 1.4; margin-bottom: 10px; word-break: keep-all;
-}
-.share-promo-sub {
-    font-size: .72rem; color: var(--text2); margin-bottom: 12px; line-height: 1.55;
-}
-.btn-share-main {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: #6B46FE; color: white; border: none;
-    border-radius: 10px; padding: 10px 20px;
-    font-size: .82rem; font-weight: 700; font-family: inherit;
-    cursor: pointer; transition: opacity .15s, transform .1s;
-}
-.btn-share-main:hover  { opacity: .88; }
-.btn-share-main:active { transform: scale(.98); }
 
-@media (max-width:600px) {
-    .saju-grid { gap: 5px; }
-    .char-box  { min-height: 76px; }
-    .char-icon { font-size: 1.25rem; }
-    .lucky-cards { grid-template-columns: repeat(3,1fr); gap: 7px; }
-    .lucky-card  { padding: 12px 6px; }
-    .happy-items { grid-template-columns: 1fr; }
-    /* compat-visual 반응형은 .compat-visual @media 블록에서 처리 */
+/* 카드 공통 스타일 */
+.action-card {
+    background: #ffffff;
+    border: 1px solid #E5E5EA;
+    border-radius: 16px;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 140px; /* 높이 균일화 */
 }
+
+.action-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1C1C1E;
+    margin-bottom: 6px;
+}
+
+.action-card-msg {
+    font-size: 11px;
+    color: #636366;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    word-break: keep-all;
+}
+
+/* 버튼 스타일 */
+.btn-pay, .btn-share {
+    width: 100%;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-pay {
+    background-color: #FEE500; /* 카카오 노란색 */
+    color: #191919;
+}
+
+.btn-share {
+    background-color: #7F56D9; /* 기존 보라색 */
+    color: #ffffff;
+}
+
 
 /* 클릭 전 편지 봉투 스타일 */
 .letter-wrapper {
@@ -871,7 +902,7 @@ footer .footer-disclaimer {
 <body>
 
 <header>
-    <div class="header-logo">
+    <div class="header-logo" onclick="goBack()">
         펫도사 <span class="logo-sub">반려동물 사주 풀이소</span>
     </div>
     
@@ -1486,18 +1517,20 @@ function analyzeSaju(year, month, day, hour) {
    3. 렌더링
 ══════════════════════════════════════════════ */
 function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender) {
+    const resultBundle = { dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender, species: APP.species };
+    localStorage.setItem('mungdosa_last_result', JSON.stringify(resultBundle));
+    
     const honorific = dogGender === '남아'
         ? (ownerGender === '여성' ? '누나' : '형')
         : (ownerGender === '여성' ? '언니' : '오빠');
 
     const persona = getPetPersona();
 
-    // 1. 만세력 차트 제목 동적 업데이트 (멍-세력 차트 / 냥-세력 차트)
-    const chartTitleEl = document.querySelector('.chart-card-title');
-        if (chartTitleEl) {
-        // ✨ {반려동물이름}의 멍세력/냥세력 차트
-        chartTitleEl.textContent = `✨ ${dogName}의 ${persona.chartTitle}`;
-        }
+/* 다시 하기 & 로고 클릭 시 공통으로 사용하는 초기화 함수 */
+    function goBack() { 
+        localStorage.removeItem('mungdosa_last_result'); 
+        location.reload(); 
+    }
 
     // 2. 만세력 차트 렌더링
     renderChart(dogData);
@@ -1515,21 +1548,37 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
     // 5. 반려동물 메시지 편지
     container.appendChild(renderSecretLetter(dogName, ownerName, honorific));
 
-    // 7. 복채 공유 프로모 섹션
-    const sharePromo = document.createElement('div');
-    sharePromo.className = 'share-promo';
-    sharePromo.innerHTML = `
-        <div class="share-promo-title">오픈 기념 복채 이벤트</div>
-        <div class="share-promo-msg">복채는 서비스 공유로 받겠습니다</div>
-        <div class="share-promo-sub">
-            우리 아이 사주 결과를 지인에게 공유해주세요.<br>
-            펫도사의 영험한 기운이 함께 전달됩니다.
+// 7. 복채 & 공유 반반 섹션
+    const actionSection = document.createElement('div');
+    actionSection.className = 'action-grid'; // CSS에서 설정한 그리드 클래스
+    actionSection.innerHTML = `
+        <div class="action-card">
+            <div>
+                <div class="action-card-title">복채 보내기 </div>
+                <div class="action-card-msg">
+                    사주가 마음에 드셨나요? <br>
+                    복채의 일부는 <strong>보호소에 기부</strong>됩니다.
+                </div>
+            </div>
+            <a href="https://qr.kakaopay.com/Ej84xPrfW" target="_blank" class="btn-pay">
+                <span>👛</span> 복채 전달
+            </a>
         </div>
-        <button class="btn-share-main" onclick="shareResult()">
-            지인에게 공유하기
-        </button>
+
+        <div class="action-card">
+            <div>
+                <div class="action-card-title">결과 공유하기 </div>
+                <div class="action-card-msg">
+                    우리 아이 사주 결과를<br>
+                    지인에게 공유해 보세요.
+                </div>
+            </div>
+            <button onclick="shareResult()" class="btn-share">
+                <span>🔗</span> 주소 복사
+            </button>
+        </div>
     `;
-    container.appendChild(sharePromo);
+    container.appendChild(actionSection);
 
     // 8. 결과 섹션 노출 및 애니메이션
     const sec = document.getElementById('results-section');
@@ -2263,7 +2312,64 @@ function shareResult() {
     }
 }
 
-function goBack() { location.reload(); }
+
+
+window.addEventListener('load', () => {
+const saved = localStorage.getItem('mungdosa_last_result');
+    if (saved) {
+        try {
+            const data = JSON.parse(saved);
+            // 종 설정 복구
+            APP.species = data.species;
+            // 결과 화면 렌더링
+            renderResults(data.dogData, data.ownerData, data.compat, data.dogName, data.ownerName, data.ownerGender, data.dogGender);
+            
+            // 입력창과 배너 숨기기
+            document.getElementById('form-section').style.display = 'none';
+            document.querySelector('.banner-container').style.display = 'none';
+            
+        } catch (e) {
+            console.error("복구 실패:", e);
+            localStorage.removeItem('mungdosa_last_result');
+        }
+    }
+});
+
+function goBack() { 
+    // 1. 브라우저 창고(localStorage)에 저장된 이전 결과를 삭제
+    localStorage.removeItem('mungdosa_last_result'); 
+    
+    // 2. 그 다음 페이지를 새로고침해서 입력 폼이 나오게 함
+    location.reload(); 
+}
+
+/* ══════════════════════════════════════════════
+   [개발자 모드] 결과 화면 강제 고정 (수정용)
+══════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+    // 1. 테스트용 가짜 데이터 생성
+    const mockData = {
+        dogData: analyzeSaju(2020, 5, 5, 12),
+        ownerData: analyzeSaju(1989, 8, 28, 14),
+        compat: { score: 95, tag: "보석 같은 인연 💍", desc: "테스트용 궁합 설명입니다." },
+        dogName: "강다희아이",
+        ownerName: "다희PM",
+        ownerGender: "여성",
+        dogGender: "남아"
+    };
+
+    // 2. 강제로 결과 화면 렌더링
+    APP.species = 'dog'; // 'cat'으로 바꾸면 고양이 결과 확인 가능
+    renderResults(mockData.dogData, mockData.ownerData, mockData.compat, mockData.dogName, mockData.ownerName, mockData.ownerGender, mockData.dogGender);
+
+    // 3. 메인 입력창과 배너 숨기기
+    document.getElementById('form-section').style.display = 'none';
+    if (document.querySelector('.banner-container')) {
+        document.querySelector('.banner-container').style.display = 'none';
+    }
+});
+
+
 </script>
 </body>
 </html>
