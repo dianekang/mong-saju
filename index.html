@@ -1170,6 +1170,10 @@ function getJosa(name, type) {
 
 const Solar = window._mod.exports.Solar || window.Solar;
 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({'event': 'page_view', 'page_title': '반려정보 입력'});
+
+    
 /* ══════════════════════════════════════════════
    [Proactive Feature 1 — Senior Pet Mode]
    반려동물 7세 이상은 노령기 진입. 보호자의 감정적 니즈가 높아지는
@@ -1596,6 +1600,11 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
     // 8. 결과 섹션 노출 및 애니메이션
     const sec = document.getElementById('results-section');
     sec.style.display = 'block';
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'event': 'page_view', 'page_title': '사주 결과 확인'});
+
+    
     sec.style.opacity = '0';
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
