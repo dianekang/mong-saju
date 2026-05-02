@@ -1524,27 +1524,13 @@ function analyzeSaju(year, month, day, hour) {
 /* ══════════════════════════════════════════════
    3. 렌더링
 ══════════════════════════════════════════════ */
-function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender) {    // 1. 데이터 저장 로직
-    const resultBundle = { 
-        dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender, 
-        species: APP.species,
-        timestamp: Date.now() 
-    };
-    localStorage.setItem('mungdosa_last_result', JSON.stringify(resultBundle));[cite: 1]    
-    
+function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender) {
     // 호칭 및 페르소나 설정
     const honorific = dogGender === '남아' ? (ownerGender === '여성' ? '누나' : '형') : (ownerGender === '여성' ? '언니' : '오빠');
-    const persona = getPetPersona();[cite: 1]
+    const persona = getPetPersona();
 
-/* 다시 하기 & 로고 클릭 시 공통으로 사용하는 초기화 함수 */
-function goBack() { 
-    localStorage.removeItem('mungdosa_last_result'); 
-    location.reload(); 
-}[cite: 1]
-
-
-    // 2. 만세력 차트 렌더링
-    renderChart(dogData);[cite: 1]
+    // 만세력 차트 렌더링
+    renderChart(dogData);
 
     // 3. 리포트 카드 컨테이너 초기화
     const container = document.getElementById('report-cards');
