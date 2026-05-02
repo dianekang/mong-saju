@@ -269,15 +269,6 @@ position: absolute;
 .under-input:focus        { border-bottom-color: var(--blue); }
 .under-input:disabled     { opacity: .35; }
 
-/* 에러 시 레이아웃 점프 방지: min-height로 공간 선점 */
-.field-error {
-    font-size: .72rem;
-    color: var(--red, #FF3B30);
-    min-height: 1em;          /* 에러 없을 때도 공간 유지 */
-    margin-top: 3px;
-    line-height: 1;
-}
-
 .input-row {
     display: flex;
     align-items: center;
@@ -1533,24 +1524,27 @@ function analyzeSaju(year, month, day, hour) {
 /* ══════════════════════════════════════════════
    3. 렌더링
 ══════════════════════════════════════════════ */
-function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender) {
-    const resultBundle = { dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender, species: APP.species };
-    localStorage.setItem('mungdosa_last_result', JSON.stringify(resultBundle));
+function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender) {    // 1. 데이터 저장 로직
+    const resultBundle = { 
+        dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender, 
+        species: APP.species,
+        timestamp: Date.now() 
+    };
+    localStorage.setItem('mungdosa_last_result', JSON.stringify(resultBundle));[cite: 1]    
     
-    const honorific = dogGender === '남아'
-        ? (ownerGender === '여성' ? '누나' : '형')
-        : (ownerGender === '여성' ? '언니' : '오빠');
-
-    const persona = getPetPersona();
+    // 호칭 및 페르소나 설정
+    const honorific = dogGender === '남아' ? (ownerGender === '여성' ? '누나' : '형') : (ownerGender === '여성' ? '언니' : '오빠');
+    const persona = getPetPersona();[cite: 1]
 
 /* 다시 하기 & 로고 클릭 시 공통으로 사용하는 초기화 함수 */
-    function goBack() { 
-        localStorage.removeItem('mungdosa_last_result'); 
-        location.reload(); 
-    }
+function goBack() { 
+    localStorage.removeItem('mungdosa_last_result'); 
+    location.reload(); 
+}[cite: 1]
+
 
     // 2. 만세력 차트 렌더링
-    renderChart(dogData);
+    renderChart(dogData);[cite: 1]
 
     // 3. 리포트 카드 컨테이너 초기화
     const container = document.getElementById('report-cards');
@@ -2088,6 +2082,8 @@ function getOwnerGender() {
 }
 
 function startReading() {
+    trackEvent('reading_start', { species: APP.species });
+
     /* ── 1. 모든 에러 초기화 ── */
     ['dog-name-err','dog-age-err','owner-name-err','owner-birth-err']
         .forEach(id => clearFieldError(id));
@@ -2250,6 +2246,9 @@ function startReading() {
 
             loadingEl.style.display = 'none';
             renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender);
+
+            SessionManager.save({ species: APP.species, dogData, ownerData, compat, dogName, ownerName, ownerGender, dogGender });
+            trackEvent('reading_complete', { species: APP.species, compat_score: compat.score });
         } catch (err) {
             console.error(err);
             loadingEl.style.display = 'none';
@@ -2317,53 +2316,91 @@ function shareResult() {
         url: window.location.href
     };
 
-    // 모바일 브라우저 공유 기능 확인
     if (navigator.share) {
         navigator.share(shareData)
-            .then(() => console.log('공유 성공!'))
-            .catch((error) => console.log('공유 실패:', error));
+            .then(() => trackEvent('share', { method: 'native' }))
+            .catch(() => {});
     } else {
-        // 데스크탑 등 미지원 브라우저일 경우 클립보드 복사로 대체
         const dummy = document.createElement('input');
         document.body.appendChild(dummy);
         dummy.value = window.location.href;
         dummy.select();
         document.execCommand('copy');
         document.body.removeChild(dummy);
+        trackEvent('share', { method: 'clipboard' });
         showToast('🔗 링크가 복사됐어! 친구에게 사주 공유해줘 😊');
     }
 }
 
 
+/* ══════════════════════════════════════════════
+   SessionManager — 30분 만료 로컬 저장소 모듈
+══════════════════════════════════════════════ */
+const SESSION_KEY    = 'petdosa_last_result';
+const SESSION_TTL_MS = 30 * 60 * 1000; // 30분
 
-window.addEventListener('load', () => {
-const saved = localStorage.getItem('mungdosa_last_result');
-    if (saved) {
+const SessionManager = Object.freeze({
+    save(payload) {
         try {
-            const data = JSON.parse(saved);
-            // 종 설정 복구
-            APP.species = data.species;
-            // 결과 화면 렌더링
-            renderResults(data.dogData, data.ownerData, data.compat, data.dogName, data.ownerName, data.ownerGender, data.dogGender);
-            
-            // 입력창과 배너 숨기기
-            document.getElementById('form-section').style.display = 'none';
-            document.querySelector('.banner-container').style.display = 'none';
-            
+            localStorage.setItem(SESSION_KEY, JSON.stringify({ ...payload, timestamp: Date.now() }));
         } catch (e) {
-            console.error("복구 실패:", e);
-            localStorage.removeItem('mungdosa_last_result');
+            console.warn('[Session] 저장 실패:', e);
         }
-    }
+    },
+    restore() {
+        try {
+            const raw = localStorage.getItem(SESSION_KEY);
+            if (!raw) return null;
+            const data = JSON.parse(raw);
+            if (Date.now() - data.timestamp > SESSION_TTL_MS) {
+                this.clear();
+                return null;
+            }
+            return data;
+        } catch (e) {
+            this.clear();
+            return null;
+        }
+    },
+    clear() {
+        localStorage.removeItem(SESSION_KEY);
+    },
 });
 
-function goBack() { 
-    // 1. 브라우저 창고(localStorage)에 저장된 이전 결과를 삭제
-    localStorage.removeItem('mungdosa_last_result'); 
-    
-    // 2. 그 다음 페이지를 새로고침해서 입력 폼이 나오게 함
-    location.reload(); 
+/* ══════════════════════════════════════════════
+   Analytics — GA4 이벤트 헬퍼
+══════════════════════════════════════════════ */
+function trackEvent(name, params = {}) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: name, ...params });
 }
+
+/* ══════════════════════════════════════════════
+   goBack — 로고 클릭 / 다시하기 버튼 공통 초기화
+══════════════════════════════════════════════ */
+function goBack() {
+    SessionManager.clear();
+    trackEvent('go_back');
+    location.reload();
+}
+
+/* ══════════════════════════════════════════════
+   Lifecycle — 페이지 로드 시 세션 복구
+══════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+    const data = SessionManager.restore();
+    if (!data) return;
+
+    try {
+        APP.species = data.species || 'dog';
+        renderResults(data.dogData, data.ownerData, data.compat, data.dogName, data.ownerName, data.ownerGender, data.dogGender);
+        document.getElementById('form-section').style.display    = 'none';
+        document.querySelector('.banner-container').style.display = 'none';
+    } catch (e) {
+        console.error('[Session] 복구 실패:', e);
+        SessionManager.clear();
+    }
+});
 
 </script>
 </body>
