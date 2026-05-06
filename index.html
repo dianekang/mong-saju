@@ -12,9 +12,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>펫도사 | 펫사주·반려동물 사주·강아지 고양이 운세 풀이·반려동물 궁합</title>
+
     <meta name="description" content="우리 강아지, 고양이의 성격과 운세가 궁금하다면? 펫도사에서 펫사주와 반려동물 사주 풀이를 확인해보세요.">
     <meta name="keywords" content="펫사주, 반려동물사주, 강아지사주, 고양이사주, 멍도사, 펫도사, 반려동물운세">
+
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
     <meta property="og:type" content="website">
@@ -24,7 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:image" content="https://dianekang.github.io/mong-saju/assets/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
 <style>
 /* ══ Variables ═══════════════════════════════════ */
 :root {
@@ -1143,6 +1145,7 @@ var module  = window._mod;
 var exports = module.exports;
 </script>
 <script src="https://unpkg.com/lunar-javascript/lunar.js"></script>
+<script src="data.js"></script>
 
 <script>
 /* ══════════════════════════════════════════════
@@ -1169,18 +1172,6 @@ const Solar = window._mod.exports.Solar || window.Solar;
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({'event': 'page_view', 'page_title': '반려정보 입력'});
 
-    
-/* ══════════════════════════════════════════════
-   [Proactive Feature 1 — Senior Pet Mode]
-   반려동물 7세 이상은 노령기 진입. 보호자의 감정적 니즈가 높아지는
-   시점을 자동 감지해 결과지에 공감 배너 및 건강 케어 팁을 노출.
-   나이 데이터는 startReading에서 g_dogAge에 저장, 렌더 시 활용.
-
-   [Proactive Feature 2 — Species Persona Mapping]
-   강아지(멍)/고양이(냥) 종 선택에 따라 로딩 이모지·버튼 텍스트·
-   결과지 말투가 완전히 분기. PET_SPECIES 객체에서 중앙 관리해
-   추후 토끼·햄스터 등 종 확장 시 여기만 추가하면 됨.
-══════════════════════════════════════════════ */
 
 /** 모듈 레벨 상태 (전역 오염 최소화 — IIFE 내 단일 객체로 관리) */
 const APP = { species: 'dog', dogAge: 0 };
@@ -1231,276 +1222,14 @@ const ENERGY_NAMES = {
     '申':'재빠른\n기운','酉':'가을의\n결실', '戌':'충직한\n기운','亥':'밤의\n지혜'
 };
 
-/* 성격 데이터 */
-const PERSONALITY_DATA = {
-    '木':{ subtitle:'에너지 넘치는 탐험가!',
-           bullets:['호기심이 많고 새로운 환경에 빠르게 적응해요','독립적이지만 애정 표현도 아주 풍부해요','운동량이 충분해야 진짜 행복한 타입이에요','감정이 솔직해서 기분이 얼굴에 다 드러나요'] },
-    '火':{ subtitle:'사랑스러운 열정 폭탄!',
-           bullets:['밝고 쾌활한 분위기 메이커 기질이 강해요','보호자를 깊이 사랑하는 충성형이에요','자극에 민감하고 흥분도 빠른 편이에요','눈치 빠르고 감정 공감 능력이 최고예요'] },
-    '土':{ subtitle:'든든하고 믿음직한 내 편!',
-           bullets:['차분하고 안정적이어서 갑작스런 변화를 싫어해요','한번 정이 들면 절대 변하지 않는 의리파예요','루틴을 좋아하고 규칙적인 생활에서 행복해요','먹는 것을 사랑하는 소확행 전문가예요'] },
-    '金':{ subtitle:'예민하고 고귀한 귀족 강아지!',
-           bullets:['깔끔하고 정돈된 환경을 강하게 선호해요','보호자의 감정을 세심하게 읽는 공감 능력자예요','한번 마음을 주면 끝까지 충성하는 타입이에요','청각이 예민해서 큰 소리에 스트레스를 받아요'] },
-    '水':{ subtitle:'조용하지만 깊은 내면의 철학자!',
-           bullets:['지혜롭고 관찰력이 뛰어나 상황 파악이 빠릅니다','혼자만의 시간도 즐기는 독립적인 성향이에요','어떤 환경에도 유연하게 잘 적응해요','직관이 뛰어나서 위험을 먼저 감지하는 능력이 있어요'] }
-};
+/* ── 콘텐츠 데이터는 data.js → window.PET_DATA 에서 로드 ── */
 
-/* 강아지가 보호자에게 보내는 마지막 편지 (오행별) */
-const DOG_LETTERS = {
-    '木': ["언제나 나랑 함께 달려줘서 고마워.", "누구보다 나를 잘 아는 내 편!", "오늘도 나랑 산책 가줄 거지?"],
-    '火': ["내 마음은 항상 뜨겁게 사랑해!", "나를 보면 웃어주는 그 미소가 제일 좋아.", "언제나 나를 빛나게 해줘서 고마워!"],
-    '土': ["언제나 그 자리에 있어줘서 든든해.", "우리의 평범한 일상이 나에겐 보물이야.", "천천히 오래오래 같이 걷자."],
-    '金': ["나의 마음을 세심하게 읽어줘서 고마워.", "우리의 약속은 내가 꼭 지킬게.", "언제나 나를 품위 있게 만들어줘서 좋아."],
-    '水': ["말하지 않아도 다 아는 우리 사이!", "지혜로운 내 보호자, 사랑해.", "흐르는 물처럼 자연스럽게 우리 오래 함께하자."]
-};
-
-/* 건강 데이터 (수의사 검증 기준, 독성 음식 제외) */
-const HEALTH_DATA = {
-    '木':{ subtitle:'간·담낭 에너지 케어!', organ:'간장 · 담낭',
-           foods:['닭가슴살', '브로콜리', '양배추', '사과', '블루베리'],
-           lucky:[{icon:'🟢',label:'행운의 색',value:'초록색',reason:'木 에너지 강화'},
-                  {icon:'3️⃣',label:'행운의 숫자',value:'3, 8',reason:'오행 木에 해당'},
-                  {icon:'🌅',label:'추천 활동',value:'아침 산책',reason:'木 기운은 아침에 활성화'}],
-           tip:'木 기운은 간을 주관해요. 규칙적인 산책으로 기운을 순환시켜줘요.' },
-    '火':{ subtitle:'심장·소장 에너지 밸런스!', organ:'심장 · 소장',
-           foods:['연어', '당근', '딸기', '수박(씨 제거)', '삶은 달걀노른자'],
-           lucky:[{icon:'🔴',label:'행운의 색',value:'빨간색',reason:'火 에너지 강화'},
-                  {icon:'7️⃣',label:'행운의 숫자',value:'2, 7',reason:'오행 火에 해당'},
-                  {icon:'☀️',label:'추천 활동',value:'오후 활발한 산책',reason:'밝은 햇살에 火 기운 상승'}],
-           tip:'火 기운은 심장을 주관해요. 충분한 휴식으로 과열을 막아줘요.' },
-    '土':{ subtitle:'위장·비장 소화 관리!', organ:'비장 · 위장',
-           foods:['소고기(무첨가)', '고구마', '단호박', '익힌 황태', '오이'],
-           lucky:[{icon:'🟡',label:'행운의 색',value:'황토색',reason:'土 에너지 강화'},
-                  {icon:'5️⃣',label:'행운의 숫자',value:'5, 10',reason:'오행 土에 해당'},
-                  {icon:'🐽',label:'추천 활동',value:'노즈워크',reason:'소화 돕고 스트레스 해소'}],
-           tip:'土 기운은 위장을 주관해요. 소화 잘 되는 담백한 음식이 좋아요.' },
-    '金':{ subtitle:'폐·대장 호흡기 케어!', organ:'폐 · 대장',
-           foods:['오리고기', '감자', '배(껍질 제거)', '바나나', '멜론'],
-           lucky:[{icon:'⚪',label:'행운의 색',value:'흰색, 금색',reason:'金 에너지 강화'},
-                  {icon:'4️⃣',label:'행운의 숫자',value:'4, 9',reason:'오행 金에 해당'},
-                  {icon:'🍃',label:'추천 활동',value:'맑은 공기 산책',reason:'金 기운은 호흡과 연결'}],
-           tip:'金 기운은 폐를 주관해요. 깨끗한 공기가 있는 곳에서 산책해요.' },
-    '水':{ subtitle:'신장·방광 수분 균형!', organ:'신장 · 방광',
-           foods:['북어(염분제거)', '멸치(무염)', '검은콩(익힌것)', '연어', '크랜베리'],
-           lucky:[{icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'水 에너지 강화'},
-                  {icon:'1️⃣',label:'행운의 숫자',value:'1, 6',reason:'오행 水에 해당'},
-                  {icon:'🌙',label:'추천 활동',value:'저녁 산책',reason:'水 기운은 저녁에 충전'}],
-           tip:'水 기운은 신장을 주관해요. 신선한 물을 충분히 마시게 해줘요!' }
-};
-
-/* ── 고양이 전용 건강 데이터 (실제 수의학 기반) ──────── */
-const CAT_HEALTH_DATA = {
-    '木':{ subtitle:'간·담낭 에너지 케어', organ:'간 · 담낭',
-           foods:['삶은 닭가슴살', '연어', '무염 북어', '고양이 전용 습식캔'],
-           lucky:[{icon:'🟢',label:'행운의 색',value:'초록색',reason:'木 기운 강화'},
-                  {icon:'3️⃣',label:'행운의 숫자',value:'3, 8',reason:'오행 木에 해당'},
-                  {icon:'🌅',label:'추천 활동',value:'아침 햇살 일광욕',reason:'木 기운은 아침에 활성화'}],
-           tip:'木 기운은 간을 주관한다냥. 신선한 물을 충분히 마시게 해주는 것이 중요하다냥!' },
-    '火':{ subtitle:'심장·순환계 에너지 밸런스', organ:'심장 · 소장',
-           foods:['익힌 연어', '삶은 닭 안심', '삶은 달걀노른자', '무염 멸치'],
-           lucky:[{icon:'🔴',label:'행운의 색',value:'빨간색',reason:'火 기운 강화'},
-                  {icon:'7️⃣',label:'행운의 숫자',value:'2, 7',reason:'오행 火에 해당'},
-                  {icon:'☀️',label:'추천 활동',value:'햇빛이 드는 창가 휴식',reason:'밝은 햇살에 火 기운 상승'}],
-           tip:'火 기운은 심장을 주관한다냥. 충분한 수면과 스트레스 관리가 핵심이다냥!' },
-    '土':{ subtitle:'위장·비장 소화 관리', organ:'비장 · 위장',
-           foods:['삶은 소고기', '삶은 닭 가슴살', '익힌 대구살', '찐 단호박'],
-           lucky:[{icon:'🟡',label:'행운의 색',value:'황토색',reason:'土 기운 강화'},
-                  {icon:'5️⃣',label:'행운의 숫자',value:'5, 10',reason:'오행 土에 해당'},
-                  {icon:'😴',label:'추천 활동',value:'규칙적인 식사 시간',reason:'소화 돕고 안정감 강화'}],
-           tip:'土 기운은 위장을 주관한다냥. 소화 잘 되는 담백한 식이를 유지하는 것이 최선이다냥!' },
-    '金':{ subtitle:'폐·기관지 호흡기 케어', organ:'폐 · 기관지',
-           foods:['익힌 오리고기', '삶은 닭 안심', '연어오일 트릿', '무염 황태'],
-           lucky:[{icon:'⚪',label:'행운의 색',value:'흰색, 은색',reason:'金 기운 강화'},
-                  {icon:'4️⃣',label:'행운의 숫자',value:'4, 9',reason:'오행 金에 해당'},
-                  {icon:'🪟',label:'추천 활동',value:'환기 잘 되는 공간',reason:'金 기운은 호흡과 연결'}],
-           tip:'金 기운은 폐를 주관한다냥. 청결한 환경과 규칙적인 빗질로 털 건강을 지키는 것이 중요하다냥!' },
-    '水':{ subtitle:'신장·방광 수분 균형', organ:'신장 · 방광',
-           foods:['익힌 오리고기', '무염 북어', '익힌 연어', '수분 함량 높은 습식캔'],
-           lucky:[{icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'水 기운 강화'},
-                  {icon:'1️⃣',label:'행운의 숫자',value:'1, 6',reason:'오행 水에 해당'},
-                  {icon:'🌙',label:'추천 활동',value:'저녁 조용한 놀이',reason:'水 기운은 저녁에 충전'}],
-           tip:'水 기운은 신장을 주관한다냥. 습식 사료로 수분을 충분히 보충해 주는 것이 핵심이다냥!' }
-};
-
-/* 고양이 절대 금지 음식 (수의학 기준) */
-const CAT_DANGER_FOODS = [
-    { name:'양파 · 마늘 · 파',    reason:'적혈구 파괴 → 용혈성 빈혈, 소량도 위험' },
-    { name:'포도 · 건포도',        reason:'신부전 유발 — 소량도 치명적' },
-    { name:'초콜릿 · 카카오',      reason:'테오브로민 중독 → 심부전 위험' },
-    { name:'자일리톨(무설탕류)',   reason:'저혈당·간부전 유발' },
-    { name:'날생선(지속 급여)',    reason:'티아민 분해 효소 → 비타민 B1 결핍' },
-    { name:'참치(과다 급여)',      reason:'수은 축적, 황색지방증 유발' },
-    { name:'우유 · 유제품',        reason:'성묘는 유당불내증 — 소화장애·설사' },
-    { name:'날달걀 흰자',          reason:'아비딘 성분 → 비오틴 결핍' },
-    { name:'알코올 · 커피 · 차',  reason:'중추신경 손상, 소량도 위험' },
-    { name:'아보카도',              reason:'퍼신 성분 → 구토·설사·심근 손상' }
-];
-
-/* ── 고양이 전용 성격 데이터 (~냥 어미 적용) ──────────── */
-const CAT_PERSONALITY_DATA = {
-    '木':{ subtitle:'호기심 많은 탐험가냥!',
-           bullets:['새로운 곳이라면 두려움 없이 먼저 달려가는 타입이다냥','독립적이지만 은근히 스킨십도 좋아하는 고양이다냥','충분한 놀이가 있어야 진짜로 행복한 냥이다냥','감정이 솔직해서 싫으면 바로 티가 나는 스타일이다냥'] },
-    '火':{ subtitle:'열정 가득한 장난꾸러기냥!',
-           bullets:['밝고 사교적인 분위기 메이커형 고양이다냥','보호자를 깊이 좋아해서 항상 따라다니는 타입이다냥','자극에 예민하고 흥분도 빠른 편이다냥','눈치가 빠르고 감정 공감 능력이 탁월하다냥'] },
-    '土':{ subtitle:'든든하고 의리 있는 집냥이냥!',
-           bullets:['차분하고 루틴을 좋아해서 갑작스런 변화를 싫어한다냥','한번 정이 들면 끝까지 곁에 있어 주는 의리파냥이다냥','규칙적인 생활과 안정된 환경에서 가장 행복하다냥','간식과 낮잠을 사랑하는 소확행 전문가다냥'] },
-    '金':{ subtitle:'고귀하고 예민한 귀족 고양이냥!',
-           bullets:['청결하고 정돈된 환경을 극도로 선호한다냥','보호자의 기분을 섬세하게 캐치하는 공감 능력자냥이다냥','한번 신뢰하면 끝까지 충성하는 타입이다냥','청각이 예민해서 큰 소리에 스트레스를 받는다냥'] },
-    '水':{ subtitle:'신비롭고 깊은 철학 고양이냥!',
-           bullets:['조용히 관찰하다가 완벽한 타이밍에 행동하는 타입이다냥','혼자만의 시간도 충분히 즐기는 독립적인 성향이다냥','어떤 환경에도 유연하게 잘 적응한다냥','위험 감지 능력이 탁월한 직관의 소유자냥이다냥'] }
-};
-
-/* ── 고양이 전용 행복 제안 (~냥 어미 적용) ──────────── */
-const CAT_HAPPINESS_DATA = {
-    '木':{ subtitle:'기운 팡팡 탐험 계획냥!',
-           items:[{icon:'🌅',label:'추천 시간',value:'아침 일광욕',reason:'木 기운은 아침에 가장 활성화된다냥'},
-                  {icon:'🎣',label:'추천 놀이',value:'낚싯대 장난감',reason:'탐구 본능을 채워주는 최고의 놀이다냥'},
-                  {icon:'🌿',label:'행운의 색',value:'초록색',reason:'목줄이나 하네스를 초록으로 하면 좋다냥'},
-                  {icon:'🏅',label:'추천 활동',value:'캣휠 or 클리커 훈련',reason:'木 에너지 발산에 제격이다냥'}] },
-    '火':{ subtitle:'불꽃처럼 신나는 일과냥!',
-           items:[{icon:'☀️',label:'추천 시간',value:'낮 햇살 창가 놀이',reason:'밝은 빛이 火 기운을 살려준다냥'},
-                  {icon:'🪃',label:'추천 놀이',value:'터널 & 공 놀이',reason:'넘치는 에너지를 시원하게 발산할 수 있다냥'},
-                  {icon:'❤️',label:'행운의 색',value:'빨간색',reason:'빨간 장난감이 이 아이에게 잘 맞는다냥'},
-                  {icon:'🤸',label:'추천 활동',value:'캣타워 등반 놀이',reason:'사회성과 체력을 동시에 키울 수 있다냥'}] },
-    '土':{ subtitle:'포근하고 느긋한 안정 루틴냥!',
-           items:[{icon:'🍂',label:'추천 시간',value:'저녁 조용한 시간',reason:'土 기운은 여유로운 리듬이 중요하다냥'},
-                  {icon:'🎁',label:'추천 놀이',value:'간식 퍼즐 피더',reason:'후각을 자극해 만족감을 높여준다냥'},
-                  {icon:'🟡',label:'행운의 색',value:'황토색, 노란색',reason:'포근한 색의 쿠션이나 침대를 선물해주면 좋다냥'},
-                  {icon:'🧘',label:'추천 활동',value:'규칙적인 그루밍 타임',reason:'규칙 속 안정감이 土 냥이에게 딱 맞는다냥'}] },
-    '金':{ subtitle:'깔끔하고 품위 있는 귀족 루틴냥!',
-           items:[{icon:'🍃',label:'추천 시간',value:'아침 그루밍 & 빗질',reason:'金 기운은 청결함과 잘 맞는다냥'},
-                  {icon:'🧩',label:'추천 놀이',value:'퍼즐 장난감',reason:'예민한 두뇌를 자극해준다냥'},
-                  {icon:'⚪',label:'행운의 색',value:'흰색, 은색',reason:'흰색 침구가 이 아이의 기운을 살린다냥'},
-                  {icon:'🎓',label:'추천 활동',value:'클리커 트릭 훈련',reason:'金 기운의 섬세함을 극대화할 수 있다냥'}] },
-    '水':{ subtitle:'흐르는 물처럼 자유로운 일과냥!',
-           items:[{icon:'🌙',label:'추천 시간',value:'저녁 사냥 놀이',reason:'水 기운은 저녁에 충전된다냥'},
-                  {icon:'🚿',label:'추천 놀이',value:'물 음수대 or 분수형 급수기',reason:'水 기운 최대 활성화를 도와준다냥'},
-                  {icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'파란 담요나 장난감이 잘 맞는다냥'},
-                  {icon:'🔭',label:'추천 활동',value:'창문 버드 워칭',reason:'水 냥이의 관찰력과 직관력을 키워준다냥'}] }
-};
-
-/* 행복 제안 데이터 */
-const HAPPINESS_DATA = {
-    '木':{ subtitle:'기운 팡팡 활력 충전 계획!',
-           items:[{icon:'🌅',label:'산책',value:'아침 30분+',reason:'木 기운은 아침에 가장 활성화돼요'},
-                  {icon:'🎾',label:'추천 놀이',value:'공 놀이, 터그',reason:'탐구 본능을 채워주는 놀이예요'},
-                  {icon:'🌿',label:'행운의 색',value:'초록색',reason:'리드줄이나 목걸이를 초록으로!'},
-                  {icon:'🏅',label:'추천 훈련',value:'어질리티',reason:'木 에너지 발산에 최고예요'}] },
-    '火':{ subtitle:'불꽃처럼 신나는 생활 계획!',
-           items:[{icon:'☀️',label:'산책',value:'오후 햇살 속 30분',reason:'밝은 빛이 火 기운을 살려줘요'},
-                  {icon:'🏃',label:'추천 놀이',value:'달리기, 수영',reason:'넘치는 에너지를 시원하게 발산!'},
-                  {icon:'❤️',label:'행운의 색',value:'빨간색',reason:'리드줄이나 목걸이를 빨강으로!'},
-                  {icon:'🎭',label:'추천 훈련',value:'반려견 교실',reason:'사회성을 키우는 火 기질 훈련'}] },
-    '土':{ subtitle:'포근하고 느긋한 안정 루틴!',
-           items:[{icon:'🍂',label:'산책',value:'저녁 노을 아래 여유롭게',reason:'土 기운은 여유로운 리듬이 중요해요'},
-                  {icon:'🐽',label:'추천 놀이',value:'노즈워크, 간식 찾기',reason:'후각을 자극해 만족감을 높여줘요'},
-                  {icon:'🟡',label:'행운의 색',value:'황토색, 노란색',reason:'리드줄이나 목걸이를 노란색으로!'},
-                  {icon:'🧘',label:'추천 훈련',value:'기초 복종 훈련',reason:'규칙 속 안정감이 土 아이에게 딱'}] },
-    '金':{ subtitle:'깔끔하고 품위 있는 귀족 루틴!',
-           items:[{icon:'🍃',label:'산책',value:'공기 맑은 이른 아침',reason:'金 기운은 신선한 공기와 잘 맞아요'},
-                  {icon:'🧩',label:'추천 놀이',value:'퍼즐 장난감',reason:'예민한 두뇌를 자극해줘요'},
-                  {icon:'⚪',label:'행운의 색',value:'흰색, 은색',reason:'리드줄이나 목걸이를 흰색으로!'},
-                  {icon:'🎓',label:'추천 훈련',value:'코 훈련(노즈워크)',reason:'금 기운의 섬세함 극대화'}] },
-    '水':{ subtitle:'흐르는 물처럼 자유로운 일과!',
-           items:[{icon:'🌙',label:'산책',value:'저녁 서늘할 때',reason:'水 기운은 저녁 산책에서 충전돼요'},
-                  {icon:'🏊',label:'추천 놀이',value:'수영, 물놀이',reason:'水 기운 최대 활성화 놀이예요'},
-                  {icon:'🔵',label:'행운의 색',value:'파란색, 검정',reason:'리드줄이나 목걸이를 파란색으로!'},
-                  {icon:'🔭',label:'추천 훈련',value:'관찰·탐정 게임',reason:'水 아이의 직관력을 키워줘요'}] }
-};
-
-/* 절대 금지 음식 (미국수의사학회·한국수의사협회 기준) */
-const DANGER_FOODS = [
-    { name:'초콜릿 · 카카오',     reason:'테오브로민 중독 → 심장마비 위험' },
-    { name:'포도 · 건포도',       reason:'신부전 유발, 소량도 치명적' },
-    { name:'양파 · 마늘 · 파',    reason:'적혈구 파괴 → 용혈성 빈혈' },
-    { name:'자일리톨(무설탕 껌)', reason:'저혈당 → 간부전 유발' },
-    { name:'마카다미아 너트',      reason:'근육 쇠약·발열·구토' },
-    { name:'아보카도',             reason:'퍼신 성분 → 구토·설사' },
-    { name:'알코올 · 커피',        reason:'중추신경 손상, 소량도 위험' },
-    { name:'자두·복숭아 씨앗',    reason:'청산가리(시안화물) 함유' },
-    { name:'날생선·날달걀 흰자',  reason:'반복 급여 시 비오틴 결핍' },
-    { name:'소금·짜게 조리된 식품',reason:'나트륨 중독 → 경련·혼수' }
-];
-
-/* ══════════════════════════════════════════════
-   COMPAT_MATRIX  —  5×5 오행 궁합 해시맵
-   구조: COMPAT_MATRIX[ownerEnergy][dogEnergy]
-   → { score: number, tag: string, desc: string }
-   조회 복잡도: O(1)
-══════════════════════════════════════════════ */
-const COMPAT_MATRIX = Object.freeze({
-    '木': {
-        '木': { score: 75, tag: '같은 숲의 나무들 🌲',
-                desc: '같은 木 기운을 타고난 두 영혼이에요. 서로의 마음을 깊이 이해하고 같은 방향을 함께 바라보는, 말하지 않아도 통하는 편안한 관계예요.' },
-        '火': { score: 90, tag: '완벽한 조화 🔥',
-                desc: '보호자님의 木 기운이 아이의 불꽃 같은 열정에 생기를 불어넣어요. 당신이 곁에 있어 아이가 더 빛나게 타오를 수 있답니다!' },
-        '土': { score: 62, tag: '성장의 파트너 🌱',
-                desc: '보호자님의 에너지가 아이에게 명확한 방향과 성장의 자극을 줘요. 부딪히는 순간이 있어도, 그 속에서 아이는 더 단단하게 성장해요.' },
-        '金': { score: 53, tag: '설레는 긴장감 ✨',
-                desc: '아이의 단단한 金 기운이 보호자님의 목기운에 신선한 자극을 줘요. 서로의 다름이 만들어내는 역동적 매력, 함께할수록 더 빛나는 관계예요.' },
-        '水': { score: 85, tag: '에너지 충전소 💙',
-                desc: '아이의 水 기운이 보호자님의 木 기운을 풍요롭게 적셔줘요. 아이가 곁에 있으면 보호자님의 세상이 더 넓고 깊어지는 느낌이에요!' }
-    },
-    '火': {
-        '木': { score: 84, tag: '활력의 선물 🌿',
-                desc: '아이의 木 기운이 보호자님의 뜨거운 열정에 싱그러운 활력을 불어넣어요. 아이와 함께라면 매일매일이 새롭고 설레는 이유예요!' },
-        '火': { score: 73, tag: '두 불꽃의 만남 🔥',
-                desc: '두 火 기운이 만났어요! 함께 있으면 세상 그 무엇도 두렵지 않을 것 같은 뜨거운 에너지의 찰떡 커플이에요.' },
-        '土': { score: 89, tag: '천생연분 🌸',
-                desc: '보호자님의 火 기운이 아이에게 따뜻한 안정감과 든든함을 선물해요. 세상에서 가장 완벽한 보금자리를 함께 만드는 관계예요.' },
-        '金': { score: 60, tag: '단련의 파트너 ⚒️',
-                desc: '보호자님의 뜨거운 기운이 아이를 더욱 단단하고 빛나게 단련시켜요. 부딪히는 과정 속에서 최고의 서로를 만들어가는 관계예요!' },
-        '水': { score: 55, tag: '역동적 매력 🌊',
-                desc: '아이의 水 기운이 보호자님에게 시원한 균형을 선사해요. 서로의 다름이 만들어내는 예상치 못한 아름다운 시너지예요.' }
-    },
-    '土': {
-        '木': { score: 54, tag: '신선한 에너지 🌱',
-                desc: '아이의 木 기운이 보호자님의 안정된 일상에 생명력 넘치는 신선한 바람을 불어넣어요. 아이 덕분에 보호자님의 삶에 봄이 찾아오는 느낌이에요!' },
-        '火': { score: 86, tag: '행복 충전 100% 💛',
-                desc: '아이의 火 기운이 보호자님에게 따뜻한 온기와 생기를 더해줘요. 아이가 있어 집 안이 늘 환하게 밝아지는, 서로에게 완벽한 존재예요.' },
-        '土': { score: 71, tag: '변함없는 신뢰 🤝',
-                desc: '대지의 기운을 함께 나눈 두 영혼이에요. 변함없는 신뢰와 안정감이 두 분의 일상을 언제나 든든하게 지켜줄 거예요.' },
-        '金': { score: 88, tag: '최고의 조합 💎',
-                desc: '보호자님의 포근한 土 기운이 아이의 예리한 金 기운을 더욱 빛나게 키워줘요. 훌륭한 스승과 빛나는 제자 같은 완벽한 관계예요!' },
-        '水': { score: 61, tag: '균형의 수호자 ⚖️',
-                desc: '보호자님의 안정된 기운이 아이의 자유로운 에너지에 합리적인 경계를 그어줘요. 균형의 미학이 빛나는 성숙하고 아름다운 관계예요.' }
-    },
-    '金': {
-        '木': { score: 59, tag: '정제된 빛남 ✨',
-                desc: '보호자님의 결단력 있는 金 기운이 아이의 무한한 가능성을 아름답게 다듬어줘요. 아이가 더욱 빛날 수 있도록 방향을 제시하는 관계예요!' },
-        '火': { score: 52, tag: '짜릿한 에너지 ⚡',
-                desc: '아이의 열정적인 火 기운이 보호자님에게 날카로운 영감과 새로운 활력을 불어넣어요. 매 순간이 짜릿하고 역동적인 특별한 관계예요!' },
-        '土': { score: 83, tag: '든든한 지원자 🌟',
-                desc: '아이의 포근한 土 기운이 보호자님의 예리한 감각을 부드럽게 감싸줘요. 아이가 있어 더 여유롭고 풍요로워지는 하루예요.' },
-        '金': { score: 72, tag: '보석 같은 인연 💍',
-                desc: '보석 같은 두 존재의 만남이에요! 서로의 예민한 감각을 완벽히 이해하고, 함께일 때 더욱 빛나는 특별하고 아름다운 관계예요.' },
-        '水': { score: 91, tag: '완벽한 조화 🌊',
-                desc: '보호자님의 단단한 金 기운이 아이의 지혜로운 水 기운을 더욱 풍요롭게 해줘요. 서로가 서로를 완성시키는 아름다운 한 쌍이에요!' }
-    },
-    '水': {
-        '木': { score: 88, tag: '성장의 원천 🌿',
-                desc: '보호자님의 깊은 水 기운이 아이의 성장을 위한 완벽한 토양이 되어줘요. 아이가 무럭무럭 자랄 수 있는 건 보호자님의 깊은 사랑 덕분이에요!' },
-        '火': { score: 62, tag: '쿨링 파트너 🔥',
-                desc: '보호자님의 차분한 기운이 아이의 과열을 막아주는 완벽한 균형추예요. 보호자님이 있어 아이가 항상 안전하고 건강하게 빛날 수 있어요.' },
-        '土': { score: 53, tag: '새로운 바람 🍃',
-                desc: '아이의 따뜻한 土 기운이 보호자님의 깊은 내면에 포근한 안정감을 더해줘요. 아이 덕분에 보호자님의 삶이 더 따뜻하게 채워지는 느낌이에요!' },
-        '金': { score: 85, tag: '지혜의 샘 💧',
-                desc: '아이의 단단한 金 기운이 보호자님의 유연한 지혜를 더욱 깊고 풍요롭게 만들어줘요. 함께 성장하며 서로를 완성시키는 아름다운 관계예요.' },
-        '水': { score: 74, tag: '깊은 교감 🌊',
-                desc: '두 물결이 하나로 합쳐지듯, 깊은 교감과 이해로 맺어진 관계예요. 말하지 않아도 서로를 알아주는 고요하고 아름다운 인연이에요.' }
-    }
-});
-
-/**
- * 오행 궁합 계산 — 순수 함수 (Pure Function), O(1) 해시맵 조회
- * @param {string} ownerEnergy  보호자 일간 오행 ('木'|'火'|'土'|'金'|'水')
- * @param {string} dogEnergy    반려견 일간 오행
- * @returns {{ score: number, tag: string, desc: string }}
- */
-/* [REPLACE TARGET: 구 checkCompatibility + getRelationTag 대체] */
-function calculateHarmony(ownerEnergy, dogEnergy) {
-    return COMPAT_MATRIX[ownerEnergy]?.[dogEnergy]
-        ?? COMPAT_MATRIX['木']['木']; // 미지 오행 fallback
+function calculateHarmony(ownerEnergy, petEnergy) {
+    const matrix = window.PET_DATA?.[APP.species]?.COMPAT_MATRIX
+        ?? window.PET_DATA?.COMPAT_MATRIX;
+    return matrix?.[ownerEnergy]?.[petEnergy]
+        ?? matrix?.['木']?.['木']
+        ?? { score: 70, tag: '인연', desc: '' };
 }
 
 /* ══════════════════════════════════════════════
@@ -1524,8 +1253,6 @@ function analyzeSaju(year, month, day, hour) {
     return { mainEnergy: OHAENG_MAP[pillars.day[0]], ohaengCount, pillars, hasHour: (hour !== undefined) };
 }
 
-/* checkCompatibility · getRelationTag → calculateHarmony + COMPAT_MATRIX 로 대체됨 */
-
 /* ══════════════════════════════════════════════
    3. 렌더링
 ══════════════════════════════════════════════ */
@@ -1548,7 +1275,7 @@ function renderResults(dogData, ownerData, compat, dogName, ownerName, ownerGend
     container.appendChild(renderHappinessCard(dogData, dogName, honorific));
 
     // 5. 반려동물 메시지 편지
-    container.appendChild(renderSecretLetter(dogName, ownerName, honorific));
+    container.appendChild(renderSecretLetter(dogName, ownerName, honorific, dogData.mainEnergy));
 
 // 7. 복채 & 공유 반반 섹션
     const actionSection = document.createElement('div');
@@ -1641,7 +1368,7 @@ function makeCharBox(char, empty) {
 /* ── 1. 타고난 성격 카드 ───────────────────────── */
 function renderPersonalityCard(dogData, dogName, honorific) {
     const isCat = APP.species === 'cat';
-    const src = isCat ? CAT_PERSONALITY_DATA : PERSONALITY_DATA;
+    const src = window.PET_DATA[APP.species].PERSONALITY;
     const d = src[dogData.mainEnergy] || src['木'];
     
     // 1. 이름에서 기존에 붙어있을지 모르는 조사(이가/이/가/은/는)를 싹 제거
@@ -1745,8 +1472,8 @@ function renderCompatCard(harmony, dogData, ownerData, dogName, ownerName, honor
 /* ── 3. 건강 & 에너지 카드 ─────────────────────── */
 function renderHealthCard(dogData, dogName, honorific) {
     const isCat = APP.species === 'cat';
-    const healthSrc  = isCat ? CAT_HEALTH_DATA  : HEALTH_DATA;
-    const dangerSrc  = isCat ? CAT_DANGER_FOODS : DANGER_FOODS;
+    const healthSrc = window.PET_DATA[APP.species].HEALTH;
+    const dangerSrc = window.PET_DATA[APP.species].DANGER_FOODS;
     const h = healthSrc[dogData.mainEnergy] || healthSrc['木'];
 
     const card = document.createElement('div');
@@ -1790,7 +1517,7 @@ function renderHealthCard(dogData, dogName, honorific) {
 /* ── 4. 행복 제안 카드 ─────────────────────────── */
 function renderHappinessCard(dogData, dogName, honorific) {
     const isCat = APP.species === 'cat';
-    const happySrc = isCat ? CAT_HAPPINESS_DATA : HAPPINESS_DATA;
+    const happySrc = window.PET_DATA[APP.species].HAPPINESS;
     const h = happySrc[dogData.mainEnergy] || happySrc['木'];
     const dogWithJosa = `${dogName}${getJosa(dogName, '을를')}`;
 
@@ -1816,20 +1543,12 @@ function renderHappinessCard(dogData, dogName, honorific) {
 }
 
 /* ── 5. 펫도사의 비밀 편지 (마지막 섹션) ──────────────── */
-const DOG_MESSAGES = [
-    "내가 말이 좀 늦지? 그래도 내 마음은 다 전해졌을 거라 믿어. 사랑해!",
-    "우리 다음 생에도 꼭 다시 만나자. 그때도 내가 먼저 꼬리 흔들며 기다릴게.",
-    "나를 불러줄 때 내 세상은 가장 환하게 빛나. 평생 내 곁에 있어줘!",
-    "근데 있잖아... 산책은 좀 더 길게 해줄 수 없어? 내 기운이 아직 남았거든!",
-    "혹시 내가 자는데 쳐다봤어? 꿈에서 맛있는 간식 먹고 있었는데 딱 걸렸네!",
-    "간식 주는 손길이 조금 더 과감해져도 괜찮을 것 같아. 나는 준비됐어!"
-];
-
-function renderSecretLetter(dogName, ownerName, honorific) {
+function renderSecretLetter(dogName, ownerName, honorific, mainEnergy) {
     const isCat = APP.species === 'cat';
-    const msgs = DOG_MESSAGES;
-    const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
-    
+    const letters = window.PET_DATA[APP.species].LETTERS[mainEnergy]
+        || window.PET_DATA[APP.species].LETTERS['木'];
+    const randomMsg = letters[Math.floor(Math.random() * letters.length)];
+
     // `${dogWithJosa}` 대신 직접 이름을 넣어 중복을 피합니다.
     const openTitle = `${dogName}이(가) ${ownerName}님에게 할 말이 있나 봐!`;
 
@@ -1843,16 +1562,12 @@ function renderSecretLetter(dogName, ownerName, honorific) {
             <div class="envelope-hint">눌러서 ${dogName}의 메시지를 확인해보세요</div>
         </div>
     `;
-    // ... 이하 생략 ...
 
     wrapper.onclick = function() {
-        const catMsg = isCat
-            ? randomMsg.replace(/해\./g,'한다냥.').replace(/있어\./g,'있다냥.').replace(/줄게\./g,'줄게다냥.').replace(/!\"/g,'!다냥"').replace(/야\./g,'야다냥.')
-            : randomMsg;
         wrapper.innerHTML = `
             <div class="letter-opened">
                 <div class="letter-header">From. ${dogName}</div>
-                <div class="letter-content">"${catMsg}"</div>
+                <div class="letter-content">"${randomMsg}"</div>
             </div>
         `;
         if (navigator.vibrate) navigator.vibrate(10);
@@ -1862,10 +1577,7 @@ function renderSecretLetter(dogName, ownerName, honorific) {
 }
 
 /* ══════════════════════════════════════════════
-   4. UI 유틸
-══════════════════════════════════════════════ */
-/* ══════════════════════════════════════════════
-   5. 입력 헬퍼 & 에러 핸들링
+   4. UI 유틸 & 입력 헬퍼 & 에러 핸들링
 ══════════════════════════════════════════════ */
 
 /** 종 인라인 토글 선택 */
