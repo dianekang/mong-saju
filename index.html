@@ -685,15 +685,35 @@ position: absolute;
 }
 .btn-back:hover { border-color: var(--blue); color: var(--blue); }
 
-footer {
-    padding: 28px 20px 36px;
-    font-size: .73rem; color: var(--text3);
-    border-top: 1px solid var(--sep);
-    text-align: center; line-height: 1.8;
+.footer {
+    background-color: #f8f9fa; /* 연한 회색 배경 */
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    border-top: 1px solid #eee;
+    line-height: 1.6;
 }
-footer .footer-disclaimer {
-    margin-top: 8px; font-size: .68rem;
-    color: var(--text3); line-height: 1.7;
+
+.footer-links {
+    margin: 15px 0;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-cs a {
+    color: #007bff; /* 이메일 강조 색상 */
+    text-decoration: none;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
 }
 
 /* 반반 레이아웃 컨테이너 */
@@ -1129,13 +1149,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <footer>
-    펫도사 · 반려동물 사주 풀이소
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>반려동물과 보호자의 소중한 인연을 사주로 풀어봅니다.</p>
+        <div class="footer-links">
+            <!-- 나중에 약관 파일을 만드시면 '#' 자리에 파일명을 넣어주세요 -->
+            <a href="terms.html">이용약관</a> | 
+            <a href="privacy.html" style="font-weight: bold;">개인정보처리방침</a>
+        </div>
+        
+        <div class="footer-cs">
+            <p>서비스문의: <a href="mailto:info@pet-saju.com">info@pet-saju.com</a></p>
+        </div>
+        
     <div class="footer-disclaimer">
         본 서비스는 사주 오행 이론에 기반한 참고용 콘텐츠입니다.<br>
         실제 건강·행동 문제는 반드시 수의사 또는 전문가와 상담하시기 바랍니다.<br>
         사주 해석 결과는 과학적 근거가 아닌 전통 오행 이론을 기반으로 하며,<br>
         개인 또는 반려동물의 미래를 보증하지 않습니다.
     </div>
+
+        <p class="copyright">© 2026 피스픽스. All rights reserved.</p>
+
+
 </footer>
 
 <!-- lunar-javascript shim -->
